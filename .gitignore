@@ -1,0 +1,14 @@
+# Dossiers lourds / media — hors Git
+_deploy/
+_versions/
+videos/
+photos et films/
+site/
+
+# Fichiers tests temporaires
+test_*.png
+
+# macOS
+.DS_Store
+.AppleDouble
+*.icloud

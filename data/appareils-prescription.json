@@ -1,0 +1,3609 @@
+{
+  "categories": [
+    {
+      "id": "ortheses-mi",
+      "label": "Orthèses membre inférieur",
+      "icon": "fa-shoe-prints",
+      "famille": "orthese",
+      "zone": "mi",
+      "pathologies": [
+        {
+          "id": "hemiplegie",
+          "label": "Hémiplégie"
+        },
+        {
+          "id": "pied_bot",
+          "label": "Pied bot / déformations congénitales"
+        },
+        {
+          "id": "poliomyelite",
+          "label": "Poliomyélite / paralysie flasque"
+        },
+        {
+          "id": "deficience_quadriceps",
+          "label": "Déficience du quadriceps"
+        },
+        {
+          "id": "lesion_ligamentaire",
+          "label": "Lésions ligamentaires du genou"
+        },
+        {
+          "id": "spasticite",
+          "label": "Spasticité / IMC / paralysie cérébrale"
+        },
+        {
+          "id": "equin",
+          "label": "Marche en équin"
+        },
+        {
+          "id": "talus",
+          "label": "Marche en talus"
+        },
+        {
+          "id": "gonarthrose",
+          "label": "Gonarthrose"
+        },
+        {
+          "id": "osteochondrite",
+          "label": "Ostéochondrite de hanche"
+        },
+        {
+          "id": "decharge",
+          "label": "Mise en décharge"
+        },
+        {
+          "id": "autre_mi",
+          "label": "Autre pathologie MI"
+        }
+      ],
+      "appareils": [
+        {
+          "id": "afo",
+          "label": "AFO / Suro-pédieuse",
+          "codeLPP": "OI59",
+          "description": "Orthèse suro-pédieuse (ankle-foot orthosis)",
+          "champs": [
+            {
+              "id": "denomination",
+              "label": "Dénomination",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "afo",
+                  "label": "AFO ou Orthèse suro-pédieuse"
+                },
+                {
+                  "value": "releveur",
+                  "label": "Releveur de pied sur moulage"
+                },
+                {
+                  "value": "sarmiento",
+                  "label": "Appareil de mise en décharge type Sarmiento",
+                  "desc": "Appui sous-rotulien, valve antérieure"
+                }
+              ]
+            },
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Type",
+              "type": "radio",
+              "condition": "denomination=afo",
+              "options": [
+                {
+                  "value": "m",
+                  "label": "Marche",
+                  "desc": "Orthèse de marche diurne"
+                },
+                {
+                  "value": "n",
+                  "label": "Nuit",
+                  "desc": "Orthèse de posture nocturne"
+                }
+              ]
+            },
+            {
+              "id": "config",
+              "label": "Configuration",
+              "type": "radio",
+              "condition": "type=m",
+              "options": [
+                {
+                  "value": "standard",
+                  "label": "Standard",
+                  "desc": "Appareil de marche classique"
+                },
+                {
+                  "value": "sous_condylien",
+                  "label": "Avec appui sous-condylien",
+                  "desc": "Botte antérieure avec appui sous-condylien"
+                },
+                {
+                  "value": "hemiplegique",
+                  "label": "Hémiplégique",
+                  "desc": "Anti-varus anti-équin"
+                }
+              ]
+            },
+            {
+              "id": "materiau",
+              "label": "Matériau spécifique (si applicable)",
+              "type": "radio",
+              "condition": "denomination=afo",
+              "options": [
+                {
+                  "value": "standard",
+                  "label": "Standard",
+                  "desc": "Matériau par défaut — non mentionné sur l'ordonnance"
+                },
+                {
+                  "value": "carbone",
+                  "label": "Fibre de carbone",
+                  "desc": "À mentionner sur l'ordonnance"
+                },
+                {
+                  "value": "cuir_acier",
+                  "label": "Cuir et acier",
+                  "desc": "Renouvellement uniquement — à mentionner sur l'ordonnance"
+                }
+              ]
+            },
+            {
+              "id": "cheville",
+              "label": "Cheville",
+              "type": "radio",
+              "condition": "denomination=afo|denomination=sarmiento",
+              "options": [
+                {
+                  "value": "rigide",
+                  "label": "Rigide",
+                  "desc": "Cheville sans articulation"
+                },
+                {
+                  "value": "articulee",
+                  "label": "Articulée libre"
+                },
+                {
+                  "value": "limitee",
+                  "label": "Articulée limitée",
+                  "desc": "Préciser les amplitudes"
+                }
+              ]
+            },
+            {
+              "id": "fp",
+              "label": "Flexion plantaire",
+              "type": "select",
+              "condition": "cheville=limitee",
+              "options": [
+                {
+                  "value": "",
+                  "label": "—"
+                },
+                {
+                  "value": "libre",
+                  "label": "Libre"
+                },
+                {
+                  "value": "5",
+                  "label": "5°"
+                },
+                {
+                  "value": "10",
+                  "label": "10°"
+                },
+                {
+                  "value": "15",
+                  "label": "15°"
+                },
+                {
+                  "value": "20",
+                  "label": "20°"
+                },
+                {
+                  "value": "25",
+                  "label": "25°"
+                },
+                {
+                  "value": "30",
+                  "label": "30°"
+                }
+              ]
+            },
+            {
+              "id": "fd",
+              "label": "Flexion dorsale",
+              "type": "select",
+              "condition": "cheville=limitee",
+              "options": [
+                {
+                  "value": "",
+                  "label": "—"
+                },
+                {
+                  "value": "libre",
+                  "label": "Libre"
+                },
+                {
+                  "value": "5",
+                  "label": "5°"
+                },
+                {
+                  "value": "10",
+                  "label": "10°"
+                },
+                {
+                  "value": "15",
+                  "label": "15°"
+                },
+                {
+                  "value": "20",
+                  "label": "20°"
+                },
+                {
+                  "value": "25",
+                  "label": "25°"
+                },
+                {
+                  "value": "30",
+                  "label": "30°"
+                }
+              ]
+            },
+            {
+              "id": "barre",
+              "label": "Barre d'abduction",
+              "type": "checkbox",
+              "condition": "type=n"
+            }
+          ],
+          "variantes": [
+            {
+              "id": "oi59c01",
+              "label": "Tourillons, un seul montant",
+              "code": "OI59C01 / 2798829",
+              "groupe": "Petit appareil de marche",
+              "showWhen": "cheville=articulee|cheville=limitee",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi59c02",
+              "label": "Tourillons, deux montants",
+              "code": "OI59C02 / 2735480",
+              "groupe": "Petit appareil de marche",
+              "showWhen": "cheville=articulee|cheville=limitee",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi59c03",
+              "label": "Étrier démontable à clavettes",
+              "code": "OI59C03 / 2749765",
+              "groupe": "Petit appareil de marche",
+              "showWhen": "cheville=articulee|cheville=limitee",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi59c04",
+              "label": "Étrier non démontable",
+              "code": "OI59C04 / 2752164",
+              "groupe": "Petit appareil de marche",
+              "showWhen": "cheville=articulee|cheville=limitee",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi59c50",
+              "label": "Anti-varus anti-équin, charnière avec butée",
+              "code": "OI59C50 / 2705130",
+              "groupe": "Hémiplégique",
+              "showWhen": "config=hemiplegique",
+              "pathologies": [
+                "hemiplegie"
+              ]
+            },
+            {
+              "id": "oi59c51",
+              "label": "Anti-varus anti-équin, ressort articulation",
+              "code": "OI59C51 / 2706460",
+              "groupe": "Hémiplégique",
+              "showWhen": "config=hemiplegique",
+              "pathologies": [
+                "hemiplegie"
+              ]
+            },
+            {
+              "id": "oi59f51",
+              "label": "Composite carbone, anti-varus anti-équin",
+              "code": "OI59F51 / 2757210",
+              "groupe": "Hémiplégique carbone",
+              "showWhen": "config=hemiplegique",
+              "pathologies": [
+                "hemiplegie"
+              ]
+            },
+            {
+              "id": "oi59c52",
+              "label": "Semi-rigide hémiplégique",
+              "code": "OI59C52 / 2748010",
+              "groupe": "Hémiplégique",
+              "showWhen": "config=hemiplegique",
+              "pathologies": [
+                "hemiplegie"
+              ]
+            },
+            {
+              "id": "oi59z01",
+              "label": "Releveur de pied sur moulage",
+              "code": "OI59Z01 / 2727717",
+              "groupe": "Releveur de pied",
+              "showWhen": "denomination=_never_"
+            },
+            {
+              "id": "oi59_osdremc",
+              "label": "OSDREMC — dynamique restitution énergie composites",
+              "code": "OI59 / 2706980",
+              "groupe": "OSDREMC",
+              "showWhen": "denomination=osdremc"
+            },
+            {
+              "id": "oi59c11",
+              "label": "Botte antérieure avec appui sous-condylien, tourillons",
+              "code": "OI59C11 / 2704923",
+              "groupe": "Botte antérieure — appui sous-condylien",
+              "showWhen": "config=sous_condylien"
+            },
+            {
+              "id": "oi59c13",
+              "label": "Botte antérieure avec appui sous-condylien, étrier démontable",
+              "code": "OI59C13 / 2737905",
+              "groupe": "Botte antérieure — appui sous-condylien",
+              "showWhen": "config=sous_condylien"
+            },
+            {
+              "id": "oi59c14",
+              "label": "Botte antérieure avec appui sous-condylien, étrier non démontable",
+              "code": "OI59C14 / 2706626",
+              "groupe": "Botte antérieure — appui sous-condylien",
+              "showWhen": "config=sous_condylien"
+            },
+            {
+              "id": "oi59s20",
+              "label": "Botte rigide, stratifié polyester",
+              "code": "OI59S20 / 2760809",
+              "groupe": "Botte rigide",
+              "showWhen": "cheville=rigide"
+            },
+            {
+              "id": "oi59g21",
+              "label": "Botte rigide, polyisoprène avec armature",
+              "code": "OI59G21 / 2748292",
+              "groupe": "Botte rigide",
+              "showWhen": "cheville=rigide"
+            },
+            {
+              "id": "oi59n60",
+              "label": "Botte rigide polyoléfine sans valve",
+              "code": "OI59N60 / 2748091",
+              "groupe": "Botte rigide",
+              "showWhen": "cheville=rigide"
+            },
+            {
+              "id": "oi59n50",
+              "label": "Botte de posture polyoléfine",
+              "code": "OI59N50 / 2740824",
+              "groupe": "Botte de posture",
+              "showWhen": "type=n&cheville=rigide"
+            },
+            {
+              "id": "oi59g20",
+              "label": "Correction, polyisoprène sans armature",
+              "code": "OI59G20 / 2753880",
+              "groupe": "Botte de posture",
+              "showWhen": "type=n&cheville=rigide"
+            },
+            {
+              "id": "oi59g50",
+              "label": "Correction déformations du pied",
+              "code": "OI59G50 / 2766485",
+              "groupe": "Botte de posture",
+              "showWhen": "type=n&cheville=rigide"
+            },
+            {
+              "id": "oi59u01",
+              "label": "Correction progressive congénitale, polyuréthane",
+              "code": "OI59U01 / 2777017",
+              "groupe": "Botte de posture",
+              "showWhen": "type=n&cheville=rigide"
+            },
+            {
+              "id": "oi59c30",
+              "label": "Botte articulée cuir/polyéthylène",
+              "code": "OI59C30 / 2747648",
+              "groupe": "Botte articulée",
+              "showWhen": "cheville=articulee|cheville=limitee"
+            },
+            {
+              "id": "oi59f01",
+              "label": "Fibre carbone, chausson moulé, butée anti-équin",
+              "code": "OI59F01 / 2719439",
+              "groupe": "Botte articulée",
+              "showWhen": "cheville=articulee|cheville=limitee"
+            },
+            {
+              "id": "oi59n65",
+              "label": "Polyoléfine, articulation monoaxiale",
+              "code": "OI59N65 / 2710036",
+              "groupe": "Botte articulée",
+              "showWhen": "cheville=articulee|cheville=limitee"
+            },
+            {
+              "id": "oi59n66",
+              "label": "Polyoléfine, articulation souple",
+              "code": "OI59N66 / 2731877",
+              "groupe": "Botte articulée",
+              "showWhen": "cheville=articulee|cheville=limitee"
+            },
+            {
+              "id": "oi58c50_art",
+              "label": "Sarmiento — décharge sous-rotulienne, cheville articulée, valve antérieure, polyisoprène",
+              "code": "OI58C50 / 2729283",
+              "groupe": "Mise en décharge type Sarmiento",
+              "showWhen": "denomination=sarmiento&cheville=articulee"
+            },
+            {
+              "id": "oi58c50_art_lim",
+              "label": "Sarmiento — décharge sous-rotulienne, cheville articulée limitée, valve antérieure, polyisoprène",
+              "code": "OI58C50 / 2729283",
+              "groupe": "Mise en décharge type Sarmiento",
+              "showWhen": "denomination=sarmiento&cheville=limitee"
+            },
+            {
+              "id": "oi58c50_rig",
+              "label": "Sarmiento — décharge sous-rotulienne, cheville rigide, valve antérieure, polyisoprène",
+              "code": "OI58C50 / 2729283",
+              "groupe": "Mise en décharge type Sarmiento",
+              "showWhen": "denomination=sarmiento&cheville=rigide"
+            },
+            {
+              "id": "oi58c50_std",
+              "label": "Sarmiento — décharge sous-rotulienne, valve antérieure, polyisoprène",
+              "code": "OI58C50 / 2729283",
+              "groupe": "Mise en décharge type Sarmiento",
+              "showWhen": "denomination=sarmiento"
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "afo_traction",
+              "label": "Système de traction MI",
+              "code": "AI7A31",
+              "groupe": "Traction",
+              "notes": "Applicable OI59 et OI39",
+              "codeLPP": "AI7A31"
+            },
+            {
+              "id": "afo_coque_talonniere",
+              "label": "Coque talonnière amovible",
+              "code": "AI7A32",
+              "groupe": "Traction",
+              "notes": "Applicable OI59 et OI39 — sur prescription médicale",
+              "codeLPP": "AI7A31 / AI7A32"
+            },
+            {
+              "id": "afo_limitation_ressort",
+              "label": "Limitation mouvement par ressort",
+              "code": "AI7A33",
+              "groupe": "Traction",
+              "codeLPP": "AI7A33"
+            },
+            {
+              "id": "afo_etrier_carbone",
+              "label": "Étrier carbone",
+              "code": "AI7C01",
+              "groupe": "Montage",
+              "codeLPP": "AI7C01"
+            },
+            {
+              "id": "afo_semelle_acier",
+              "label": "Semelle acier avec tourillon",
+              "code": "AI7A50",
+              "groupe": "Montage",
+              "notes": "Montage sur chaussure compris",
+              "codeLPP": "AI7C10"
+            },
+            {
+              "id": "afo_butee_deverrouillable",
+              "label": "Butée déverrouillable",
+              "code": "AI8A02",
+              "groupe": "Montage",
+              "codeLPP": "AI8A02"
+            },
+            {
+              "id": "afo_butee_flexion",
+              "label": "Butée réglable limitation flexion",
+              "code": "AI7Z01",
+              "groupe": "Articulations",
+              "codeLPP": "AI7Z01"
+            },
+            {
+              "id": "afo_neuro_swing",
+              "label": "NEURO SWING — articulation cheville modulaire",
+              "code": "AI7Z02",
+              "groupe": "Articulations",
+              "notes": "Exclusivement sur orthèse carbone OI59F01. 1 seule par orthèse. Garantie 3 ans. Tailles: 14mm (max 37kg/1,58m), 16mm (max 62kg/1,82m), 20mm (max 90kg/1,98m)",
+              "codeLPP": "AI6A90",
+              "seulement_si": "type=carbone&age<15",
+              "alerte": "NEURO SWING uniquement sur OI59F01 carbone + patient < 15 ans"
+            },
+            {
+              "id": "afo_barre_abductrice",
+              "label": "Barre abductrice réglable",
+              "code": "AI4Z01",
+              "groupe": "Alignement",
+              "notes": "Orthèse de nuit — barre de dérotation/abduction",
+              "codeLPP": "AI4Z01"
+            },
+            {
+              "id": "afo_plaque_condylienne",
+              "label": "Plaque condylienne capitonnée",
+              "code": "AI4Z02",
+              "groupe": "Alignement",
+              "codeLPP": "AI4Z02"
+            },
+            {
+              "id": "afo_disque_condylien",
+              "label": "Disque condylien pression réglable",
+              "code": "AI4Z03",
+              "groupe": "Alignement",
+              "codeLPP": "AI4Z03"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "kafo",
+          "label": "KAFO / Cruro-pédieuse",
+          "codeLPP": "OI39",
+          "description": "Orthèse cruro-pédieuse (knee-ankle-foot orthosis)",
+          "champs": [
+            {
+              "id": "denomination",
+              "label": "Dénomination",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "kafo",
+                  "label": "KAFO ou Orthèse cruro-pédieuse"
+                }
+              ]
+            },
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Type",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "m",
+                  "label": "Marche",
+                  "desc": "Orthèse de marche diurne"
+                },
+                {
+                  "value": "n",
+                  "label": "Nuit",
+                  "desc": "Orthèse de posture nocturne"
+                }
+              ]
+            },
+            {
+              "id": "materiau",
+              "label": "Matériau",
+              "type": "radio",
+              "condition": "type=m",
+              "options": [
+                {
+                  "value": "pp",
+                  "label": "Polypropylène",
+                  "desc": "Standard"
+                },
+                {
+                  "value": "carbone",
+                  "label": "Carbone",
+                  "desc": "Après validation essai polypropylène"
+                }
+              ]
+            },
+            {
+              "id": "genou",
+              "label": "Articulation genou",
+              "type": "radio",
+              "condition": "type=m",
+              "options": [
+                {
+                  "value": "mono",
+                  "label": "Monoaxiale int. et ext."
+                },
+                {
+                  "value": "secteur",
+                  "label": "À secteur"
+                },
+                {
+                  "value": "verr",
+                  "label": "Verrouillable"
+                },
+                {
+                  "value": "libre",
+                  "label": "Libre"
+                }
+              ]
+            },
+            {
+              "id": "cheville_m",
+              "label": "Cheville (marche)",
+              "type": "radio",
+              "condition": "type=m",
+              "options": [
+                {
+                  "value": "rigide",
+                  "label": "Rigide"
+                },
+                {
+                  "value": "articulee",
+                  "label": "Articulée libre"
+                },
+                {
+                  "value": "limitee",
+                  "label": "Articulée limitée"
+                }
+              ]
+            },
+            {
+              "id": "genou_n",
+              "label": "Genou (nuit)",
+              "type": "radio",
+              "condition": "type=n",
+              "options": [
+                {
+                  "value": "r",
+                  "label": "Rigide"
+                },
+                {
+                  "value": "l",
+                  "label": "Libre"
+                },
+                {
+                  "value": "b",
+                  "label": "Limité"
+                }
+              ]
+            },
+            {
+              "id": "cheville_n",
+              "label": "Cheville (nuit)",
+              "type": "radio",
+              "condition": "type=n",
+              "options": [
+                {
+                  "value": "rigide",
+                  "label": "Rigide"
+                },
+                {
+                  "value": "articulee",
+                  "label": "Articulée libre"
+                },
+                {
+                  "value": "limitee",
+                  "label": "Articulée limitée"
+                }
+              ]
+            },
+            {
+              "id": "barre",
+              "label": "Barre d'abduction",
+              "type": "checkbox",
+              "condition": "type=n"
+            },
+            {
+              "id": "uf_nuit",
+              "label": "Ultraflex genou (nuit)",
+              "type": "checkbox",
+              "condition": "type=n",
+              "notes": "Poids patient obligatoire"
+            }
+          ],
+          "variantes": [
+            {
+              "id": "oi39c01",
+              "label": "Acier, tourillons, cuir moulé",
+              "code": "OI39C01 / 2707614",
+              "groupe": "Acier (renouvellement seul)",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi39c04",
+              "label": "Acier, anti-recurvatum sans verrou",
+              "code": "OI39C04 / 2776220",
+              "groupe": "Acier (renouvellement seul)",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi39c07",
+              "label": "Acier, anti-recurvatum avec verrou Hoffa",
+              "code": "OI39C07 / 2781757",
+              "groupe": "Acier (renouvellement seul)",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi39d01",
+              "label": "Alliage léger, tourillons",
+              "code": "OI39D01 / 2730620",
+              "groupe": "Alliage léger (renouvellement seul)",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi39d04",
+              "label": "Alliage léger, étrier démontable",
+              "code": "OI39D04 / 2720879",
+              "groupe": "Alliage léger (renouvellement seul)",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi39d07",
+              "label": "Alliage léger, étrier non démontable",
+              "code": "OI39D07 / 2775521",
+              "groupe": "Alliage léger (renouvellement seul)",
+              "renouvellementSeul": true
+            },
+            {
+              "id": "oi39s50",
+              "label": "Stratifié polyester",
+              "code": "OI39S50 / 2789463",
+              "groupe": "Stratifié"
+            },
+            {
+              "id": "oi39c50",
+              "label": "Cuir moulé articulé",
+              "code": "OI39C50 / 2787518",
+              "groupe": "Stratifié"
+            },
+            {
+              "id": "oi39o50",
+              "label": "Articulation à chape, multi-matériaux",
+              "code": "OI39O50 / 2717191",
+              "groupe": "Chape"
+            },
+            {
+              "id": "oi39f50",
+              "label": "Fibre carbone avec étrier carbone",
+              "code": "OI39F50 / 2747720",
+              "groupe": "Carbone"
+            },
+            {
+              "id": "oi39f51",
+              "label": "Fibre carbone, variante 1",
+              "code": "OI39F51 / 2703941",
+              "groupe": "Carbone"
+            },
+            {
+              "id": "oi39f52",
+              "label": "Fibre carbone, variante 2",
+              "code": "OI39F52 / 2750248",
+              "groupe": "Carbone"
+            },
+            {
+              "id": "oi39n51",
+              "label": "Correction arrière-pied, action progressive",
+              "code": "OI39N51 / 2777164",
+              "groupe": "Spécialisé"
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "kafo_plaque_condylienne",
+              "label": "Plaque condylienne capitonnée",
+              "code": "AI4Z02",
+              "groupe": "Genou",
+              "codeLPP": "AI4Z02"
+            },
+            {
+              "id": "kafo_barre_abductrice",
+              "label": "Barre abductrice réglable",
+              "code": "AI4Z01",
+              "groupe": "Alignement",
+              "codeLPP": "AI4Z01"
+            },
+            {
+              "id": "kafo_neuro_tronic",
+              "label": "NEURO TRONIC — genou électronique",
+              "code": "2771977",
+              "groupe": "Genou électronique",
+              "notes": "Uniquement orthèses carbone OI39. Prescription MPR obligatoire. Garanti 3 ans. Déficience quadriceps définitive, flexum <10°. Révision annuelle (2714206).",
+              "codeLPP": "2771977",
+              "seulement_si": "prescripteur=MPR&type=carbone",
+              "alerte": "NEURO TRONIC : MPR uniquement + carbone + EP obligatoire"
+            },
+            {
+              "id": "kafo_spl2_basko",
+              "label": "SPL2 BASKO — genou automatique",
+              "code": "2783443",
+              "groupe": "Genou électronique",
+              "notes": "Uniquement orthèse cruro-pédieuse. Prescription MPR obligatoire. Garanti 3 ans. Déficience quadriceps définitive. Révision annuelle (2708163).",
+              "codeLPP": "2783443",
+              "seulement_si": "prescripteur=MPR&type=carbone",
+              "alerte": "SPL2 BASKO : MPR uniquement + carbone + EP obligatoire"
+            },
+            {
+              "id": "kafo_appui_ischiatique",
+              "label": "Appui sous-ischiatique",
+              "code": "AI3A90",
+              "groupe": "Bassin",
+              "codeLPP": "AI3A90"
+            },
+            {
+              "id": "kafo_ceinture_pelvienne",
+              "label": "Ceinture pelvienne articulée",
+              "code": "AI2N50",
+              "groupe": "Bassin",
+              "codeLPP": "AI2N50"
+            },
+            {
+              "id": "kafo_pieces_hanche",
+              "label": "Pièces de hanche articulées",
+              "code": "AI1A11",
+              "groupe": "Hanche",
+              "codeLPP": "AI1D90–93"
+            },
+            {
+              "id": "kafo_verrou_hanche",
+              "label": "Verrou de hanche",
+              "code": "AI1A30",
+              "groupe": "Hanche",
+              "codeLPP": "AI1A30"
+            },
+            {
+              "id": "kafo_bretelle",
+              "label": "Bretelle de suspension",
+              "code": "AI3T01",
+              "groupe": "Suspension",
+              "codeLPP": "AI3T01"
+            },
+            {
+              "id": "kafo_gainage",
+              "label": "Gainage pièces métalliques",
+              "code": "AI39C02",
+              "groupe": "Accessoires",
+              "codeLPP": "AI39C02"
+            },
+            {
+              "id": "kafo_rallonges",
+              "label": "Rallonges",
+              "code": "AI3C50",
+              "groupe": "Accessoires",
+              "codeLPP": "De droit"
+            },
+            {
+              "id": "kafo_emag_active",
+              "label": "E-MAG ACTIVE OTTOBOCK — genou électronique",
+              "code": "2781378",
+              "groupe": "Genou électronique",
+              "notes": "Uniquement OI39F50/F51/F52 carbone. Prescription MPR. Garanti 3 ans. Révision annuelle (2749759).",
+              "exclusions": [
+                "kafo_genou_monoaxial",
+                "kafo_genou_secteur",
+                "kafo_genou_verrouillable",
+                "kafo_genou_libre",
+                "kafo_neuro_tronic",
+                "kafo_spl2_basko",
+                "kafo_cbrace"
+              ],
+              "codeLPP": "2771977",
+              "seulement_si": "prescripteur=MPR&type=carbone",
+              "alerte": "E-MAG ACTIVE : MPR uniquement + carbone + EP obligatoire"
+            },
+            {
+              "id": "kafo_cbrace",
+              "label": "C-BRACE OTTOBOCK — genou hydraulique microprocesseur",
+              "code": "2764747",
+              "groupe": "Genou électronique",
+              "notes": "Orthèse carbone exclusive. Essai 1 mois. CIF d4602/d4608. Poids max 125kg. Taille min 1,50m. Formation OTTO BOCK obligatoire. Garanti 6 ans.",
+              "exclusions": [
+                "kafo_genou_monoaxial",
+                "kafo_genou_secteur",
+                "kafo_genou_verrouillable",
+                "kafo_genou_libre",
+                "kafo_neuro_tronic",
+                "kafo_spl2_basko",
+                "kafo_emag_active"
+              ],
+              "codeLPP": "EP_SPECIFIQUE",
+              "alerte": "C-BRACE : hors nomenclature LPP standard, entente préalable spécifique CPAM"
+            },
+            {
+              "id": "kafo_barre_cuisse",
+              "label": "Barre abductrice cuisse",
+              "code": "AI3A90 / 2779507",
+              "groupe": "Cuisse",
+              "notes": "Applicable aux appareils OI39",
+              "codeLPP": "AI4Z01"
+            },
+            {
+              "id": "kafo_appui_sous_ischiatique",
+              "label": "Appui sous-ischiatique rigide",
+              "code": "AI2N50 / 2798953",
+              "groupe": "Cuisse",
+              "notes": "Quel que soit le matériau",
+              "codeLPP": "AI3A90"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "genouillere",
+          "label": "Genouillère",
+          "codeLPP": "OI36",
+          "description": "Genouillère articulée ou rigide",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Type",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "art",
+                  "label": "Articulée",
+                  "desc": "Avec articulation de genou"
+                },
+                {
+                  "value": "rig",
+                  "label": "Rigide",
+                  "desc": "Sans articulation"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "oi36c50",
+              "label": "Genouillère articulée cuir",
+              "code": "OI36C50",
+              "groupe": "Articulée"
+            },
+            {
+              "id": "oi36n50",
+              "label": "Genouillère articulée polyoléfine",
+              "code": "OI36N50",
+              "groupe": "Articulée"
+            },
+            {
+              "id": "oi36s50",
+              "label": "Genouillère rigide stratifié",
+              "code": "OI36S50",
+              "groupe": "Rigide"
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "gen_ultraflex_35",
+              "label": "ULTRAFLEX système tension >35kg",
+              "code": "2755263",
+              "groupe": "ULTRAFLEX DIRAME",
+              "notes": "Exclusivement sur OI36N60. Prescription MPR. Garanti 3 ans. Flexum ≥10°.",
+              "codeLPP": "OI36N60"
+            },
+            {
+              "id": "gen_ultraflex_23_34",
+              "label": "ULTRAFLEX système tension 23-34kg",
+              "code": "2785123",
+              "groupe": "ULTRAFLEX DIRAME",
+              "notes": "Exclusivement sur OI36N60. Prescription MPR.",
+              "exclusions": [
+                "gen_ultraflex_35",
+                "gen_ultraflex_13_23",
+                "gen_ultraflex_12"
+              ],
+              "codeLPP": "OI36N60"
+            },
+            {
+              "id": "gen_ultraflex_13_23",
+              "label": "ULTRAFLEX système tension 13-23kg",
+              "code": "2733149",
+              "groupe": "ULTRAFLEX DIRAME",
+              "notes": "Exclusivement sur OI36N60. Prescription MPR.",
+              "exclusions": [
+                "gen_ultraflex_35",
+                "gen_ultraflex_23_34",
+                "gen_ultraflex_12"
+              ],
+              "codeLPP": "OI36N60"
+            },
+            {
+              "id": "gen_ultraflex_12",
+              "label": "ULTRAFLEX monobloc <12kg",
+              "code": "2783650",
+              "groupe": "ULTRAFLEX DIRAME",
+              "notes": "Exclusivement sur OI36N60. Patients <12kg. Prescription MPR.",
+              "exclusions": [
+                "gen_ultraflex_35",
+                "gen_ultraflex_23_34",
+                "gen_ultraflex_13_23"
+              ],
+              "codeLPP": "OI36N60"
+            },
+            {
+              "id": "gen_ultraflex_libre",
+              "label": "ULTRAFLEX articulation libre <25kg",
+              "code": "2705696",
+              "groupe": "ULTRAFLEX DIRAME",
+              "notes": "Patients <25kg uniquement.",
+              "codeLPP": "OI36N60"
+            },
+            {
+              "id": "gen_ultraflex_plateforme",
+              "label": "ULTRAFLEX plateforme >25kg",
+              "code": "2726356",
+              "groupe": "ULTRAFLEX DIRAME",
+              "notes": "Max 2 plateformes par patient (interne + externe).",
+              "codeLPP": "OI36N60"
+            },
+            {
+              "id": "gen_fronde_rotule",
+              "label": "Fronde rotulienne capitonnée limitée",
+              "code": "AI4C15 / 2713780",
+              "groupe": "Genou",
+              "codeLPP": "AI4Z02"
+            },
+            {
+              "id": "gen_fronde_condyl",
+              "label": "Fronde rotulienne large coque condylienne",
+              "code": "AI4C16 / 2744638",
+              "groupe": "Genou",
+              "codeLPP": "AI4Z03"
+            },
+            {
+              "id": "gen_botte",
+              "label": "Botte pour OI36N60",
+              "code": "AI8N60 / 2714614",
+              "groupe": "Pied",
+              "codeLPP": "OI36N60"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "ultraflex",
+          "label": "Orthèse Ultraflex (DIRAME)",
+          "codeLPP": "OI36N60",
+          "description": "Orthèse dynamique à effet dynamique de genou — DIRAME Ultraflex",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise",
+                  "desc": "Prescription MPR obligatoire"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement",
+                  "desc": "Prescription MPR obligatoire"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "poids",
+              "label": "Poids du patient (kg)",
+              "type": "number",
+              "notes": "Obligatoire — détermine la gamme du système de tension"
+            }
+          ],
+          "conditionsPriseEnCharge": "Prescription MPR obligatoire (1ère mise et renouvellement). Indications : limitations d'amplitude articulaire du genou isolées ou associées à l'équin de cheville, chez patients atteints de paralysie cérébrale ou lésions acquises du SNC, présentant des rétractions musculaires (ischio-jambiers et/ou jumeaux), spasticité ou non, flexum genou uni ou bilatéral ≥10°. Garantie 3 ans.",
+          "variantes": [],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "ortheses-tronc",
+      "label": "Orthèses de tronc",
+      "icon": "fa-vest",
+      "famille": "orthese",
+      "zone": "tronc",
+      "pathologies": [
+        {
+          "id": "scoliose",
+          "label": "Scoliose"
+        },
+        {
+          "id": "cyphose",
+          "label": "Cyphose / cypho-scoliose"
+        },
+        {
+          "id": "imc_polyhandicap",
+          "label": "IMC / polyhandicap / encéphalopathie"
+        },
+        {
+          "id": "rachis_degeneratif",
+          "label": "Rachis dégénératif / lombalgie"
+        },
+        {
+          "id": "traumatisme_rachis",
+          "label": "Traumatisme du rachis"
+        },
+        {
+          "id": "cervicalgie",
+          "label": "Cervicalgie / pathologie cervicale"
+        },
+        {
+          "id": "plagiocephalie",
+          "label": "Plagiocéphalie / brachycéphalie (nourrisson)"
+        },
+        {
+          "id": "myopathie",
+          "label": "Myopathie / maladie neuromusculaire"
+        },
+        {
+          "id": "tetraplegie",
+          "label": "Tétraplégie / paraplegie"
+        },
+        {
+          "id": "autre_tronc",
+          "label": "Autre pathologie tronc"
+        }
+      ],
+      "appareils": [
+        {
+          "id": "corset-lombaire",
+          "label": "Corset lombaire",
+          "codeLPP": "TR79",
+          "description": "Ceinture des trochanters aux fausses côtes",
+          "conditionsPriseEnCharge": "Cuir (C) et duralumin (D) : renouvellement uniquement. Polyoléfine (N) : immobilisation prolongée ≥6 semaines. Polyuréthane (U) : maintien lombaire courte durée ≤3 mois.",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "variante",
+              "label": "Matériau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tr79k27",
+                  "label": "Copolymère acrylonitrile méthylméthacrylate",
+                  "code": "2754230"
+                },
+                {
+                  "value": "tr79n35",
+                  "label": "Polyoléfine sans armature",
+                  "code": "2709872"
+                },
+                {
+                  "value": "tr79n36",
+                  "label": "Polyoléfine avec armature",
+                  "code": "2740706"
+                },
+                {
+                  "value": "tr79n50",
+                  "label": "Polyoléfine thermoformable basse température",
+                  "code": "2781098"
+                },
+                {
+                  "value": "tr79g45",
+                  "label": "Polyisoprène sans armature",
+                  "code": "2710024"
+                },
+                {
+                  "value": "tr79g46",
+                  "label": "Polyisoprène avec armature",
+                  "code": "2752780"
+                },
+                {
+                  "value": "tr79u01",
+                  "label": "Polyuréthane mousse textile",
+                  "code": "2776510"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "tr_mentonniere",
+              "label": "Mentonnière",
+              "code": "AT79Z05",
+              "groupe": "Accessoires",
+              "codeLPP": "AT43Z18"
+            },
+            {
+              "id": "tr_raidisseur",
+              "label": "Raidisseur",
+              "code": "AT79Z04",
+              "groupe": "Structure",
+              "codeLPP": "AT00N50"
+            },
+            {
+              "id": "tr_gainage_acier",
+              "label": "Gainage pièces acier",
+              "code": "AT00Z01",
+              "groupe": "Gainage",
+              "codeLPP": "AI39C01"
+            },
+            {
+              "id": "tr_gainage_alliage",
+              "label": "Gainage pièces alliage léger",
+              "code": "AT00Z02",
+              "groupe": "Gainage",
+              "codeLPP": "AI39C02"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "corset-sans-bequillons",
+          "label": "Corset sans béquillons",
+          "codeLPP": "TR59",
+          "description": "Des trochanters à la pointe de l'omoplate, sans béquillons",
+          "conditionsPriseEnCharge": "Cuir (C) et duralumin (D) : renouvellement uniquement. Polyoléfine (N) : immobilisation prolongée ≥6 semaines. Polyuréthane (U) : maintien lombaire courte durée ≤3 mois.",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "variante",
+              "label": "Matériau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tr59k27",
+                  "label": "Copolymère acrylonitrile",
+                  "code": "2749676"
+                },
+                {
+                  "value": "tr59n34",
+                  "label": "Polyoléfine sans armature",
+                  "code": "2764547"
+                },
+                {
+                  "value": "tr59n36",
+                  "label": "Polyoléfine avec armature",
+                  "code": "2796155"
+                },
+                {
+                  "value": "tr59n50",
+                  "label": "Polyoléfine thermoformable BT",
+                  "code": "2718655"
+                },
+                {
+                  "value": "tr59g45",
+                  "label": "Polyisoprène sans armature",
+                  "code": "2780553"
+                },
+                {
+                  "value": "tr59g46",
+                  "label": "Polyisoprène avec armature",
+                  "code": "2743133"
+                },
+                {
+                  "value": "tr59u01",
+                  "label": "Polyuréthane mousse textile",
+                  "code": "2730997"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "tr_mentonniere",
+              "label": "Mentonnière",
+              "code": "AT59Z05",
+              "groupe": "Accessoires",
+              "codeLPP": "AT43Z18"
+            },
+            {
+              "id": "tr_raidisseur",
+              "label": "Raidisseur",
+              "code": "AT59Z04",
+              "groupe": "Structure",
+              "codeLPP": "AT00N50"
+            },
+            {
+              "id": "tr_gainage_acier",
+              "label": "Gainage pièces acier",
+              "code": "AT00Z01",
+              "groupe": "Gainage",
+              "codeLPP": "AI39C01"
+            },
+            {
+              "id": "tr_gainage_alliage",
+              "label": "Gainage pièces alliage léger",
+              "code": "AT00Z02",
+              "groupe": "Gainage",
+              "codeLPP": "AI39C02"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "corset-maintien-tr49",
+          "label": "Corset de maintien (TR49)",
+          "codeLPP": "TR49",
+          "description": "Corset avec ou sans béquillons — maintien",
+          "conditionsPriseEnCharge": "Cuir (C) et duralumin (D) : renouvellement uniquement. Polyoléfine (N) : immobilisation prolongée ≥6 semaines. Polyuréthane (U) : maintien lombaire courte durée ≤3 mois.",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "bequillons",
+              "label": "Béquillons",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "sans",
+                  "label": "Sans béquillons"
+                },
+                {
+                  "value": "avec",
+                  "label": "Avec béquillons"
+                }
+              ]
+            },
+            {
+              "id": "variante",
+              "label": "Matériau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tr49k27",
+                  "label": "Copolymère acrylonitrile",
+                  "code": "2764485"
+                },
+                {
+                  "value": "tr49n34",
+                  "label": "Polyoléfine sans armature",
+                  "code": "2771285"
+                },
+                {
+                  "value": "tr49n36",
+                  "label": "Polyoléfine avec armature",
+                  "code": "2777614"
+                },
+                {
+                  "value": "tr49n50",
+                  "label": "Polyoléfine thermoformable BT",
+                  "code": "2749427"
+                },
+                {
+                  "value": "tr49g45",
+                  "label": "Polyisoprène sans armature",
+                  "code": "2706485"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "tr49_mentonniere",
+              "label": "Mentonnière",
+              "code": "AT49Z05",
+              "groupe": "Accessoires",
+              "codeLPP": "AT43Z18"
+            },
+            {
+              "id": "tr49_raidisseur",
+              "label": "Raidisseur",
+              "code": "AT49Z04",
+              "groupe": "Structure",
+              "codeLPP": "AT00N50"
+            },
+            {
+              "id": "tr49_gainage_acier",
+              "label": "Gainage pièces acier",
+              "code": "AT00Z01",
+              "groupe": "Gainage",
+              "codeLPP": "AI39C01"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "corset-cuirasse-tr39",
+          "label": "Grand corset-cuirasse (TR39)",
+          "codeLPP": "TR39",
+          "description": "Grand corset-cuirasse de maintien",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "variante",
+              "label": "Matériau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tr39c11",
+                  "label": "Cuir moulé",
+                  "code": "2758296"
+                },
+                {
+                  "value": "tr39n36",
+                  "label": "Polyoléfine avec armature",
+                  "code": "2778428"
+                },
+                {
+                  "value": "tr39s50",
+                  "label": "Stratifié polyester",
+                  "code": "2718932"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "tr39_gainage_acier",
+              "label": "Gainage pièces acier",
+              "code": "AT00Z01",
+              "groupe": "Gainage",
+              "codeLPP": "AI39C01"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "corset-scoliose",
+          "label": "Corset scoliose / cyphose",
+          "codeLPP": "TR49/TR39",
+          "description": "Corset de correction des déformations du rachis",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "indication",
+              "label": "Indication",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "scoliose",
+                  "label": "Scoliose idiopathique"
+                },
+                {
+                  "value": "scoliose_neuro",
+                  "label": "Scoliose neurologique / neuromusculaire"
+                },
+                {
+                  "value": "cyphose",
+                  "label": "Cyphose"
+                },
+                {
+                  "value": "cypho-scoliose",
+                  "label": "Cypho-scoliose"
+                }
+              ]
+            },
+            {
+              "id": "type_corset",
+              "label": "Type de corset (nom usuel)",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "ctm",
+                  "label": "CTM (Cheneau-Toulouse-Münster)",
+                  "desc": "Corset actif de réduction tridimensionnelle"
+                },
+                {
+                  "value": "cheneau",
+                  "label": "Cheneau",
+                  "desc": "Corset actif de réduction tridimensionnelle"
+                },
+                {
+                  "value": "charleston",
+                  "label": "Charleston (nocturne)",
+                  "desc": "Corset bivalve — port nocturne uniquement"
+                },
+                {
+                  "value": "caen",
+                  "label": "Corset de Caen (nocturne)",
+                  "desc": "Corset de correction nocturne en hypercorrection"
+                },
+                {
+                  "value": "saint_etienne",
+                  "label": "Toile de Saint-Étienne",
+                  "desc": "Scolioses < 30° — adolescent"
+                },
+                {
+                  "value": "milwaukee",
+                  "label": "Milwaukee",
+                  "desc": "Grand corset-cuirasse correcteur — cyphose"
+                },
+                {
+                  "value": "berck",
+                  "label": "Corset de Berck",
+                  "desc": "Valves modulaires — cyphose avec contre-appui"
+                },
+                {
+                  "value": "autre_type",
+                  "label": "Autre type",
+                  "desc": "Préciser dans l'indication"
+                }
+              ]
+            },
+            {
+              "id": "courbure",
+              "label": "Type de courbure",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "lombaire",
+                  "label": "Lombaire"
+                },
+                {
+                  "value": "dorso_lombaire",
+                  "label": "Dorso-lombaire"
+                },
+                {
+                  "value": "dorsale",
+                  "label": "Dorsale"
+                },
+                {
+                  "value": "combinee",
+                  "label": "Combinée (double courbure)"
+                },
+                {
+                  "value": "cervico_dorsale",
+                  "label": "Cervico-dorsale"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté de la convexité",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Convexité droite"
+                },
+                {
+                  "value": "g",
+                  "label": "Convexité gauche"
+                },
+                {
+                  "value": "double",
+                  "label": "Double courbure (S)"
+                }
+              ]
+            },
+            {
+              "id": "degres",
+              "label": "Angle de Cobb (degrés)",
+              "type": "number",
+              "notes": "Angle de Cobb mesuré sur radiographie de face debout"
+            },
+            {
+              "id": "variante",
+              "label": "Type technique (nomenclature LPP)",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tr49n80",
+                  "label": "Orthèse active scoliose polyoléfine",
+                  "code": "2789015"
+                },
+                {
+                  "value": "tr49n81",
+                  "label": "Orthèse active scoliose polyoléfine avec armature",
+                  "code": "2704195"
+                },
+                {
+                  "value": "tr49n82",
+                  "label": "Orthèse active scoliose avec pression dynamique",
+                  "code": "2700949"
+                },
+                {
+                  "value": "tr49k27_sc",
+                  "label": "Copolymère acrylonitrile",
+                  "code": "2764485"
+                },
+                {
+                  "value": "tr49g45_sc",
+                  "label": "Polyisoprène",
+                  "code": "2706485"
+                },
+                {
+                  "value": "tr39n80",
+                  "label": "Grand corset scoliose polyoléfine",
+                  "code": "2703010"
+                },
+                {
+                  "value": "tr39n81",
+                  "label": "Grand corset scoliose polyoléfine avec armature",
+                  "code": "2766920"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "adj_cremaillere",
+              "label": "Système de réglage par crémaillère",
+              "groupe": "Réglage",
+              "codeLPP": "AT49A02"
+            },
+            {
+              "id": "adj_raidisseurs",
+              "label": "Raidisseurs",
+              "groupe": "Structure",
+              "codeLPP": "AT00N50"
+            },
+            {
+              "id": "adj_mentonniere",
+              "label": "Mentonnière amovible",
+              "groupe": "Accessoires",
+              "codeLPP": "AT00A01",
+              "seulement_si": "type!=TR27O12"
+            },
+            {
+              "id": "adj_ajourages",
+              "label": "Ajourages",
+              "groupe": "Accessoires",
+              "codeLPP": "AT00N51"
+            },
+            {
+              "id": "adj_minerve_ext",
+              "label": "Minerve d'extension télescopique",
+              "groupe": "Extension",
+              "codeLPP": "AT49C70"
+            },
+            {
+              "id": "adj_gainage",
+              "label": "Gainage de l'armature",
+              "groupe": "Structure",
+              "codeLPP": "AT00N50"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "minerve",
+          "label": "Minerve",
+          "codeLPP": "TR29/TR27/TR25/TR24",
+          "description": "Minerve et corselet-minerve",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "variante",
+              "label": "Type",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tr29z01",
+                  "label": "Minerve simple",
+                  "code": "2795988"
+                },
+                {
+                  "value": "tr27z01",
+                  "label": "Corselet-minerve",
+                  "code": "2782810"
+                },
+                {
+                  "value": "tr25z01",
+                  "label": "Minerve avec appui occipital et mentonnier",
+                  "code": "2771842"
+                },
+                {
+                  "value": "tr24z01",
+                  "label": "Minerve avec appui frontal",
+                  "code": "2753399"
+                },
+                {
+                  "value": "tr24z02",
+                  "label": "Minerve sterno-occipito-mandibulaire",
+                  "code": "2728470"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "corset-siege",
+          "label": "Corset-siège",
+          "codeLPP": "TR43",
+          "description": "Corset-siège sur moulage",
+          "champs": [
+            {
+              "id": "age",
+              "label": "Âge du patient",
+              "type": "number"
+            },
+            {
+              "id": "type",
+              "label": "Type",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "complet",
+                  "label": "Corset-siège complet",
+                  "desc": "Assise + dossier, sur moulage"
+                },
+                {
+                  "value": "assise",
+                  "label": "Assise seule"
+                },
+                {
+                  "value": "dossier",
+                  "label": "Dossier seul"
+                }
+              ]
+            },
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "premiere",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "renouvellement",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "regarnissage",
+                  "label": "Regarnissage",
+                  "condition": "adulte"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [
+            {
+              "id": "at43z01",
+              "label": "Socle / stabilisation",
+              "code": "AT43Z01 / 2793494",
+              "groupe": "Base",
+              "max": 1,
+              "codeLPP": "AT43Z01"
+            },
+            {
+              "id": "at43z02",
+              "label": "Têtière simple",
+              "code": "AT43Z02",
+              "groupe": "Tête",
+              "exclusions": [
+                "at43z03"
+              ],
+              "codeLPP": "AT43Z02",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "at43z03",
+              "label": "Têtière multiposition",
+              "code": "AT43Z03",
+              "groupe": "Tête",
+              "exclusions": [
+                "at43z02"
+              ],
+              "codeLPP": "AT43Z03",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "at43z04",
+              "label": "Appui sous-claviculaire rigide",
+              "code": "AT43Z04",
+              "groupe": "Appuis",
+              "codeLPP": "AT43Z04"
+            },
+            {
+              "id": "at43z05",
+              "label": "Appui sternal rigide",
+              "code": "AT43Z05",
+              "groupe": "Appuis",
+              "codeLPP": "AT43Z05",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "at43z06",
+              "label": "Plastron / maintien thoraco-abdomino-pelvien",
+              "code": "AT43Z06",
+              "groupe": "Maintien",
+              "max": 2,
+              "notes": "Plastron et/ou sangle bassin 4 points",
+              "codeLPP": "AT43Z06",
+              "max_par_an": 2
+            },
+            {
+              "id": "at43z07",
+              "label": "Cale d'abduction",
+              "code": "AT43Z07",
+              "groupe": "Bassin",
+              "codeLPP": "AT47Z10"
+            },
+            {
+              "id": "at43z08",
+              "label": "Segments jambiers",
+              "code": "AT43Z08",
+              "groupe": "Jambes",
+              "max": 2,
+              "codeLPP": "AT43Z08"
+            },
+            {
+              "id": "at43z09",
+              "label": "Segments pédieux",
+              "code": "AT43Z09",
+              "groupe": "Jambes",
+              "max": 2,
+              "codeLPP": "AT43Z09"
+            },
+            {
+              "id": "at43z10",
+              "label": "Repose-pied",
+              "code": "AT43Z10",
+              "groupe": "Jambes",
+              "codeLPP": "AT43Z10"
+            },
+            {
+              "id": "at43z11",
+              "label": "Tablette",
+              "code": "AT43Z11",
+              "groupe": "Support",
+              "exclusions": [
+                "at43z12"
+              ],
+              "codeLPP": "AT43Z11",
+              "incompatible_avec": [
+                "AT43Z12"
+              ]
+            },
+            {
+              "id": "at43z12",
+              "label": "Accoudoir",
+              "code": "AT43Z12",
+              "groupe": "Support",
+              "max": 2,
+              "exclusions": [
+                "at43z11"
+              ],
+              "codeLPP": "AT43Z12",
+              "incompatible_avec": [
+                "AT43Z11"
+              ]
+            },
+            {
+              "id": "at43z13",
+              "label": "Sangles de fixation",
+              "code": "AT43Z13",
+              "groupe": "Fixation",
+              "max": 2,
+              "codeLPP": "AT43Z13"
+            },
+            {
+              "id": "at43z15",
+              "label": "Support roulant",
+              "code": "AT43Z15",
+              "groupe": "Base",
+              "exclusions": [
+                "at43z01",
+                "at43z16"
+              ],
+              "codeLPP": "AT43Z15",
+              "incompatible_avec": [
+                "AT43Z16"
+              ]
+            },
+            {
+              "id": "at43z16",
+              "label": "Socle inclinable",
+              "code": "AT43Z16",
+              "groupe": "Base",
+              "exclusions": [
+                "at43z01",
+                "at43z15"
+              ],
+              "codeLPP": "AT43Z16",
+              "incompatible_avec": [
+                "AT43Z15",
+                "AT43Z22"
+              ]
+            },
+            {
+              "id": "at43z17",
+              "label": "Mousse de confort (>3cm)",
+              "code": "AT43Z17",
+              "groupe": "Confort",
+              "exclusions": [
+                "at43z20"
+              ],
+              "codeLPP": "AT43Z17",
+              "incompatible_avec": [
+                "AT43Z20",
+                "AT43Z21"
+              ]
+            },
+            {
+              "id": "at43z18",
+              "label": "Mentonnière",
+              "code": "AT43Z18 / 2788881",
+              "groupe": "Tête",
+              "codeLPP": "AT43Z18"
+            },
+            {
+              "id": "at43z19",
+              "label": "Double capitonnage amovible",
+              "code": "AT43Z19 / 2728093",
+              "groupe": "Confort",
+              "codeLPP": "AT43Z19"
+            },
+            {
+              "id": "at43z20",
+              "label": "Inserts anti-escarres gel",
+              "code": "AT43Z20 / 2751340",
+              "groupe": "Confort",
+              "exclusions": [
+                "at43z17"
+              ],
+              "codeLPP": "AT43Z20",
+              "incompatible_avec": [
+                "AT43Z17",
+                "AT43Z21"
+              ]
+            },
+            {
+              "id": "at43z21",
+              "label": "Articulation segment jambier verrouillage",
+              "code": "AT43Z21",
+              "groupe": "Jambes",
+              "max": 2,
+              "codeLPP": "AT43Z21",
+              "incompatible_avec": [
+                "AT43Z17",
+                "AT43Z20"
+              ]
+            },
+            {
+              "id": "at43z23",
+              "label": "Housse corset-siège",
+              "code": "AT43Z23 / 2714378",
+              "groupe": "Housse",
+              "max": 2,
+              "codeLPP": "AT43Z23",
+              "max_par_an": 2
+            },
+            {
+              "id": "at43z24",
+              "label": "Coussin assise ou dossier seul",
+              "code": "AT43Z24 / 2714379",
+              "groupe": "Coussin",
+              "codeLPP": "AT43Z24",
+              "max_par_an": 2
+            },
+            {
+              "id": "readapt_tablette",
+              "label": "Réadaptation tablette/accoudoirs",
+              "code": "2714382",
+              "groupe": "Réadaptation",
+              "renouvellementOnly": true,
+              "codeLPP": "AT43Z11",
+              "incompatible_avec": [
+                "AT43Z12"
+              ]
+            },
+            {
+              "id": "readapt_roulant",
+              "label": "Réadaptation support roulant",
+              "code": "2714382",
+              "groupe": "Réadaptation",
+              "renouvellementOnly": true,
+              "codeLPP": "AT43Z15",
+              "incompatible_avec": [
+                "AT43Z16"
+              ]
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "verticalisateur",
+          "label": "Verticalisateur",
+          "codeLPP": "TR47Z01",
+          "description": "Verticalisateur sur moulage",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "tr47z01",
+              "label": "Verticalisateur",
+              "code": "TR47Z01 / 2737934",
+              "groupe": "Base"
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "vt_tetiere",
+              "label": "Têtière",
+              "code": "AT47Z02",
+              "groupe": "Tête",
+              "codeLPP": "AT43Z02"
+            },
+            {
+              "id": "vt_tablette",
+              "label": "Tablette",
+              "code": "AT47Z11",
+              "groupe": "Support",
+              "codeLPP": "AT43Z11",
+              "incompatible_avec": [
+                "AT43Z12"
+              ]
+            },
+            {
+              "id": "vt_housse",
+              "label": "Housse",
+              "code": "AT47Z23",
+              "groupe": "Housse",
+              "max": 2,
+              "codeLPP": "AT29Z19"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "selle",
+          "label": "Selle",
+          "codeLPP": "TR73",
+          "description": "Selle sur moulage",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "tr73",
+              "label": "Selle",
+              "code": "TR73 / 2793495",
+              "groupe": "Base"
+            }
+          ],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "protheses-mi",
+      "label": "Prothèses membre inférieur",
+      "icon": "fa-person-walking",
+      "famille": "prothese",
+      "zone": "mi",
+      "pathologies": [
+        {
+          "id": "amputation_femorale",
+          "label": "Amputation fémorale (cuisse)"
+        },
+        {
+          "id": "amputation_tibiale",
+          "label": "Amputation tibiale (jambe)"
+        },
+        {
+          "id": "amputation_pied",
+          "label": "Amputation du pied (tibio/médio-tarsienne)"
+        },
+        {
+          "id": "desarticulation_hanche",
+          "label": "Désarticulation de hanche / inter-ilio-abdominale"
+        },
+        {
+          "id": "desarticulation_genou",
+          "label": "Désarticulation du genou / transcondylienne"
+        },
+        {
+          "id": "amputation_cuisse_courte",
+          "label": "Moignon très court de cuisse"
+        },
+        {
+          "id": "agenesie_mi",
+          "label": "Agénésie du membre inférieur"
+        },
+        {
+          "id": "autre_prothese_mi",
+          "label": "Autre"
+        }
+      ],
+      "appareils": [
+        {
+          "id": "prothese-femorale",
+          "label": "Prothèse fémorale",
+          "codeLPP": "PI03",
+          "description": "Prothèse de cuisse — moignon moyen ou long",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "chg_emboiture",
+                  "label": "Changement d'emboîture"
+                },
+                {
+                  "value": "chg_manchon",
+                  "label": "Changement de manchon"
+                },
+                {
+                  "value": "essai",
+                  "label": "Prothèse d'essai"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "manchon",
+              "label": "Manchon",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "aucun",
+                  "label": "Sans manchon"
+                },
+                {
+                  "value": "silicone",
+                  "label": "Manchon silicone"
+                },
+                {
+                  "value": "polyurethane",
+                  "label": "Manchon polyuréthane"
+                },
+                {
+                  "value": "gel",
+                  "label": "Manchon gel copolymère"
+                }
+              ]
+            },
+            {
+              "id": "pied",
+              "label": "Type de pied",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "sach",
+                  "label": "Pied SACH",
+                  "desc": "Pied rigide standard"
+                },
+                {
+                  "value": "articule",
+                  "label": "Pied articulé"
+                },
+                {
+                  "value": "rest1",
+                  "label": "Pied à restitution d'énergie Classe I"
+                },
+                {
+                  "value": "rest2",
+                  "label": "Pied à restitution d'énergie Classe II"
+                },
+                {
+                  "value": "rest3",
+                  "label": "Pied à restitution d'énergie Classe III",
+                  "desc": "Prescription MPR"
+                }
+              ]
+            },
+            {
+              "id": "genou_proth",
+              "label": "Type de genou prothétique",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "standard",
+                  "label": "Genou standard"
+                },
+                {
+                  "value": "pneum",
+                  "label": "Genou monoaxial pneumatique"
+                },
+                {
+                  "value": "hydr",
+                  "label": "Genou monoaxial hydraulique"
+                },
+                {
+                  "value": "polycentrique",
+                  "label": "Genou polycentrique"
+                },
+                {
+                  "value": "micro",
+                  "label": "Genou à microprocesseur (C-Leg, Genium...)",
+                  "desc": "Prescription MPR obligatoire"
+                }
+              ]
+            },
+            {
+              "id": "niveau_activite",
+              "label": "Niveau d'activité (CIF)",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d4600",
+                  "label": "CIF d4600/d4601",
+                  "desc": "Marche sans aide technique"
+                },
+                {
+                  "value": "d4602",
+                  "label": "CIF d4602",
+                  "desc": "Activité réduite"
+                },
+                {
+                  "value": "d4608",
+                  "label": "CIF d4608",
+                  "desc": "Autres cas"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [
+            {
+              "id": "pf_aqualeg",
+              "label": "AQUALEG — prothèse étanche balnéo",
+              "code": "2787556",
+              "groupe": "Spécialisé",
+              "codeLPP": "EP_SPECIFIQUE",
+              "alerte": "AQUALEG : entente préalable spécifique CPAM + accord fabricant"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-tibiale",
+          "label": "Prothèse tibiale",
+          "codeLPP": "PI06",
+          "description": "Prothèse de jambe",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "chg_emboiture",
+                  "label": "Changement d'emboîture"
+                },
+                {
+                  "value": "chg_manchon",
+                  "label": "Changement de manchon"
+                },
+                {
+                  "value": "essai",
+                  "label": "Prothèse d'essai"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "manchon",
+              "label": "Manchon",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "aucun",
+                  "label": "Sans manchon"
+                },
+                {
+                  "value": "silicone",
+                  "label": "Manchon silicone"
+                },
+                {
+                  "value": "polyurethane",
+                  "label": "Manchon polyuréthane"
+                },
+                {
+                  "value": "gel",
+                  "label": "Manchon gel copolymère"
+                },
+                {
+                  "value": "caoutchouc",
+                  "label": "Manchon caoutchouc"
+                },
+                {
+                  "value": "polyethylene",
+                  "label": "Manchon polyéthylène"
+                }
+              ]
+            },
+            {
+              "id": "pied",
+              "label": "Type de pied",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "sach",
+                  "label": "Pied SACH",
+                  "desc": "Pied rigide standard"
+                },
+                {
+                  "value": "articule",
+                  "label": "Pied articulé"
+                },
+                {
+                  "value": "rest1",
+                  "label": "Pied à restitution d'énergie Classe I"
+                },
+                {
+                  "value": "rest2",
+                  "label": "Pied à restitution d'énergie Classe II"
+                },
+                {
+                  "value": "rest3",
+                  "label": "Pied à restitution d'énergie Classe III",
+                  "desc": "Prescription MPR"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "pi06_exo",
+              "label": "Exo — emboîture contact",
+              "code": "PI06 / 2710425",
+              "groupe": "Exosquelettique"
+            },
+            {
+              "id": "pi06_endo",
+              "label": "Endo — emboîture contact modulaire",
+              "code": "PI06 / 2783591",
+              "groupe": "Endosquelettique"
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "pt_manchon_silicone",
+              "label": "Manchon silicone moulé",
+              "code": "2737489",
+              "groupe": "Manchons",
+              "codeLPP": "VI6X603"
+            },
+            {
+              "id": "pt_manchon_caoutchouc",
+              "label": "Manchon caoutchouc préfabriqué",
+              "code": "2738741",
+              "groupe": "Manchons",
+              "codeLPP": "VI6J601"
+            },
+            {
+              "id": "pt_manchon_pe",
+              "label": "Manchon polyéthylène",
+              "code": "2790296",
+              "groupe": "Manchons",
+              "codeLPP": "VI6N601"
+            },
+            {
+              "id": "pt_manchon_silicone_pref",
+              "label": "Manchon silicone préfabriqué",
+              "code": "2725419",
+              "groupe": "Manchons",
+              "codeLPP": "VI6X602"
+            },
+            {
+              "id": "pt_manchon_pu",
+              "label": "Manchon polyuréthane préfabriqué",
+              "code": "2782413",
+              "groupe": "Manchons",
+              "codeLPP": "VI6U605"
+            },
+            {
+              "id": "pt_manchon_gel",
+              "label": "Manchon gel copolymère",
+              "code": "2775605",
+              "groupe": "Manchons",
+              "codeLPP": "VI6X603"
+            },
+            {
+              "id": "pt_pied_sach",
+              "label": "Pied SACH",
+              "code": "VI8Z01",
+              "groupe": "Pied prothétique",
+              "codeLPP": "AI8S001"
+            },
+            {
+              "id": "pt_pied_rest1",
+              "label": "Pied restitution énergie Classe I",
+              "code": "VI8Z10",
+              "groupe": "Pied prothétique",
+              "codeLPP": "AI8Z105",
+              "alerte": "Pied restitution classe I : entente préalable CPAM + fiche fabricant obligatoires"
+            },
+            {
+              "id": "pt_pied_rest2",
+              "label": "Pied restitution énergie Classe II",
+              "code": "VI8Z20",
+              "groupe": "Pied prothétique",
+              "codeLPP": "AI8Z106",
+              "alerte": "Pied restitution classe II : entente préalable CPAM + fiche fabricant obligatoires"
+            },
+            {
+              "id": "pt_pied_rest3",
+              "label": "Pied restitution énergie Classe III",
+              "code": "VI8Z30",
+              "groupe": "Pied prothétique",
+              "codeLPP": "AI8Z107",
+              "alerte": "Pied restitution classe III : entente préalable CPAM + fiche fabricant obligatoires"
+            },
+            {
+              "id": "pt_aqualeg",
+              "label": "AQUALEG — prothèse étanche balnéo",
+              "code": "2787556",
+              "groupe": "Spécialisé",
+              "codeLPP": "EP_SPECIFIQUE",
+              "alerte": "AQUALEG : entente préalable spécifique CPAM + accord fabricant"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-pied",
+          "label": "Prothèse de pied",
+          "codeLPP": "PI07/PI08",
+          "description": "Prothèse pour amputation du pied (tibio-tarsienne ou médio-tarsienne)",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "niveau",
+              "label": "Niveau d'amputation",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "tibiotarsienne",
+                  "label": "Tibio-tarsienne (PI07)"
+                },
+                {
+                  "value": "mediotarsienne",
+                  "label": "Médio-tarsienne (PI08)"
+                },
+                {
+                  "value": "partielle",
+                  "label": "Amputation partielle"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "pi07_exo",
+              "label": "Exo — tibio-tarsienne",
+              "code": "PI07",
+              "groupe": "Tibio-tarsienne"
+            },
+            {
+              "id": "pi08_exo",
+              "label": "Exo — médio-tarsienne",
+              "code": "PI08",
+              "groupe": "Médio-tarsienne"
+            },
+            {
+              "id": "pi07_endo",
+              "label": "Endo — tibio-tarsienne modulaire",
+              "code": "PI07",
+              "groupe": "Endosquelettique"
+            },
+            {
+              "id": "pi08_endo",
+              "label": "Endo — médio-tarsienne modulaire",
+              "code": "PI08",
+              "groupe": "Endosquelettique"
+            }
+          ],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-hanche",
+          "label": "Désarticulation hanche / cuisse courte",
+          "codeLPP": "PI01/PI02",
+          "description": "Prothèse pour désarticulation de hanche ou moignon très court de cuisse",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "niveau",
+              "label": "Niveau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pi01",
+                  "label": "Inter-ilio-abdominale / désarticulation hanche (PI01)"
+                },
+                {
+                  "value": "pi02",
+                  "label": "Moignon très court de cuisse (PI02)"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "protheses-ms",
+      "label": "Prothèses membre supérieur",
+      "icon": "fa-hand",
+      "famille": "prothese",
+      "zone": "ms",
+      "pathologies": [
+        {
+          "id": "amputation_doigts",
+          "label": "Amputation de doigts"
+        },
+        {
+          "id": "amputation_transmetacarpienne",
+          "label": "Amputation transmétacarpienne"
+        },
+        {
+          "id": "amputation_avant_bras",
+          "label": "Amputation d'avant-bras"
+        },
+        {
+          "id": "amputation_bras",
+          "label": "Amputation de bras"
+        },
+        {
+          "id": "desarticulation_coude",
+          "label": "Désarticulation du coude"
+        },
+        {
+          "id": "desarticulation_epaule",
+          "label": "Désarticulation scapulo-humérale"
+        },
+        {
+          "id": "agenesie_ms",
+          "label": "Agénésie du membre supérieur"
+        },
+        {
+          "id": "autre_prothese_ms",
+          "label": "Autre"
+        }
+      ],
+      "appareils": [
+        {
+          "id": "prothese-main-doigts",
+          "label": "Prothèse main / doigts",
+          "codeLPP": "PS8/PS9",
+          "description": "Prothèse pour amputation de main ou doigts",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "niveau",
+              "label": "Niveau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "doigts",
+                  "label": "Doigts (PS9)",
+                  "desc": "Ablation totale doigts, opposition pouce"
+                },
+                {
+                  "value": "transmeta",
+                  "label": "Transmétacarpienne (PS8)"
+                },
+                {
+                  "value": "silicone",
+                  "label": "Silicone anatomimétique",
+                  "desc": "Prothèse esthétique silicone"
+                }
+              ]
+            },
+            {
+              "id": "type_silicone",
+              "label": "Type silicone",
+              "type": "radio",
+              "condition": "niveau=silicone",
+              "options": [
+                {
+                  "value": "1doigt",
+                  "label": "1 doigt silicone",
+                  "code": "2806045"
+                },
+                {
+                  "value": "2doigts",
+                  "label": "2 doigts silicone",
+                  "code": "2828831"
+                },
+                {
+                  "value": "3doigts",
+                  "label": "3 doigts silicone",
+                  "code": "2847779"
+                },
+                {
+                  "value": "main",
+                  "label": "Main partielle silicone",
+                  "code": "2882301"
+                },
+                {
+                  "value": "main_complete",
+                  "label": "Main complète silicone",
+                  "code": "2816779"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "ps9c02",
+              "label": "Doigt — cuir moulé",
+              "code": "PS9C02 / 2786111",
+              "groupe": "Doigts"
+            },
+            {
+              "id": "ps9s01",
+              "label": "Doigt — stratifié résine",
+              "code": "PS9S01 / 2754736",
+              "groupe": "Doigts"
+            },
+            {
+              "id": "ps8c10",
+              "label": "Transmétacarpienne — cuir moulé",
+              "code": "PS8C10 / 2781115",
+              "groupe": "Transmétacarpienne"
+            },
+            {
+              "id": "ps8s01",
+              "label": "Transmétacarpienne — stratifié",
+              "code": "PS8S01 / 2718834",
+              "groupe": "Transmétacarpienne"
+            }
+          ],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-avant-bras",
+          "label": "Prothèse d'avant-bras",
+          "codeLPP": "PS5/PS6",
+          "description": "Prothèse pour amputation d'avant-bras",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "moignon",
+              "label": "Type de moignon",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "court",
+                  "label": "Moignon court (PS5)",
+                  "desc": "Sans prono-supination"
+                },
+                {
+                  "value": "long",
+                  "label": "Moignon moyen/long (PS6)",
+                  "desc": "Avec prono-supination"
+                }
+              ]
+            }
+          ],
+          "variantes": [
+            {
+              "id": "ps6s10",
+              "label": "PS6 — stratifié résine",
+              "code": "PS6S10",
+              "groupe": "Moignon long"
+            },
+            {
+              "id": "ps5s20",
+              "label": "PS5 — stratifié résine",
+              "code": "PS5S20",
+              "groupe": "Moignon court"
+            }
+          ],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-bras",
+          "label": "Prothèse de bras",
+          "codeLPP": "PS2/PS3",
+          "description": "Prothèse pour amputation de bras ou désarticulation d'épaule",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "niveau",
+              "label": "Niveau",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "bras",
+                  "label": "Amputation de bras (PS3)"
+                },
+                {
+                  "value": "desartic",
+                  "label": "Désarticulation du coude (PS2)"
+                },
+                {
+                  "value": "epaule",
+                  "label": "Désarticulation scapulo-humérale (PS1)"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-myoelectrique",
+          "label": "Prothèse myoélectrique",
+          "codeLPP": "Myoélectriques",
+          "description": "Prothèse à commande myoélectrique",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            },
+            {
+              "id": "age",
+              "label": "Catégorie",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "adulte",
+                  "label": "Adulte"
+                },
+                {
+                  "value": "enfant",
+                  "label": "Enfant / adolescent"
+                }
+              ]
+            },
+            {
+              "id": "systeme",
+              "label": "Système",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "generique",
+                  "label": "Générique (toutes marques)"
+                },
+                {
+                  "value": "ottobock",
+                  "label": "OTTO BOCK MYOBOCK"
+                },
+                {
+                  "value": "michelangelo",
+                  "label": "OTTO BOCK MICHELANGELO",
+                  "notes": "Prescription MPR"
+                },
+                {
+                  "value": "ilimb",
+                  "label": "OSSUR i-LIMB ULTRA",
+                  "notes": "Prescription MPR"
+                },
+                {
+                  "value": "idigitstd",
+                  "label": "OSSUR i-DIGITS",
+                  "notes": "Prescription MPR"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "ortheses-ms",
+      "label": "Orthèses membre supérieur",
+      "icon": "fa-hand-holding-medical",
+      "famille": "orthese",
+      "zone": "ms",
+      "pathologies": [
+        {
+          "id": "paralysie_radiale",
+          "label": "Paralysie radiale"
+        },
+        {
+          "id": "paralysie_plexus",
+          "label": "Paralysie du plexus brachial"
+        },
+        {
+          "id": "tetraplegie_ms",
+          "label": "Tétraplégie / lésion médullaire haute"
+        },
+        {
+          "id": "rhizarthrose",
+          "label": "Rhizarthrose / arthrose main-poignet"
+        },
+        {
+          "id": "fracture_ms",
+          "label": "Fracture / post-chirurgical MS"
+        },
+        {
+          "id": "spasticite_ms",
+          "label": "Spasticité MS / AVC"
+        },
+        {
+          "id": "tendinopathie",
+          "label": "Tendinopathie / canal carpien"
+        },
+        {
+          "id": "autre_orthese_ms",
+          "label": "Autre pathologie MS"
+        }
+      ],
+      "appareils": [
+        {
+          "id": "orthese-main",
+          "label": "Orthèse de main",
+          "codeLPP": "OS79",
+          "description": "Orthèse de main sur moulage",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Type",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "posture",
+                  "label": "Posture",
+                  "desc": "Orthèse statique"
+                },
+                {
+                  "value": "dynamique",
+                  "label": "Dynamique",
+                  "desc": "Orthèse fonctionnelle"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [
+            {
+              "id": "om_porte_outil",
+              "label": "Porte-outil sur avant-brassard",
+              "code": "AS8A01",
+              "groupe": "Outils",
+              "codeLPP": "AS8A01"
+            },
+            {
+              "id": "om_extension_doigt",
+              "label": "Extension dynamique d'un doigt",
+              "code": "AS89A01",
+              "groupe": "Dynamique",
+              "codeLPP": "AS89A01"
+            },
+            {
+              "id": "om_flexion_doigt",
+              "label": "Flexion dynamique d'un doigt",
+              "code": "AS89A02",
+              "groupe": "Dynamique",
+              "codeLPP": "AS89A02"
+            },
+            {
+              "id": "om_palette_palmaire",
+              "label": "Palette palmaire amovible",
+              "code": "AS78A01",
+              "groupe": "Palette",
+              "codeLPP": "AS78A01"
+            },
+            {
+              "id": "om_paralysie_radiale",
+              "label": "Dispositif paralysie radiale",
+              "code": "AS78A02",
+              "groupe": "Palette",
+              "codeLPP": "AS78A02"
+            },
+            {
+              "id": "om_ext_flex_poignet",
+              "label": "Extension/flexion dynamique poignet",
+              "code": "AS78D01",
+              "groupe": "Poignet",
+              "codeLPP": "AS78D01"
+            },
+            {
+              "id": "om_gainage",
+              "label": "Gainage pièces métalliques",
+              "code": "AS78C01",
+              "groupe": "Accessoires",
+              "codeLPP": "AS78C01"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "orthese-bras-avant-bras",
+          "label": "Orthèse bras-avant-bras",
+          "codeLPP": "OS36/OS38",
+          "description": "Orthèse de bras et/ou avant-bras sur moulage",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [
+            {
+              "id": "ob_epauliere",
+              "label": "Épaulière",
+              "code": "AS1C01",
+              "groupe": "Épaule",
+              "codeLPP": "AS1C01"
+            },
+            {
+              "id": "ob_artic_epaule",
+              "label": "Articulation d'épaule",
+              "code": "AS1A01",
+              "groupe": "Épaule",
+              "codeLPP": "PS1Z01"
+            },
+            {
+              "id": "ob_verrou_coude",
+              "label": "Verrou de coude",
+              "code": "AS4A20",
+              "groupe": "Coude",
+              "codeLPP": "AS4A20"
+            },
+            {
+              "id": "ob_ressort_coude",
+              "label": "Ressort antigravitation coude",
+              "code": "AS4A21",
+              "groupe": "Coude",
+              "codeLPP": "AS4A21"
+            },
+            {
+              "id": "ob_palette_palmaire",
+              "label": "Palette palmaire amovible",
+              "code": "AS78A01",
+              "groupe": "Palette",
+              "codeLPP": "AS78A01"
+            },
+            {
+              "id": "ob_gainage",
+              "label": "Gainage pièces métalliques",
+              "code": "AS78C01",
+              "groupe": "Accessoires",
+              "codeLPP": "AS78C01"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "orthese-ms-complet",
+          "label": "Orthèse MS complet",
+          "codeLPP": "OS16",
+          "description": "Orthèse complète du membre supérieur (épaule-bras-avant-bras-main)",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                }
+              ]
+            }
+          ],
+          "variantes": [],
+          "adjonctions": [
+            {
+              "id": "oms_epauliere",
+              "label": "Épaulière",
+              "code": "AS1C01",
+              "groupe": "Épaule",
+              "codeLPP": "AS1C01"
+            },
+            {
+              "id": "oms_artic_epaule_simple",
+              "label": "Articulation simple d'épaule",
+              "code": "AS1A01",
+              "groupe": "Épaule",
+              "codeLPP": "AS1A01"
+            },
+            {
+              "id": "oms_artic_epaule_double",
+              "label": "Articulation double d'épaule",
+              "code": "AS1A02",
+              "groupe": "Épaule",
+              "codeLPP": "AS1A02"
+            },
+            {
+              "id": "oms_verrou_coude",
+              "label": "Verrou de coude",
+              "code": "AS4A20",
+              "groupe": "Coude",
+              "codeLPP": "AS4A20"
+            },
+            {
+              "id": "oms_palette_palmaire",
+              "label": "Palette palmaire amovible",
+              "code": "AS78A01",
+              "groupe": "Palette",
+              "codeLPP": "AS78A01"
+            },
+            {
+              "id": "oms_gainage",
+              "label": "Gainage pièces métalliques",
+              "code": "AS78C01",
+              "groupe": "Accessoires",
+              "codeLPP": "AS78C01"
+            }
+          ],
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "dom_bizone_accepte": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Espace Prescripteur — Ortho Espace 3D</title>
+  <meta name="description" content="Outils d'aide à la prescription pour les médecins partenaires d'Ortho Espace 3D Guyane."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;color:#1a2535;background:#f0f4f8;overflow-x:hidden}
+    :root{
+      --primary:#1a5276;--accent:#48c9b0;--light:#eaf2f8;
+      --text:#1a2535;--text-light:#5a7a8a;--white:#fff;
+      --radius:12px;--shadow:0 8px 40px rgba(26,82,118,.10)
+    }
+    /* ── NAV ── */
+    .nav{background:var(--primary);padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:44px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+    .nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+    .nav-logo img{height:28px;background:#fff;padding:2px 4px;border-radius:3px}
+    .nav-logo span{color:#fff;font-weight:600;font-size:13px}
+    .nav-back{color:#fff;text-decoration:none;font-size:11px;opacity:.8;display:flex;align-items:center;gap:4px}
+    .nav-back:hover{opacity:1}
+    /* ── HERO ── */
+    .hero{background:linear-gradient(135deg,#0e3654 0%,#1a5276 60%,#14425c 100%);padding:.6rem 1.5rem;text-align:center;color:#fff}
+    .hero h1{font-size:17px;font-weight:700;margin-bottom:0}
+    .hero p{font-size:11px;opacity:.8;max-width:500px;margin:0 auto}
+    /* ── TOOL SELECTOR ── */
+    .tool-selector{display:flex;gap:6px;justify-content:center;padding:.4rem 1rem;flex-wrap:wrap;background:#fff;border-bottom:1px solid #e8e8e8;position:sticky;top:44px;z-index:90}
+    .tool-btn{padding:5px 14px;border-radius:5px;border:2px solid #ddd;font-size:11px;cursor:pointer;background:#fff;color:var(--text);font-weight:600;transition:all .15s;display:flex;align-items:center;gap:5px}
+    .tool-btn:hover{border-color:var(--primary);color:var(--primary)}
+    .tool-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .tool-btn i{font-size:11px}
+    /* ── TOOL PANELS ── */
+    .tool-panel{display:none;padding:.75rem;max-width:820px;margin:0 auto;padding-bottom:120px}
+    .tool-panel.active{display:block}
+    /* ── SECTION TITLES ── */
+    .section-intro{background:#fff;border-radius:6px;padding:.5rem .75rem;margin-bottom:.6rem;border-left:3px solid var(--accent);box-shadow:var(--shadow)}
+    .section-intro h2{font-size:13px;font-weight:600;color:var(--primary);margin-bottom:1px}
+    .section-intro p{font-size:11px;color:var(--text-light)}
+    /* ── CARDS & FORMS ── */
+    .card{background:#fff;border-radius:6px;border:1px solid #e8e8e8;padding:.6rem .75rem;margin-bottom:.5rem;box-shadow:0 1px 4px rgba(26,82,118,.04)}
+    .badge{font-size:10px;color:#185FA5;background:#e6f1fb;border-radius:4px;padding:2px 8px;margin-bottom:.5rem;display:inline-block;font-weight:500}
+    .sl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#999;margin:.5rem 0 3px}
+    .sl:first-of-type{margin-top:0}
+    /* ── TABS ADJONCTIONS ── */
+    .tabs-adj{display:flex;gap:3px;margin-bottom:.5rem;flex-wrap:wrap}
+    .tab-adj{padding:5px 12px;border-radius:5px;border:1px solid #ddd;font-size:11px;cursor:pointer;background:#fff;color:#555;font-weight:500;transition:all .15s}
+    .tab-adj:hover{border-color:var(--primary);color:var(--primary)}
+    .tab-adj.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .pnl{display:none}.pnl.on{display:block}
+    /* ── OPTIONS (radio-like cards) ── */
+    .opts{display:flex;flex-direction:column;gap:2px}
+    .opt{display:flex;align-items:center;gap:6px;padding:4px 8px;border:1.5px solid #eee;border-radius:5px;cursor:pointer;background:#fff;transition:all .12s}
+    .opt:hover{border-color:#aaa;background:#fafafa}.opt.on{border-color:#378ADD;background:#e6f1fb}
+    .opt input{flex-shrink:0;accent-color:#378ADD;pointer-events:none}
+    .oname{font-size:12px;color:#1a2535;font-weight:500}
+    .odesc{font-size:10px;color:#999;margin-top:0}
+    /* ── WARNINGS & INFOS ── */
+    .warn{background:#faeeda;border:1px solid #ba7517;border-radius:4px;padding:5px 8px;font-size:10px;color:#633806;margin-top:4px;display:none;line-height:1.3}
+    .warn.on{display:block}
+    .info-box{background:#e6f1fb;border:1px solid #378ADD;border-radius:4px;padding:5px 8px;font-size:10px;color:#0c447c;margin-top:4px;display:none;line-height:1.3}
+    .info-box.on{display:block}
+    /* ── RESULT BOX (sticky bottom) ── */
+    .rbox{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#0e3654,#1a5276);padding:10px 1.5rem;display:none;box-shadow:0 -6px 30px rgba(0,0,0,.3);z-index:80;max-height:30vh;overflow-y:auto;border-top:3px solid var(--accent)}
+    .rbox.on{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .rtitle{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;margin-bottom:0;white-space:nowrap;background:var(--accent);padding:4px 12px;border-radius:4px;animation:pulse-rx 2s ease-in-out infinite}
+    @keyframes pulse-rx{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.85;transform:scale(1.03)}}
+    .rline{font-size:13px;color:#fff;padding:0;border-bottom:none;line-height:1.4;flex:1;font-weight:500}
+    .rline div{font-size:10px;color:rgba(255,255,255,.65);font-weight:400;margin-top:1px}
+    .btn-reset{padding:5px 12px;border-radius:5px;border:1px solid rgba(255,255,255,.3);font-size:10px;cursor:pointer;background:rgba(255,255,255,.1);color:#fff;font-weight:500;white-space:nowrap;margin:0}
+    .btn-reset:hover{background:rgba(255,255,255,.2)}
+    /* ── ALERT TOAST ── */
+    .alert-toast{position:fixed;top:130px;left:50%;transform:translateX(-50%);background:#fff3cd;border:1.5px solid #ffc107;color:#664d03;padding:10px 20px;border-radius:8px;font-size:12px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.15);z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;max-width:500px;text-align:center}
+    .alert-toast.show{opacity:1}
+    /* ── CHECKBOXES GRID (corset-siège) ── */
+    .csgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:4px}
+    .ck{display:flex;align-items:center;gap:4px;padding:3px 6px;border:1px solid #eee;border-radius:4px;cursor:pointer;font-size:10px;color:#1a2535;background:#fff;font-weight:500;transition:all .12s;user-select:none}
+    .ck:hover{border-color:#aaa;background:#fafafa}.ck.on{border-color:#378ADD;background:#e6f1fb}
+    .ck.disabled{opacity:.3;pointer-events:none;background:#f5f5f5}
+    .ck input{flex-shrink:0;accent-color:#378ADD;pointer-events:none;width:12px;height:12px}
+    .qbox{background:#f8f9fb;border:1px solid #e8e8e8;border-radius:4px;padding:5px 8px;margin-top:3px;display:none}
+    .qbox.on{display:block}
+    .qlbl{font-size:10px;color:#888;margin-bottom:2px;font-weight:500}
+    .qrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .qctrl{display:flex;align-items:center;gap:4px}
+    .qctrl button{width:20px;height:20px;border-radius:3px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:12px;line-height:1;font-weight:600;color:#555}
+    .qctrl button:hover{background:#f0f0f0}
+    .qctrl .qv{font-size:12px;font-weight:600;min-width:16px;text-align:center}
+    /* ── AGE ROW ── */
+    .age-row{display:flex;align-items:center;gap:8px;margin-bottom:.4rem;padding:5px 8px;background:#fff;border-radius:4px;border:1px solid #e8e8e8}
+    .age-row label{font-size:11px;color:#555;font-weight:500;white-space:nowrap}
+    .age-row input[type=number]{width:60px;padding:3px 6px;border:1px solid #ddd;border-radius:4px;font-size:12px;font-weight:600}
+    .age-tag{font-size:10px;padding:1px 6px;border-radius:20px;font-weight:600}
+    .age-tag.enfant{background:#e8f5e9;color:#2e7d32}.age-tag.adulte{background:#e3f2fd;color:#1565c0}
+    /* ── AMP BOX (flexion angles) ── */
+    .amp-box{background:#f8f9fb;border:1px solid #ddd;border-radius:4px;padding:5px 8px;margin-top:4px;display:none}
+    .amp-box.on{display:block}
+    .amp-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:3px}
+    .amp-lbl{font-size:9px;color:#888;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+    select{width:100%;padding:3px 5px;border:1px solid #ddd;border-radius:3px;font-size:11px;background:#fff}
+    /* ── RENOUVELLEMENT ── */
+    .renouv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .renouv-field label{font-size:12px;color:#888;display:block;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+    .renouv-result{background:#f8f9fb;border-radius:var(--radius);border:1px solid #e8e8e8;padding:1.25rem;margin-top:1rem;display:none}
+    .renouv-result.visible{display:block}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+    .metric{background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:.75rem}
+    .metric-lbl{font-size:11px;color:#888;margin-bottom:4px}
+    .metric-val{font-size:15px;font-weight:600;color:var(--primary)}
+    .cond-list{font-size:13px;color:#5a7a8a;line-height:1.7;border-top:1px solid #e8e8e8;padding-top:.75rem}
+    .cond-list strong{color:#1a2535;font-weight:500}
+    .tag-pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin-right:4px;margin-bottom:4px}
+    .tag-ok{background:#e8f5e9;color:#2e7d32}
+    .tag-warn{background:#faeeda;color:#633806}
+    .tag-info{background:#e6f1fb;color:#0c447c}
+    /* ── CONTACT ── */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .contact-card{background:#fff;border-radius:var(--radius);border:1px solid #e8e8e8;padding:1.5rem;box-shadow:0 2px 8px rgba(26,82,118,.05)}
+    .contact-card h3{font-size:15px;font-weight:600;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .contact-card p,.contact-card li{font-size:13px;color:var(--text-light);line-height:1.7}
+    .contact-card ul{list-style:none;padding:0}
+    .contact-card li{padding:6px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:10px}
+    .contact-card li:last-child{border-bottom:none}
+    .contact-card li i{width:18px;color:var(--primary);text-align:center}
+    .btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;text-decoration:none;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;margin-top:12px;transition:all .15s}
+    .btn-wa:hover{background:#1da851;transform:translateY(-1px)}
+    .btn-tel{display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:#fff;text-decoration:none;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;margin-top:8px;transition:all .15s}
+    .btn-tel:hover{background:#154360;transform:translateY(-1px)}
+    .competence-tag{display:inline-block;font-size:12px;padding:5px 12px;border-radius:20px;background:var(--light);color:var(--primary);font-weight:500;margin:3px 4px 3px 0}
+    /* ── FOOTER ── */
+    .page-footer{text-align:center;padding:1rem;color:#888;font-size:11px;border-top:1px solid #e8e8e8;margin-top:1rem;background:#fff}
+    @media(max-width:600px){
+      .renouv-grid{grid-template-columns:1fr}
+      .metric-grid{grid-template-columns:1fr 1fr}
+      .csgrid{grid-template-columns:1fr 1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .amp-grid{grid-template-columns:1fr}
+      .hero h1{font-size:15px}
+      .hero{padding:.4rem 1rem}
+      .rbox.on{flex-direction:column;align-items:flex-start;gap:6px}
+      .tool-panel{padding-bottom:140px}
+      .nav{height:40px;padding:0 .75rem}
+      .tool-selector{top:40px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="prescripteurs.html?mode=pro" class="nav-logo">
+    <img src="site/logo/logo-oe3d.png" onerror="this.style.display='none'" alt="OE3D"/>
+    <span>Ortho Espace 3D</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:16px">
+    <a href="prescripteurs.html?mode=pro" class="nav-back"><i class="fa fa-arrow-left"></i> Espace Pro</a>
+    <a href="prescripteurs.html?mode=patient" class="nav-back" style="opacity:.6;font-size:12px"><i class="fa fa-user"></i> Site grand public</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1><i class="fa fa-stethoscope" style="margin-right:10px;opacity:.8"></i>Espace Prescripteur</h1>
+  <p>Aide à la prescription, cadences de renouvellement et contact direct — Ortho Espace 3D Guyane</p>
+</div>
+
+<!-- TOOL SELECTOR -->
+<div class="tool-selector">
+  <button class="tool-btn active" onclick="switchTool('adj',this)">
+    <i class="fa fa-list-check"></i> Aide à la prescription
+  </button>
+  <button class="tool-btn" onclick="switchTool('ren',this)">
+    <i class="fa fa-calendar-check"></i> Délais de renouvellement
+  </button>
+  <button class="tool-btn" onclick="switchTool('contact',this)">
+    <i class="fa fa-phone"></i> Nous contacter
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══ TOOL 1 : AIDE À LA PRESCRIPTION         ══ -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tool-adj" class="tool-panel active">
+  <div class="section-intro">
+    <h2>Guide de prescription — adjonctions</h2>
+    <p>Sélectionnez l'appareil, le côté et les options. Le libellé d'ordonnance se génère automatiquement en bas.</p>
+  </div>
+
+  <div class="tabs-adj">
+    <div class="tab-adj on" onclick="tab('afo',this)">AFO / Suro-pédieuse</div>
+    <div class="tab-adj" onclick="tab('kafo',this)">KAFO / Cruro-pédieuse</div>
+    <div class="tab-adj" onclick="tab('cs',this)">Corset-siège</div>
+  </div>
+
+  <!-- ── PANEL AFO ── -->
+  <div id="p-afo" class="pnl on">
+    <div class="card">
+      <div class="sl">Dénomination</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('ad','afo',this);showAfo()"><input type="radio" name="ad"/><div><div class="oname">AFO</div><div class="odesc">Ankle-Foot Orthosis</div></div></label>
+        <label class="opt" onclick="pick('ad','asp',this);showAfo()"><input type="radio" name="ad"/><div><div class="oname">Attelle suro-pédieuse</div><div class="odesc">Dénomination française</div></div></label>
+      </div>
+
+      <div class="sl">Nature</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('an-nat','pm',this);showAfo()"><input type="radio" name="an-nat"/><div><div class="oname">Première mise</div></div></label>
+        <label class="opt" onclick="pick('an-nat','ren',this);showAfo()"><input type="radio" name="an-nat"/><div><div class="oname">Renouvellement</div></div></label>
+      </div>
+
+      <div class="sl">Côté</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('as','d',this);showAfo()"><input type="radio" name="as"/><div><div class="oname">Droit</div></div></label>
+        <label class="opt" onclick="pick('as','g',this);showAfo()"><input type="radio" name="as"/><div><div class="oname">Gauche</div></div></label>
+        <label class="opt" onclick="pick('as','2',this);showAfo()"><input type="radio" name="as"/><div><div class="oname">Bilatéral</div></div></label>
+      </div>
+
+      <div class="sl">Type</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('at','m',this);showSec('afo-m','afo-n');"><input type="radio" name="at"/><div><div class="oname">Marche</div><div class="odesc">Orthèse de marche diurne</div></div></label>
+        <label class="opt" onclick="pick('at','n',this);showSec('afo-n','afo-m');"><input type="radio" name="at"/><div><div class="oname">Nuit</div><div class="odesc">Orthèse de posture nocturne</div></div></label>
+      </div>
+
+      <!-- Sous-options MARCHE -->
+      <div id="afo-m" style="display:none">
+        <div class="sl">Cheville (marche)</div>
+        <div class="opts">
+          <label class="opt" onclick="pick('am','r',this);hideAmp('afo-amp-m');showAfo()"><input type="radio" name="am"/><div><div class="oname">Rigide</div></div></label>
+          <label class="opt" onclick="pick('am','l',this);hideAmp('afo-amp-m');showAfo()"><input type="radio" name="am"/><div><div class="oname">Libre</div></div></label>
+          <label class="opt" onclick="pick('am','b',this);document.getElementById('afo-amp-m').classList.add('on');showAfo()"><input type="radio" name="am"/><div><div class="oname">Limitée</div><div class="odesc">Préciser les amplitudes</div></div></label>
+        </div>
+        <div id="afo-amp-m" class="amp-box">
+          <div class="amp-lbl">Amplitudes articulaires</div>
+          <div class="amp-grid">
+            <div>
+              <label style="font-size:12px;color:#555">Flexion plantaire</label>
+              <select id="afo-fp-m" onchange="showAfo()">
+                <option value="">—</option><option value="libre">Libre</option>
+                <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:12px;color:#555">Flexion dorsale</label>
+              <select id="afo-fd-m" onchange="showAfo()">
+                <option value="">—</option><option value="libre">Libre</option>
+                <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sous-options NUIT -->
+      <div id="afo-n" style="display:none">
+        <div class="sl">Cheville (nuit)</div>
+        <div class="opts">
+          <label class="opt" onclick="pick('an','r',this);hideAmp('afo-amp-n');showAfo()"><input type="radio" name="an"/><div><div class="oname">Rigide</div></div></label>
+          <label class="opt" onclick="pick('an','l',this);hideAmp('afo-amp-n');showAfo()"><input type="radio" name="an"/><div><div class="oname">Libre</div></div></label>
+          <label class="opt" onclick="pick('an','b',this);document.getElementById('afo-amp-n').classList.add('on');showAfo()"><input type="radio" name="an"/><div><div class="oname">Limitée</div><div class="odesc">Préciser les amplitudes</div></div></label>
+        </div>
+        <div id="afo-amp-n" class="amp-box">
+          <div class="amp-lbl">Amplitudes articulaires</div>
+          <div class="amp-grid">
+            <div>
+              <label style="font-size:12px;color:#555">Flexion plantaire</label>
+              <select id="afo-fp-n" onchange="showAfo()">
+                <option value="">—</option><option value="libre">Libre</option>
+                <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:12px;color:#555">Flexion dorsale</label>
+              <select id="afo-fd-n" onchange="showAfo()">
+                <option value="">—</option><option value="libre">Libre</option>
+                <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <label class="opt" id="afo-barre-lbl" onclick="togCb('afo-barre',this);showAfo()"><input type="checkbox" id="afo-barre"/><div><div class="oname">Barre d'abduction</div><div class="odesc">Barre(s) de dérotation / abduction</div></div></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL KAFO ── -->
+  <div id="p-kafo" class="pnl">
+    <div class="card">
+      <div class="sl">Dénomination</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('kd','kafo',this);showKafo()"><input type="radio" name="kd"/><div><div class="oname">KAFO</div><div class="odesc">Knee-Ankle-Foot Orthosis</div></div></label>
+        <label class="opt" onclick="pick('kd','ocp',this);showKafo()"><input type="radio" name="kd"/><div><div class="oname">Orthèse cruro-pédieuse</div><div class="odesc">Dénomination française</div></div></label>
+      </div>
+
+      <div class="sl">Nature</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('kn-nat','pm',this);showKafo()"><input type="radio" name="kn-nat"/><div><div class="oname">Première mise</div></div></label>
+        <label class="opt" onclick="pick('kn-nat','ren',this);showKafo()"><input type="radio" name="kn-nat"/><div><div class="oname">Renouvellement</div></div></label>
+      </div>
+
+      <div class="sl">Côté</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('ks','d',this);showKafo()"><input type="radio" name="ks"/><div><div class="oname">Droit</div></div></label>
+        <label class="opt" onclick="pick('ks','g',this);showKafo()"><input type="radio" name="ks"/><div><div class="oname">Gauche</div></div></label>
+        <label class="opt" onclick="pick('ks','2',this);showKafo()"><input type="radio" name="ks"/><div><div class="oname">Bilatéral</div></div></label>
+      </div>
+
+      <div class="sl">Type</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('kt','m',this);showSec('kafo-m','kafo-n');"><input type="radio" name="kt"/><div><div class="oname">Marche</div><div class="odesc">Orthèse de marche diurne</div></div></label>
+        <label class="opt" onclick="pick('kt','n',this);showSec('kafo-n','kafo-m');"><input type="radio" name="kt"/><div><div class="oname">Nuit</div><div class="odesc">Orthèse de posture nocturne</div></div></label>
+      </div>
+
+      <!-- KAFO Marche -->
+      <div id="kafo-m" style="display:none">
+        <div class="sl">Matériau</div>
+        <div class="opts">
+          <label class="opt" onclick="pick('km','pp',this);document.getElementById('kafo-carbone').classList.remove('on');showKafo()"><input type="radio" name="km"/><div><div class="oname">Polypropylène</div><div class="odesc">Standard</div></div></label>
+          <label class="opt" onclick="pick('km','carbone',this);document.getElementById('kafo-carbone').classList.add('on');showKafo()"><input type="radio" name="km"/><div><div class="oname">Carbone</div><div class="odesc">Après validation d'un essai en polypropylène</div></div></label>
+        </div>
+        <div id="kafo-carbone" class="info-box"><i class="fa fa-circle-info" style="margin-right:6px"></i>Prescription carbone : nécessite la validation préalable d'un essai en polypropylène.</div>
+
+        <div class="sl">Articulation de genou</div>
+        <div class="opts">
+          <label class="opt" onclick="pick('kg','mono',this);showKafoChev(true);showKafo()"><input type="radio" name="kg"/><div><div class="oname">Monoaxiale interne et externe</div></div></label>
+          <label class="opt" onclick="pick('kg','secteur',this);showKafoChev(true);showKafo()"><input type="radio" name="kg"/><div><div class="oname">À secteur</div></div></label>
+          <label class="opt" onclick="pick('kg','verr',this);showKafoChev(true);showKafo()"><input type="radio" name="kg"/><div><div class="oname">Verrouillable</div></div></label>
+          <label class="opt" onclick="pick('kg','libre',this);showKafoChev(true);showKafo()"><input type="radio" name="kg"/><div><div class="oname">Libre</div></div></label>
+          <label class="opt" onclick="pick('kg','ufm',this);showKafoChev(false);showKafo()"><input type="radio" name="kg"/><div><div class="oname">Ultraflex</div><div class="odesc">Articulation Ultraflex — poids du patient obligatoire</div></div></label>
+        </div>
+        <div id="kafo-uf-warn-m" class="warn"><i class="fa fa-weight-scale" style="margin-right:6px"></i><strong>Ultraflex</strong> — Le poids du patient doit figurer sur l'ordonnance (calibrage ressort).</div>
+        <div id="kafo-uf-poids-m" style="display:none;margin-top:8px">
+          <label style="font-size:12px;color:#555;font-weight:500">Poids du patient (kg)</label>
+          <input type="number" id="uf-poids-m" min="10" max="200" placeholder="kg" style="width:100px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:14px;margin-top:4px" onchange="showKafo()"/>
+        </div>
+
+        <div id="kafo-chev-m">
+          <div class="sl">Cheville (marche)</div>
+          <div class="opts">
+            <label class="opt" onclick="pick('kc','r',this);hideAmp('kafo-amp-m');showKafo()"><input type="radio" name="kc"/><div><div class="oname">Rigide</div></div></label>
+            <label class="opt" onclick="pick('kc','l',this);hideAmp('kafo-amp-m');showKafo()"><input type="radio" name="kc"/><div><div class="oname">Libre</div></div></label>
+            <label class="opt" onclick="pick('kc','b',this);document.getElementById('kafo-amp-m').classList.add('on');showKafo()"><input type="radio" name="kc"/><div><div class="oname">Limitée</div><div class="odesc">Préciser les amplitudes</div></div></label>
+          </div>
+          <div id="kafo-amp-m" class="amp-box">
+            <div class="amp-lbl">Amplitudes articulaires</div>
+            <div class="amp-grid">
+              <div>
+                <label style="font-size:12px;color:#555">Flexion plantaire</label>
+                <select id="kc-fp-m" onchange="showKafo()">
+                  <option value="">—</option><option value="libre">Libre</option>
+                  <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;color:#555">Flexion dorsale</label>
+                <select id="kc-fd-m" onchange="showKafo()">
+                  <option value="">—</option><option value="libre">Libre</option>
+                  <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KAFO Nuit -->
+      <div id="kafo-n" style="display:none">
+        <div class="sl">Genou (nuit)</div>
+        <div class="opts">
+          <label class="opt" onclick="pick('kng','r',this);showKafo()"><input type="radio" name="kng"/><div><div class="oname">Rigide</div></div></label>
+          <label class="opt" onclick="pick('kng','l',this);showKafo()"><input type="radio" name="kng"/><div><div class="oname">Libre</div></div></label>
+          <label class="opt" onclick="pick('kng','b',this);showKafo()"><input type="radio" name="kng"/><div><div class="oname">Limité</div></div></label>
+        </div>
+
+        <div class="sl">Cheville (nuit)</div>
+        <div class="opts">
+          <label class="opt" onclick="pick('knc','r',this);hideAmp('kafo-amp-n');showKafo()"><input type="radio" name="knc"/><div><div class="oname">Rigide</div></div></label>
+          <label class="opt" onclick="pick('knc','l',this);hideAmp('kafo-amp-n');showKafo()"><input type="radio" name="knc"/><div><div class="oname">Libre</div></div></label>
+          <label class="opt" onclick="pick('knc','b',this);document.getElementById('kafo-amp-n').classList.add('on');showKafo()"><input type="radio" name="knc"/><div><div class="oname">Limitée</div><div class="odesc">Préciser les amplitudes</div></div></label>
+        </div>
+        <div id="kafo-amp-n" class="amp-box">
+          <div class="amp-lbl">Amplitudes articulaires</div>
+          <div class="amp-grid">
+            <div>
+              <label style="font-size:12px;color:#555">Flexion plantaire</label>
+              <select id="knc-fp-n" onchange="showKafo()">
+                <option value="">—</option><option value="libre">Libre</option>
+                <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:12px;color:#555">Flexion dorsale</label>
+              <select id="knc-fd-n" onchange="showKafo()">
+                <option value="">—</option><option value="libre">Libre</option>
+                <option value="5">5°</option><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="25">25°</option><option value="30">30°</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          <label class="opt" onclick="togCb('kafo-barre',this);showKafo()"><input type="checkbox" id="kafo-barre"/><div><div class="oname">Barre d'abduction</div></div></label>
+        </div>
+        <div style="margin-top:6px">
+          <label class="opt" onclick="togCb('kafo-uf',this);toggleUFN();showKafo()"><input type="checkbox" id="kafo-uf"/><div><div class="oname">Articulation Ultraflex (genou)</div><div class="odesc">Poids du patient obligatoire sur l'ordonnance</div></div></label>
+        </div>
+        <div id="kafo-uf-warn-n" class="warn"><i class="fa fa-weight-scale" style="margin-right:6px"></i><strong>Ultraflex</strong> — Le poids du patient doit figurer sur l'ordonnance.</div>
+        <div id="kafo-uf-poids-n" style="display:none;margin-top:8px">
+          <label style="font-size:12px;color:#555;font-weight:500">Poids du patient (kg)</label>
+          <input type="number" id="uf-poids-n" min="10" max="200" placeholder="kg" style="width:100px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:14px;margin-top:4px" onchange="showKafo()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL CORSET-SIÈGE ── -->
+  <div id="p-cs" class="pnl">
+    <div class="card">
+      <div class="age-row">
+        <label>Âge du patient</label>
+        <input type="number" id="cs-age" min="0" max="120" placeholder="ans" onchange="csAge()"/>
+        <span id="cs-age-tag"></span>
+      </div>
+      <div id="cs-age-warn" class="warn"></div>
+
+      <div class="sl">Type de corset-siège</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('cst','complet',this);csTypeChange('complet')"><input type="radio" name="cst"/><div><div class="oname">Corset-siège complet</div><div class="odesc">Assise + dossier, sur moulage</div></div></label>
+        <label class="opt" onclick="pick('cst','assise',this);csTypeChange('assise')"><input type="radio" name="cst"/><div><div class="oname">Assise seule</div><div class="odesc">Assise de corset-siège, sur moulage</div></div></label>
+        <label class="opt" onclick="pick('cst','dossier',this);csTypeChange('dossier')"><input type="radio" name="cst"/><div><div class="oname">Dossier seul</div><div class="odesc">Dossier de corset-siège, sur moulage</div></div></label>
+      </div>
+
+      <div class="sl">Nature</div>
+      <div class="opts">
+        <label class="opt" onclick="pick('csn','premiere',this);csNatureChange('premiere')"><input type="radio" name="csn"/><div><div class="oname">Première mise</div></div></label>
+        <label class="opt" onclick="pick('csn','renouvellement',this);csNatureChange('renouvellement')"><input type="radio" name="csn"/><div><div class="oname">Renouvellement</div></div></label>
+        <label class="opt" id="cs-regarn-opt" style="display:none" onclick="pick('csn','regarnissage',this);csNatureChange('regarnissage')"><input type="radio" name="csn"/><div><div class="oname">Regarnissage</div><div class="odesc">Adulte uniquement — adjonctions autorisées limitées</div></div></label>
+      </div>
+
+      <div class="sl">Adjonctions</div>
+      <div class="csgrid" id="cs-grid">
+        <div class="ck" id="ck-socle" onclick="togCk(this,'socle')"><input type="checkbox"/>Socle</div>
+        <div class="ck" id="ck-tetiere" onclick="togCk(this,'tetiere')"><input type="checkbox"/>Têtière</div>
+        <div class="ck" id="ck-tetmulti" onclick="togCk(this,'tetmulti')"><input type="checkbox"/>Têtière multiposition</div>
+        <div class="ck" id="ck-mentonniere" onclick="togCk(this,'mentonniere')"><input type="checkbox"/>Mentonnière</div>
+        <div class="ck" id="ck-appui-sc" onclick="togCk(this,'appui-sc')"><input type="checkbox"/>Appui sous-claviculaire</div>
+        <div class="ck" id="ck-appui-st" onclick="togCk(this,'appui-st')"><input type="checkbox"/>Appui sternal rigide</div>
+        <div class="ck" id="ck-plastron" onclick="togCk(this,'plastron')"><input type="checkbox"/>Plastron</div>
+        <div class="ck" id="ck-plot" onclick="togCk(this,'plot')"><input type="checkbox"/>Plot amovible</div>
+        <div class="ck" id="ck-seg-jamb" onclick="togCk(this,'seg-jamb')"><input type="checkbox"/>Segment jambier</div>
+        <div class="ck" id="ck-seg-ped" onclick="togCk(this,'seg-ped')"><input type="checkbox"/>Segment pédieux</div>
+        <div class="ck" id="ck-repose-pied" onclick="togCk(this,'repose-pied')"><input type="checkbox"/>Repose-pied</div>
+        <div class="ck" id="ck-tablette" onclick="togCk(this,'tablette')"><input type="checkbox"/>Tablette</div>
+        <div class="ck" id="ck-accoudoir" onclick="togCk(this,'accoudoir')"><input type="checkbox"/>Accoudoir</div>
+        <div class="ck" id="ck-sangles-fix" onclick="togCk(this,'sangles-fix')"><input type="checkbox"/>Sangles de fixation (x2)</div>
+        <div class="ck" id="ck-sangles-fem" onclick="togCk(this,'sangles-fem')"><input type="checkbox"/>Sangle fémorale</div>
+        <div class="ck" id="ck-socle-roulant" onclick="togCk(this,'socle-roulant')"><input type="checkbox"/>Socle roulant</div>
+        <div class="ck" id="ck-socle-incl" onclick="togCk(this,'socle-incl')"><input type="checkbox"/>Socle inclinable</div>
+        <div class="ck" id="ck-mousse" onclick="togCk(this,'mousse')"><input type="checkbox"/>Mousse de confort</div>
+        <div class="ck" id="ck-double-cap" onclick="togCk(this,'double-cap')"><input type="checkbox"/>Double capitonnage</div>
+        <div class="ck" id="ck-inserts" onclick="togCk(this,'inserts')"><input type="checkbox"/>Inserts silicone</div>
+        <div class="ck" id="ck-seg-jamb-art" onclick="togCk(this,'seg-jamb-art')"><input type="checkbox"/>Segment jambier articulé</div>
+        <div class="ck" id="ck-housse" onclick="togCk(this,'housse')"><input type="checkbox"/>Housse amovible</div>
+        <div id="sangle-bassin-wrap"><div class="ck" id="ck-sangle-bassin" onclick="togCk(this,'sangle-bassin')"><input type="checkbox"/>Sangle de bassin 4 points</div></div>
+        <div class="ck" id="ck-readapt" onclick="togCk(this,'readapt')"><input type="checkbox"/>Réadaptation</div>
+      </div>
+
+      <!-- Quantités -->
+      <div class="qbox" id="qb-sangle-bassin"><div class="qlbl">Sangles de bassin 4 points (max 2)</div><div class="qctrl"><button onclick="qC('sangle-bassin',-1)">&#8722;</button><span class="qv" id="qty-sangle-bassin">1</span><button onclick="qC('sangle-bassin',1)">+</button></div></div>
+      <div class="qbox" id="qb-plastron"><div class="qlbl">Plastrons (max 2)</div><div class="qctrl"><button onclick="qC('plastron',-1)">&#8722;</button><span class="qv" id="qty-plastron">1</span><button onclick="qC('plastron',1)">+</button></div></div>
+      <div class="qbox" id="qb-seg-jamb"><div class="qlbl">Segments jambiers</div><div class="qctrl"><button onclick="qC('seg-jamb',-1)">&#8722;</button><span class="qv" id="qty-seg-jamb">1</span><button onclick="qC('seg-jamb',1)">+</button></div></div>
+      <div class="qbox" id="qb-seg-ped"><div class="qlbl">Segments pédieux</div><div class="qctrl"><button onclick="qC('seg-ped',-1)">&#8722;</button><span class="qv" id="qty-seg-ped">1</span><button onclick="qC('seg-ped',1)">+</button></div></div>
+      <div class="qbox" id="qb-accoudoir"><div class="qlbl">Accoudoirs</div><div class="qctrl"><button onclick="qC('accoudoir',-1)">&#8722;</button><span class="qv" id="qty-accoudoir">1</span><button onclick="qC('accoudoir',1)">+</button></div></div>
+      <div class="qbox" id="qb-sangles-fem"><div class="qlbl">Sangles fémorales</div><div class="qctrl"><button onclick="qC('sangles-fem',-1)">&#8722;</button><span class="qv" id="qty-sangles-fem">1</span><button onclick="qC('sangles-fem',1)">+</button></div></div>
+      <div class="qbox" id="qb-seg-jamb-art"><div class="qlbl">Segments jambiers articulés</div><div class="qctrl"><button onclick="qC('seg-jamb-art',-1)">&#8722;</button><span class="qv" id="qty-seg-jamb-art">1</span><button onclick="qC('seg-jamb-art',1)">+</button></div></div>
+      <div class="qbox" id="qb-housse"><div class="qlbl">Housses amovibles (max 2)</div><div class="qctrl"><button onclick="qC('housse',-1)">&#8722;</button><span class="qv" id="qty-housse">1</span><button onclick="qC('housse',1)">+</button></div></div>
+
+      <!-- Réadaptation sub-options -->
+      <div class="qbox" id="qb-readapt">
+        <div class="qlbl">Réadaptation — composants</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+          <div class="ck" id="ck-readapt-tablette" onclick="togReadapt(this,'readapt-tablette')" style="flex:1;min-width:120px"><input type="checkbox"/>Tablette</div>
+          <div class="ck" id="ck-readapt-accoudoir" onclick="togReadapt(this,'readapt-accoudoir')" style="flex:1;min-width:120px"><input type="checkbox"/>Accoudoir(s)</div>
+          <div class="ck" id="ck-readapt-socle" onclick="togReadapt(this,'readapt-socle')" style="flex:1;min-width:120px"><input type="checkbox"/>Socle roulant</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tool-adj -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══ TOOL 2 : RENOUVELLEMENT                  ══ -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tool-ren" class="tool-panel">
+  <div class="section-intro">
+    <h2>Délais de renouvellement par appareillage</h2>
+    <p>Règles d'attribution dans le temps — LPP Titre II Chap. 7 — Arrêté 04/12/2024 — CIR-21/2022 CNAM</p>
+  </div>
+  <div class="card">
+    <div class="renouv-grid">
+      <div class="renouv-field">
+        <label>Catégorie d'appareillage</label>
+        <select id="ren-app" onchange="calcRen()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;background:#fff">
+          <option value="">Sélectionner...</option>
+          <optgroup label="Prothèses">
+            <option value="pmi_d4600">Prothèse membre inférieur — CIF d4600/d4601</option>
+            <option value="pmi_d4602">Prothèse membre inférieur — CIF d4602</option>
+            <option value="pmi_d4608">Prothèse membre inférieur — CIF d4608</option>
+            <option value="pms">Prothèse membre supérieur</option>
+          </optgroup>
+          <optgroup label="Orthèses de tronc">
+            <option value="corset_siege">Corset-siège / coquille moulée</option>
+            <option value="corset_traitement">Corset de traitement (scoliose...)</option>
+          </optgroup>
+          <optgroup label="Orthèses membres">
+            <option value="orthese_posture_mi">Orthèse statique de posture MI</option>
+            <option value="orthese_marche">Orthèse de marche</option>
+            <option value="orthese_ms">Orthèse membre supérieur</option>
+          </optgroup>
+          <optgroup label="Accessoires prothétiques">
+            <option value="manchon_mi">Manchons / gaines — membre inférieur</option>
+            <option value="manchon_ms">Manchons / gaines — membre supérieur</option>
+            <option value="housses">Mousses et housses (assises, dossiers)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="renouv-field">
+        <label>Âge du patient</label>
+        <select id="ren-age" onchange="calcRen()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;background:#fff">
+          <option value="">Sélectionner...</option>
+          <option value="enfant">Enfant (moins de 18 ans)</option>
+          <option value="adulte">Adulte (18 ans et plus)</option>
+        </select>
+      </div>
+    </div>
+    <div id="ren-result" class="renouv-result"></div>
+    <div style="margin-top:.75rem">
+      <span onclick="resetRen()" style="font-size:12px;color:#888;cursor:pointer;text-decoration:underline">Nouvelle recherche</span>
+    </div>
+  </div>
+</div><!-- /tool-ren -->
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══ TOOL 3 : NOUS CONTACTER                  ══ -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tool-contact" class="tool-panel">
+  <div class="section-intro">
+    <h2>Contact direct</h2>
+    <p>Une question sur une prescription, un suivi patient ou un appareillage ? Contactez-nous directement.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3><i class="fa fa-phone"></i> Coordonnées</h3>
+      <ul>
+        <li><i class="fa fa-phone"></i> +594 594 28 28 08</li>
+        <li><i class="fab fa-whatsapp" style="color:#25D366"></i> +594 594 28 28 08</li>
+        <li><i class="fa fa-envelope"></i> contact@orthoespace3d.fr</li>
+        <li><i class="fa fa-map-marker-alt"></i> Matoury, Guyane française</li>
+      </ul>
+      <a href="https://wa.me/594594282808" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp direct</a>
+      <a href="tel:+594594282808" class="btn-tel"><i class="fa fa-phone"></i> Appeler</a>
+    </div>
+
+    <div class="contact-card">
+      <h3><i class="fa fa-clock"></i> Horaires</h3>
+      <ul>
+        <li><i class="fa fa-calendar-day"></i> Lundi — Vendredi</li>
+        <li><i class="fa fa-clock"></i> 7h30 — 15h30</li>
+        <li><i class="fa fa-info-circle"></i> Sur rendez-vous</li>
+      </ul>
+      <div style="margin-top:1.5rem">
+        <h3 style="margin-bottom:8px"><i class="fa fa-hand-holding-medical"></i> Nos compétences</h3>
+        <div>
+          <span class="competence-tag">Orthèses sur mesure</span>
+          <span class="competence-tag">Prothèses</span>
+          <span class="competence-tag">Impression 3D</span>
+          <span class="competence-tag">CFAO</span>
+          <span class="competence-tag">Corsets-sièges</span>
+          <span class="competence-tag">Petit appareillage</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tool-contact -->
+
+<!-- ALERT TOAST -->
+<div id="alert-toast" class="alert-toast"></div>
+
+<!-- BARRE STICKY RÉSULTAT -->
+<div id="sticky-result" class="rbox"></div>
+
+<div class="page-footer">
+  Ortho Espace 3D — Matoury, Guyane · <a href="prescripteurs.html?mode=pro" style="color:#1a5276">Retour au site</a>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ══ JAVASCRIPT                                ══ -->
+<!-- ══════════════════════════════════════════════ -->
+<script>
+// ── Navigation outils ──
+function switchTool(id,el){
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tool-'+id).classList.add('active');
+  document.getElementById('sticky-result').classList.remove('on');
+}
+
+// ── Utilitaires ──
+function tab(id,el){
+  document.querySelectorAll('.tab-adj').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('p-'+id).classList.add('on');
+  document.getElementById('sticky-result').classList.remove('on');
+}
+function pick(name,val,el){
+  document.querySelectorAll('input[name="'+name+'"]').forEach(function(r){
+    var lbl=r.closest('.opt');lbl.classList.remove('on');delete lbl.dataset.v;
+  });
+  el.classList.add('on');el.querySelector('input').checked=true;el.dataset.v=val;
+}
+function rval(name){
+  var inputs=document.querySelectorAll('input[name="'+name+'"]');
+  for(var i=0;i<inputs.length;i++){
+    var l=inputs[i].closest('.opt');if(l&&l.classList.contains('on')) return l.dataset.v||'';
+  }
+  return '';
+}
+function togCb(id,el){var cb=document.getElementById(id);cb.checked=!cb.checked;el.classList.toggle('on',cb.checked);}
+function showSec(show,hide){document.getElementById(show).style.display='block';document.getElementById(hide).style.display='none';
+  if(show.startsWith('afo')||hide.startsWith('afo')) showAfo();
+  if(show.startsWith('kafo')||hide.startsWith('kafo')) showKafo();
+}
+function hideAmp(id){document.getElementById(id).classList.remove('on');}
+function ampTxt(fp,fd){
+  var p=[];
+  if(fp) p.push('flexion plantaire '+(fp==='libre'?'libre':fp+'\u00b0'));
+  if(fd) p.push('flexion dorsale '+(fd==='libre'?'libre':fd+'\u00b0'));
+  return p.length?' ('+p.join(', ')+')':'';
+}
+function sideStr(s,sg,pl){
+  if(s==='d') return sg+' droite';if(s==='g') return sg+' gauche';
+  if(s==='2') return pl;return sg;
+}
+</script>
+
+<script>
+// ── AFO ──
+function showAfo(){
+  var b=document.getElementById('sticky-result');
+  var denom=rval('ad'),side=rval('as'),type=rval('at'),nat=rval('an-nat');
+  var natL={pm:'premi\u00e8re mise',ren:'renouvellement'};
+  var sg=denom==='afo'?'AFO':'Attelle suro-p\u00e9dieuse';
+  var pl=denom==='afo'?'AFOs':'Attelles suro-p\u00e9dieuses';
+  var deux=side==='2';
+  var chevSg=deux?'chevilles':'cheville';
+  if(!denom&&!side&&!type&&!nat){b.classList.remove('on');return;}
+  var base=sideStr(side,sg,pl);
+  var txt='';
+  if(nat) txt+=natL[nat]+' \u2014 ';
+  if(type==='m'){
+    var am=rval('am');
+    txt+=base+' de marche, sur moulage';
+    if(am==='r'){txt+=', \u00e0 '+chevSg+' fixe'+(deux?'s':'');}
+    else if(am==='l'){txt+=', \u00e0 '+chevSg+' articul\u00e9e'+(deux?'s':'');}
+    else if(am==='b'){txt+=', \u00e0 '+chevSg+' articul\u00e9e'+(deux?'s':'')+' limit\u00e9e'+(deux?'s':'');txt+=ampTxt(document.getElementById('afo-fp-m').value,document.getElementById('afo-fd-m').value);}
+  } else if(type==='n'){
+    var an=rval('an');
+    txt+=base+' de nuit, sur moulage';
+    if(an==='r'){txt+=', \u00e0 '+chevSg+' fixe'+(deux?'s':'');}
+    else if(an==='l'){txt+=', \u00e0 '+chevSg+' articul\u00e9e'+(deux?'s':'');}
+    else if(an==='b'){txt+=', \u00e0 '+chevSg+' articul\u00e9e'+(deux?'s':'')+' limit\u00e9e'+(deux?'s':'');txt+=ampTxt(document.getElementById('afo-fp-n').value,document.getElementById('afo-fd-n').value);}
+    if(document.getElementById('afo-barre').checked) txt+=', avec barre'+(deux?'s':'')+' d\'abduction';
+  } else {
+    txt+=base+', sur moulage';
+  }
+  b.innerHTML='<div class="rtitle">Prescription</div><div class="rline" style="font-style:italic">'+txt+'</div><button class="btn-reset" onclick="resetAfo()">Réinitialiser</button>';
+  b.classList.add('on');
+}
+function resetAfo(){
+  ['ad','as','at','am','an','an-nat'].forEach(function(n){document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){var l=r.closest('.opt');l.classList.remove('on');r.checked=false;delete l.dataset.v;});});
+  ['afo-m','afo-n'].forEach(function(id){document.getElementById(id).style.display='none';});
+  ['afo-amp-m','afo-amp-n'].forEach(function(id){document.getElementById(id).classList.remove('on');});
+  document.getElementById('afo-barre').checked=false;
+  document.getElementById('afo-barre-lbl').classList.remove('on');
+  document.getElementById('sticky-result').classList.remove('on');
+}
+</script>
+
+<script>
+// ── KAFO ──
+function showKafoChev(show){
+  document.getElementById('kafo-chev-m').style.display=show?'block':'none';
+  document.getElementById('kafo-uf-warn-m').classList.toggle('on',!show);
+  document.getElementById('kafo-uf-poids-m').style.display=show?'none':'block';
+  if(show) document.getElementById('uf-poids-m').value='';
+}
+function toggleUFN(){
+  var on=document.getElementById('kafo-uf').checked;
+  document.getElementById('kafo-uf-warn-n').classList.toggle('on',on);
+  document.getElementById('kafo-uf-poids-n').style.display=on?'block':'none';
+}
+function showKafo(){
+  var b=document.getElementById('sticky-result');
+  var denom=rval('kd'),side=rval('ks'),type=rval('kt'),nat=rval('kn-nat');
+  var gL={mono:'articulation de genou monoaxiale interne et externe',secteur:'articulation de genou \u00e0 secteur',verr:'articulation de genou verrouillable',libre:'articulation de genou libre'};
+  var gLn={r:'genou rigide',l:'genou libre',b:'genou limit\u00e9'};
+  var sg=denom==='kafo'?'KAFO':'Orth\u00e8se cruro-p\u00e9dieuse';
+  var pl=denom==='kafo'?'KAFOs':'Orth\u00e8ses cruro-p\u00e9dieuses';
+  var deux=side==='2';
+  var chevSg=deux?'chevilles':'cheville';
+  var genSg=deux?'genoux':'genou';
+  if(!denom&&!side&&!type&&!nat){b.classList.remove('on');return;}
+  var base=sideStr(side,sg,pl);
+  var txt='',extra='';
+  if(nat) txt+=(nat==='pm'?'premi\u00e8re mise':'renouvellement')+' \u2014 ';
+  if(type==='m'){
+    var mat=rval('km'),genou=rval('kg'),chev=rval('kc');
+    txt+=base+' de marche, sur moulage';
+    if(mat) txt+=' en '+(mat==='carbone'?'carbone':'polypropyl\u00e8ne');
+    if(genou==='ufm'){
+      txt+=', articulation'+(deux?'s':'')+' de '+genSg+' Ultraflex';
+      var pm=document.getElementById('uf-poids-m').value;
+      extra=pm?'<div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px">Poids du patient = '+pm+' kg</div>':'<div style="font-size:10px;color:#ffb74d;margin-top:2px">Poids du patient non renseign\u00e9 \u2014 obligatoire sur l\'ordonnance</div>';
+      if(mat==='carbone') extra+='<div style="font-size:10px;color:rgba(150,200,255,.8);margin-top:2px">Prescription carbone \u2014 apr\u00e8s validation d\'un essai en polypropyl\u00e8ne</div>';
+    } else {
+      if(genou==='mono') txt+=', articulation'+(deux?'s':'')+' de '+genSg+' monoaxiale'+(deux?'s':'')+' interne'+(deux?'s':'')+' et externe'+(deux?'s':'');
+      else if(genou==='secteur') txt+=', articulation'+(deux?'s':'')+' de '+genSg+' \u00e0 secteur';
+      else if(genou==='verr') txt+=', articulation'+(deux?'s':'')+' de '+genSg+' verrouillable'+(deux?'s':'');
+      else if(genou==='libre') txt+=', articulation'+(deux?'s':'')+' de '+genSg+' libre'+(deux?'s':'');
+      if(chev==='r'){txt+=', '+chevSg+' fixe'+(deux?'s':'');}
+      else if(chev==='l'){txt+=', '+chevSg+' articul\u00e9e'+(deux?'s':'');}
+      else if(chev==='b'){txt+=', '+chevSg+' articul\u00e9e'+(deux?'s':'')+' limit\u00e9e'+(deux?'s':'');txt+=ampTxt(document.getElementById('kc-fp-m').value,document.getElementById('kc-fd-m').value);}
+      if(mat==='carbone') extra='<div style="font-size:10px;color:rgba(150,200,255,.8);margin-top:2px">Prescription carbone \u2014 apr\u00e8s validation d\'un essai en polypropyl\u00e8ne</div>';
+    }
+  } else if(type==='n'){
+    var ng=rval('kng'),nc=rval('knc');
+    var uf=document.getElementById('kafo-uf').checked,barre=document.getElementById('kafo-barre').checked;
+    txt+=base+' de nuit, sur moulage';
+    if(ng==='r') txt+=', '+genSg+' rigide'+(deux?'s':'');
+    else if(ng==='l') txt+=', '+genSg+' libre'+(deux?'s':'');
+    else if(ng==='b') txt+=', '+genSg+' limit\u00e9'+(deux?'s':'');
+    if(nc==='r'){txt+=', '+chevSg+' fixe'+(deux?'s':'');}
+    else if(nc==='l'){txt+=', '+chevSg+' articul\u00e9e'+(deux?'s':'');}
+    else if(nc==='b'){txt+=', '+chevSg+' articul\u00e9e'+(deux?'s':'')+' limit\u00e9e'+(deux?'s':'');txt+=ampTxt(document.getElementById('knc-fp-n').value,document.getElementById('knc-fd-n').value);}
+    if(barre) txt+=', barre'+(deux?'s':'')+' d\'abduction';
+    if(uf){
+      txt+=', articulation'+(deux?'s':'')+' de '+genSg+' Ultraflex';
+      var pn=document.getElementById('uf-poids-n').value;
+      extra=pn?'<div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px">Poids du patient = '+pn+' kg</div>':'<div style="font-size:10px;color:#ffb74d;margin-top:2px">Poids du patient non renseign\u00e9 \u2014 obligatoire sur l\'ordonnance</div>';
+    }
+  } else {
+    txt+=base+', sur moulage';
+  }
+  b.innerHTML='<div class="rtitle">Prescription</div><div class="rline" style="font-style:italic">'+txt+'</div>'+extra+'<button class="btn-reset" onclick="resetKafo()">Réinitialiser</button>';
+  b.classList.add('on');
+}
+function resetKafo(){
+  ['kd','ks','kt','km','kg','kc','kng','knc','kn-nat'].forEach(function(n){document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){var l=r.closest('.opt');l.classList.remove('on');r.checked=false;delete l.dataset.v;});});
+  ['kafo-m','kafo-n'].forEach(function(id){document.getElementById(id).style.display='none';});
+  ['kafo-amp-m','kafo-amp-n','kafo-carbone'].forEach(function(id){document.getElementById(id).classList.remove('on');});
+  ['kafo-uf-warn-m','kafo-uf-warn-n'].forEach(function(id){document.getElementById(id).classList.remove('on');});
+  ['kafo-uf-poids-m','kafo-uf-poids-n'].forEach(function(id){document.getElementById(id).style.display='none';});
+  document.getElementById('kafo-chev-m').style.display='block';
+  ['kafo-barre','kafo-uf'].forEach(function(id){var e=document.getElementById(id);e.checked=false;e.closest('.opt').classList.remove('on');});
+  ['uf-poids-m','uf-poids-n'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('sticky-result').classList.remove('on');
+}
+</script>
+
+<script>
+// ── ALERTES ──
+var alertTimer;
+function showAlert(msg){
+  var t=document.getElementById('alert-toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(alertTimer);
+  alertTimer=setTimeout(function(){t.classList.remove('show');},3000);
+}
+var ALERT_MSGS={
+  'tetiere':'Têtière standard désactivée (têtière multiposition sélectionnée)',
+  'tetmulti':'Têtière multiposition désactivée (têtière standard sélectionnée)',
+  'mousse':'Mousse de confort désactivée (incompatible avec double capitonnage / inserts)',
+  'double-cap':'Double capitonnage désactivé (incompatible avec mousse de confort)',
+  'inserts':'Inserts silicone désactivés (incompatible avec mousse de confort)',
+  'socle':'Socle fixe désactivé (un autre type de socle est sélectionné)',
+  'socle-roulant':'Socle roulant désactivé (un autre type de socle est sélectionné)',
+  'socle-incl':'Socle inclinable désactivé (un autre type de socle est sélectionné)',
+  'tablette':'Tablette désactivée (accoudoir ou réadaptation sélectionné)',
+  'accoudoir':'Accoudoir désactivé (tablette ou réadaptation sélectionnée)',
+  'readapt-tablette':'Réadaptation tablette incompatible avec réadaptation accoudoir',
+  'readapt-accoudoir':'Réadaptation accoudoir incompatible avec réadaptation tablette'
+};
+
+// ── CORSET-SIÈGE ──
+var csChecked={},csQty={plastron:1,'seg-jamb':1,'seg-ped':1,accoudoir:1,'sangles-fem':1,'seg-jamb-art':1,housse:1,'sangle-bassin':1};
+var csReadapt={tablette:false,accoudoir:false,socle:false};
+var csCurrentType='',csCurrentNature='';
+var INTERDITS={assise:['tetiere','tetmulti','plastron','mentonniere','appui-st','sangle-bassin'],dossier:['sangle-bassin','plot','seg-jamb','seg-ped','repose-pied','sangles-fem','seg-jamb-art']};
+var REGARN_OK=['mousse','plastron','sangle-bassin','sangles-fix','inserts','tablette','socle-roulant','housse'];
+var PREMIERE_INTERDIT=['readapt','regarnissage'];
+var CSLBL={socle:'socle',tetiere:'t\u00eatière',tetmulti:'t\u00eatière multiposition',mentonniere:'mentonni\u00e8re','appui-sc':'appui sous-claviculaire','appui-st':'appui sternal rigide',plastron:'plastron',plot:'plot amovible','seg-jamb':'segment jambier','seg-ped':'segment p\u00e9dieux','repose-pied':'repose-pied',tablette:'tablette',accoudoir:'accoudoir','sangles-fix':'sangles de fixation (\u00d72)','sangles-fem':'sangle f\u00e9morale','socle-roulant':'socle roulant','socle-incl':'socle inclinable',mousse:'mousse de confort','double-cap':'double capitonnage',inserts:'inserts silicone','seg-jamb-art':'segment jambier articul\u00e9',housse:'housse amovible','sangle-bassin':'sangle de bassin 4 points'};
+
+function csAge(){
+  var age=parseInt(document.getElementById('cs-age').value);
+  var tag=document.getElementById('cs-age-tag'),warn=document.getElementById('cs-age-warn'),ro=document.getElementById('cs-regarn-opt');
+  if(isNaN(age)){tag.innerHTML='';warn.classList.remove('on');ro.style.display='none';return;}
+  if(age<18){
+    tag.innerHTML='<span class="age-tag enfant">Enfant</span>';ro.style.display='none';
+    if(csCurrentNature==='regarnissage'){csCurrentNature='';document.querySelectorAll('input[name="csn"]').forEach(function(r){r.closest('.opt').classList.remove('on');r.checked=false;});applyNatureFilter('');}
+    if(age>=16){warn.innerHTML='<strong>Attention</strong> \u2014 Anticiper le renouvellement avant les 18 ans (r\u00e8gle adulte \u00e0 3 ans ensuite).';warn.classList.add('on');}
+    else warn.classList.remove('on');
+  } else {
+    tag.innerHTML='<span class="age-tag adulte">Adulte</span>';ro.style.display='';warn.classList.remove('on');
+  }
+  applyAllFilters();showCs();
+}
+function csTypeChange(type){
+  csCurrentType=type;
+  document.querySelectorAll('#cs-grid .ck').forEach(function(ck){ck.classList.remove('on','disabled');ck.querySelector('input').checked=false;});
+  Object.keys(csChecked).forEach(function(k){delete csChecked[k];});
+  document.getElementById('sangle-bassin-wrap').style.display=(type==='dossier'||type==='assise')?'none':'block';
+  document.querySelectorAll('.qbox').forEach(function(q){q.classList.remove('on');});
+  applyAllFilters();showCs();
+}
+function csNatureChange(nature){
+  csCurrentNature=nature;
+  applyAllFilters();showCs();
+}
+function applyAllFilters(){
+  // Reset all disabled
+  document.querySelectorAll('#cs-grid .ck').forEach(function(ck){ck.classList.remove('disabled');});
+  // Interdits par type (assise/dossier)
+  (INTERDITS[csCurrentType]||[]).forEach(function(k){var el=document.getElementById('ck-'+k);if(el){el.classList.add('disabled');offCk(k);}});
+  // Première mise : griser réadaptation
+  if(csCurrentNature==='premiere'){
+    var el=document.getElementById('ck-readapt');
+    if(el){el.classList.add('disabled');offCk('readapt');}
+  }
+  // Regarnissage : seuls certains composants
+  if(csCurrentNature==='regarnissage'){
+    document.querySelectorAll('#cs-grid .ck').forEach(function(ck){
+      var id=ck.id.replace('ck-','');
+      if(!REGARN_OK.includes(id)){ck.classList.add('disabled');offCk(id);}
+    });
+  }
+}
+function togCk(el,key){
+  if(el.classList.contains('disabled')) return;
+  var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('on',cb.checked);csChecked[key]=cb.checked;
+  // Exclusions mutuelles avec alertes
+  if(key==='tetiere'&&cb.checked){offCk('tetmulti');showAlert(ALERT_MSGS.tetmulti);}
+  if(key==='tetmulti'&&cb.checked){offCk('tetiere');showAlert(ALERT_MSGS.tetiere);}
+  if(key==='mousse'&&cb.checked){offCk('inserts');offCk('double-cap');showAlert('Inserts silicone et double capitonnage d\u00e9sactiv\u00e9s (incompatible avec mousse de confort)');}
+  if(key==='double-cap'&&cb.checked){offCk('mousse');showAlert(ALERT_MSGS.mousse);}
+  if(key==='inserts'&&cb.checked){offCk('mousse');showAlert(ALERT_MSGS.mousse);}
+  if(key==='socle'&&cb.checked){offCk('socle-roulant');offCk('socle-incl');showAlert('Socle roulant et inclinable d\u00e9sactiv\u00e9s (socle fixe s\u00e9lectionn\u00e9)');}
+  if(key==='socle-roulant'&&cb.checked){offCk('socle');offCk('socle-incl');showAlert('Socle fixe et inclinable d\u00e9sactiv\u00e9s (socle roulant s\u00e9lectionn\u00e9)');}
+  if(key==='socle-incl'&&cb.checked){offCk('socle');offCk('socle-roulant');showAlert('Socle fixe et roulant d\u00e9sactiv\u00e9s (socle inclinable s\u00e9lectionn\u00e9)');}
+  if(key==='tablette'&&cb.checked){offCk('accoudoir');showAlert('Accoudoir d\u00e9sactiv\u00e9 (tablette s\u00e9lectionn\u00e9e \u2014 incompatible)');}
+  if(key==='accoudoir'&&cb.checked){offCk('tablette');showAlert('Tablette d\u00e9sactiv\u00e9e (accoudoir s\u00e9lectionn\u00e9 \u2014 incompatible)');}
+  if(key==='readapt'&&cb.checked){
+    showAlert('R\u00e9adaptation s\u00e9lectionn\u00e9e \u2014 pr\u00e9cisez les composants concern\u00e9s ci-dessous');
+    var rs=document.getElementById('ck-readapt-socle');
+    if(csChecked['socle-roulant']) rs.classList.add('disabled'); else rs.classList.remove('disabled');
+  }
+  if(key==='socle-roulant'&&cb.checked){var rs=document.getElementById('ck-readapt-socle');if(rs){rs.classList.add('disabled');rs.querySelector('input').checked=false;rs.classList.remove('on');csReadapt.socle=false;}}
+  if(!cb.checked&&key==='socle-roulant'){var rs=document.getElementById('ck-readapt-socle');if(rs) rs.classList.remove('disabled');}
+  // Plastron / sangle-bassin : 1 plastron + sangle OK, 2 plastrons incompatible avec sangle
+  if(key==='sangle-bassin'&&cb.checked){
+    if(csChecked['plastron']&&csQty.plastron>=2){
+      csQty.plastron=1;var qel=document.getElementById('qty-plastron');if(qel)qel.textContent=1;
+      showAlert('Sangle de bassin 4 points s\u00e9lectionn\u00e9e \u2014 plastron ramen\u00e9 \u00e0 1 (2 plastrons incompatible avec sangle 4 points)');
+    } else if(csChecked['plastron']){
+      showAlert('1 plastron + sangle de bassin 4 points \u2014 combinaison autoris\u00e9e');
+    }
+  }
+  if(key==='plastron'&&cb.checked&&csChecked['sangle-bassin']){
+    csQty.plastron=1;var qel=document.getElementById('qty-plastron');if(qel)qel.textContent=1;
+    showAlert('Plastron + sangle de bassin 4 points \u2014 maximum 1 plastron avec sangle');
+  }
+  if(key==='plastron'&&csQty.plastron>=2){
+    offCk('sangle-bassin');
+    showAlert('2 plastrons s\u00e9lectionn\u00e9s \u2014 sangle de bassin 4 points incompatible');
+  }
+  ['sangle-bassin','plastron','seg-jamb','seg-ped','accoudoir','sangles-fem','seg-jamb-art','housse','readapt'].forEach(function(k){var q=document.getElementById('qb-'+k);if(q) q.classList.toggle('on',!!csChecked[k]);});
+  showCs();
+}
+function togReadapt(el,key){
+  var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('on',cb.checked);
+  var k=key.replace('readapt-','');csReadapt[k]=cb.checked;
+  if(key==='readapt-tablette'&&cb.checked){var ac=document.getElementById('ck-readapt-accoudoir');ac.querySelector('input').checked=false;ac.classList.remove('on');csReadapt.accoudoir=false;showAlert(ALERT_MSGS['readapt-tablette']);}
+  if(key==='readapt-accoudoir'&&cb.checked){var ta=document.getElementById('ck-readapt-tablette');ta.querySelector('input').checked=false;ta.classList.remove('on');csReadapt.tablette=false;showAlert(ALERT_MSGS['readapt-accoudoir']);}
+  showCs();
+}
+function offCk(key){var el=document.getElementById('ck-'+key);if(!el)return;el.querySelector('input').checked=false;el.classList.remove('on');csChecked[key]=false;}
+function qC(key,d){
+  var mx={housse:2,plastron:2,'sangle-bassin':2};
+  // Si sangle-bassin cochée, plastron max 1
+  if(key==='plastron'&&csChecked['sangle-bassin']) mx.plastron=1;
+  var nv=Math.min(mx[key]||9,Math.max(1,csQty[key]+d));
+  if(key==='plastron'&&nv>=2&&csChecked['sangle-bassin']){
+    showAlert('Maximum 1 plastron avec sangle de bassin 4 points \u2014 d\u00e9cochez la sangle pour en prescrire 2');
+    return;
+  }
+  csQty[key]=nv;
+  document.getElementById('qty-'+key).textContent=csQty[key];
+  if(key==='plastron'&&csQty[key]>=2){
+    offCk('sangle-bassin');
+    var se=document.getElementById('ck-sangle-bassin');if(se) se.classList.add('disabled');
+    showAlert('2 plastrons s\u00e9lectionn\u00e9s \u2014 sangle de bassin 4 points incompatible');
+  }
+  if(key==='plastron'&&csQty[key]<2){
+    var se=document.getElementById('ck-sangle-bassin');if(se) se.classList.remove('disabled');
+  }
+  if(key==='sangle-bassin'&&csQty[key]>=2){
+    showAlert('2 sangles de bassin 4 points s\u00e9lectionn\u00e9es \u2014 plastron incompatible');
+    offCk('plastron');
+    var pe=document.getElementById('ck-plastron');if(pe) pe.classList.add('disabled');
+  }
+  if(key==='sangle-bassin'&&csQty[key]<2){
+    var pe=document.getElementById('ck-plastron');if(pe&&!pe.classList.contains('disabled-by-filter')) pe.classList.remove('disabled');
+  }
+  showCs();
+}
+</script>
+
+<script>
+function showCs(){
+  var b=document.getElementById('sticky-result');
+  var age=parseInt(document.getElementById('cs-age').value);
+  var type=rval('cst'),nature=rval('csn');
+  var keys=Object.keys(csChecked).filter(function(k){return csChecked[k];});
+  if(!type&&!nature&&keys.length===0){b.classList.remove('on');return;}
+  var tL={complet:'Corset-si\u00e8ge, sur moulage',assise:'Assise de corset-si\u00e8ge seule, sur moulage',dossier:'Dossier de corset-si\u00e8ge seul, sur moulage'};
+  var parts=[];
+  if(type) parts.push(tL[type]);
+  if(nature==='premiere') parts.push('premi\u00e8re mise');
+  if(nature==='renouvellement') parts.push('renouvellement');
+  if(nature==='regarnissage') parts.push('regarnissage');
+  if(csChecked['readapt']){
+    var ri=[];
+    if(csReadapt.tablette) ri.push('tablette');
+    if(csReadapt.accoudoir) ri.push('accoudoir(s)');
+    if(csReadapt.socle) ri.push('socle roulant');
+    parts.push('r\u00e9adaptation'+(ri.length?' '+ri.join(' et/ou '):''));
+  }
+  keys.forEach(function(k){
+    if(k==='readapt') return;
+    var l='',q;
+    if(k==='sangle-bassin'){
+      // Afficher seule si pas de plastron, sinon groupée avec plastron
+      if(!csChecked['plastron']){q=csQty['sangle-bassin'];l=q+' sangle'+(q>1?'s':'')+' de bassin 4 points';}
+      else return; // sera affichée avec le plastron
+    }
+    else if(k==='plastron'){q=csQty.plastron;l=q+' plastron'+(q>1?'s':'');if(csChecked['sangle-bassin']) l+=' et/ou sangle de bassin 4 points';}
+    else if(k==='seg-jamb'){q=csQty['seg-jamb'];l='segment'+(q>1?'s':'')+' jambier'+(q>1?'s':'')+' (\u00d7'+q+')';}
+    else if(k==='seg-ped'){q=csQty['seg-ped'];l='segment'+(q>1?'s':'')+' p\u00e9dieux'+(q>1?' (\u00d7'+q+')':'');}
+    else if(k==='accoudoir'){q=csQty.accoudoir;l='accoudoir'+(q>1?'s':'')+' (\u00d7'+q+')';}
+    else if(k==='sangles-fem'){q=csQty['sangles-fem'];l='sangle'+(q>1?'s':'')+' f\u00e9morale'+(q>1?'s':'')+' (\u00d7'+q+')';}
+    else if(k==='seg-jamb-art'){q=csQty['seg-jamb-art'];l='segment'+(q>1?'s':'')+' jambier'+(q>1?'s':'')+' articul\u00e9'+(q>1?'s':'')+' (\u00d7'+q+')';}
+    else if(k==='housse'){q=csQty.housse;l='housse'+(q>1?'s':'')+' amovible'+(q>1?'s':'')+' (\u00d7'+q+')';}
+    else l=CSLBL[k]||k;
+    if(l) parts.push(l);
+  });
+  var phrase=parts.join(', ');
+  var extra='';
+  if(!isNaN(age)) extra='<div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:2px">'+(age<18?'Renouvellement annuel (enfant)':'Renouvellement tous les 3 ans (adulte)')+'</div>';
+  if(nature==='regarnissage') extra+='<div style="font-size:10px;color:#ffb74d;margin-top:2px">Regarnissage \u2014 justification clinique obligatoire</div>';
+  b.innerHTML='<div class="rtitle">Prescription</div><div class="rline" style="font-style:italic">'+phrase+extra+'</div><button class="btn-reset" onclick="resetCs()">R\u00e9initialiser</button>';
+  b.classList.add('on');
+}
+function resetCs(){
+  csChecked={};csCurrentType='';csCurrentNature='';Object.keys(csReadapt).forEach(function(k){csReadapt[k]=false;});
+  document.getElementById('cs-age').value='';document.getElementById('cs-age-tag').innerHTML='';
+  document.getElementById('cs-age-warn').classList.remove('on');
+  ['cst','csn'].forEach(function(n){document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){var l=r.closest('.opt');l.classList.remove('on');r.checked=false;delete l.dataset.v;});});
+  document.querySelectorAll('#cs-grid .ck').forEach(function(c){c.classList.remove('on','disabled');c.querySelector('input').checked=false;});
+  document.querySelectorAll('.qbox').forEach(function(q){q.classList.remove('on');});
+  document.querySelectorAll('#qb-readapt .ck').forEach(function(c){c.classList.remove('on');c.querySelector('input').checked=false;});
+  Object.keys(csQty).forEach(function(k){csQty[k]=1;var el=document.getElementById('qty-'+k);if(el)el.textContent=1;});
+  document.getElementById('cs-regarn-opt').style.display='none';
+  document.getElementById('sangle-bassin-wrap').style.display='block';
+  document.getElementById('sticky-result').classList.remove('on');
+}
+</script>
+
+<script>
+// ── OUTIL RENOUVELLEMENT ──
+var REN_DATA={
+  corset_siege:{
+    enfant:{cadence:'Annuel',nb:'1',accessoires:'R\u00e9cup\u00e9ration ou changement tablette, accoudoir(s) et/ou socle roulant tous les ans. Remplacement complet au bout de 2 ans. Pas de regarnissage.',conditions:'Renouvellement annuel jusqu\'aux 18 ans. Anticiper avant 18 ans. Usure exceptionnelle : justification m\u00e9dicale obligatoire pour changement anticip\u00e9.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'3 ans',nb:'1',accessoires:'Regarnissage 2 fois max sur 3 ans \u00e0 date anniversaire',conditions:'Regarnissage n\u00e9cessite justification clinique. Adjonctions autoris\u00e9es limit\u00e9es.',tags:['tag-warn','Adulte']}
+  },
+  corset_traitement:{
+    enfant:{cadence:'6 mois \u00e0 1 an',nb:'1',accessoires:'Selon \u00e9volution clinique',conditions:'Adapt\u00e9 \u00e0 la croissance. Surveillance radiologique recommand\u00e9e.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'2 \u00e0 3 ans',nb:'1',accessoires:'Selon prescription',conditions:'Renouvellement sur prescription m\u00e9dicale motiv\u00e9e.',tags:['tag-warn','Adulte']}
+  },
+  orthese_posture_mi:{
+    enfant:{cadence:'6 \u00e0 12 mois',nb:'1 \u00e0 2',accessoires:'Selon usage (marche/nuit)',conditions:'Fr\u00e9quence adapt\u00e9e \u00e0 la croissance de l\'enfant.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'2 ans',nb:'1',accessoires:'1 de marche + 1 de nuit si prescription distincte',conditions:'Renouvellement sur justification clinique.',tags:['tag-info','Adulte']}
+  },
+  orthese_marche:{
+    enfant:{cadence:'6 \u00e0 12 mois',nb:'2',accessoires:'Chaussures orthop\u00e9diques adapt\u00e9es si prescrites',conditions:'Croissance rapide \u2014 renouvellement plus fr\u00e9quent justifi\u00e9.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'2 ans',nb:'1',accessoires:'\u2014',conditions:'Renouvellement anticip\u00e9 possible sur justification (d\u00e9t\u00e9rioration, modification clinique).',tags:['tag-info','Adulte']}
+  },
+  orthese_ms:{
+    enfant:{cadence:'6 \u00e0 12 mois',nb:'2',accessoires:'Selon prescription',conditions:'Croissance de l\'enfant \u2014 renouvellement fr\u00e9quent justifi\u00e9.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'2 ans',nb:'2',accessoires:'\u2014',conditions:'Standard 2 ans sauf d\u00e9t\u00e9rioration document\u00e9e.',tags:['tag-info','Adulte']}
+  },
+  pmi_d4600:{
+    enfant:{cadence:'1 an',nb:'1',accessoires:'Embo\u00eeture : 6 mois si croissance rapide',conditions:'CIF d4600/d4601 \u2014 marche sans aide technique. Renouvellement rapide justifi\u00e9 par croissance.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'3 \u00e0 5 ans',nb:'1',accessoires:'Embo\u00eeture : 2 \u00e0 3 ans',conditions:'CIF d4600/d4601 \u2014 niveau d\'activit\u00e9 \u00e9lev\u00e9. Renouvellement anticip\u00e9 si d\u00e9t\u00e9rioration document\u00e9e.',tags:['tag-info','Adulte']}
+  },
+  pmi_d4602:{
+    enfant:{cadence:'1 an',nb:'1',accessoires:'Embo\u00eeture selon \u00e9volution',conditions:'CIF d4602 \u2014 activit\u00e9 r\u00e9duite.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'4 \u00e0 5 ans',nb:'1',accessoires:'Embo\u00eeture : 3 ans',conditions:'CIF d4602 \u2014 activit\u00e9 limit\u00e9e. Dur\u00e9e plus longue que d4600.',tags:['tag-warn','Adulte']}
+  },
+  pmi_d4608:{
+    enfant:{cadence:'1 an',nb:'1',accessoires:'Selon prescription',conditions:'CIF d4608 \u2014 autres cas.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'4 \u00e0 5 ans',nb:'1',accessoires:'Selon prescription',conditions:'CIF d4608.',tags:['tag-warn','Adulte']}
+  },
+  pms:{
+    enfant:{cadence:'1 an',nb:'1',accessoires:'Gaines, manchons selon prescription',conditions:'Croissance rapide \u2014 renouvellement fr\u00e9quent justifi\u00e9.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'3 \u00e0 5 ans',nb:'1',accessoires:'Gaines, manchons selon usure',conditions:'Renouvellement sur justification clinique et/ou d\u00e9t\u00e9rioration.',tags:['tag-info','Adulte']}
+  },
+  manchon_mi:{
+    enfant:{cadence:'6 mois \u00e0 1 an',nb:'2 \u00e0 4',accessoires:'\u2014',conditions:'Usage intensif justifie plusieurs manchons. Renouvellement fr\u00e9quent.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'1 an',nb:'2',accessoires:'\u2014',conditions:'2 manchons standard. Renouvellement anticip\u00e9 si d\u00e9t\u00e9rioration.',tags:['tag-info','Adulte']}
+  },
+  manchon_ms:{
+    enfant:{cadence:'6 mois \u00e0 1 an',nb:'2',accessoires:'\u2014',conditions:'Selon usure et croissance.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'1 an',nb:'2',accessoires:'\u2014',conditions:'Standard 1 an, 2 unit\u00e9s.',tags:['tag-info','Adulte']}
+  },
+  housses:{
+    enfant:{cadence:'1 an',nb:'2',accessoires:'\u2014',conditions:'Housses amovibles corset-si\u00e8ge / assise / dossier.',tags:['tag-ok','Enfant']},
+    adulte:{cadence:'3 ans (avec le CS)',nb:'2',accessoires:'\u2014',conditions:'Renouvel\u00e9es avec l\'appareil principal.',tags:['tag-info','Adulte']}
+  }
+};
+
+function calcRen(){
+  var app=document.getElementById('ren-app').value;
+  var age=document.getElementById('ren-age').value;
+  var r=document.getElementById('ren-result');
+  if(!app||!age){r.classList.remove('visible');return;}
+  var d=REN_DATA[app]&&REN_DATA[app][age];
+  if(!d){r.innerHTML='<p style="color:#888;font-size:13px">Donn\u00e9es non disponibles pour cette combinaison.</p>';r.classList.add('visible');return;}
+  var tagHtml='';
+  if(d.tags) d.tags.slice(1).forEach(function(t,i){tagHtml+='<span class="tag-pill '+d.tags[0]+'">'+t+'</span>';});
+  r.innerHTML='<div class="metric-grid">'
+    +'<div class="metric"><div class="metric-lbl">Cadence</div><div class="metric-val">'+d.cadence+'</div></div>'
+    +'<div class="metric"><div class="metric-lbl">Nb appareils</div><div class="metric-val">'+d.nb+'</div></div>'
+    +'<div class="metric"><div class="metric-lbl">Statut</div><div class="metric-val" style="font-size:13px">'+tagHtml+'</div></div>'
+    +'</div>'
+    +'<div class="cond-list"><strong>Accessoires / adjonctions</strong><br>'+d.accessoires+'<br><br><strong>Conditions & notes</strong><br>'+d.conditions+'</div>';
+  r.classList.add('visible');
+}
+function resetRen(){
+  document.getElementById('ren-app').value='';
+  document.getElementById('ren-age').value='';
+  document.getElementById('ren-result').classList.remove('visible');
+}
+</script>
+</body>
+</html>

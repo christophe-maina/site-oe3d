@@ -1,0 +1,2704 @@
+{
+  "situations": [
+    {
+      "id": "amputation_mi",
+      "icon": "fa-person-walking",
+      "label": "Le patient a perdu un membre inférieur",
+      "color": "#047857",
+      "appareils": [
+        {
+          "id": "prothese-pied",
+          "label": "Prothèse de pied / orteils",
+          "description": "Amputation partielle du pied",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [],
+          "notes": "Amputation partielle du pied — prothèse de comblement sur moulage. Entente préalable obligatoire.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-tibiale",
+          "label": "Prothèse tibiale (transtibiale)",
+          "description": "Amputation sous le genou",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "chg_emboiture",
+                  "label": "Changement d'emboîture"
+                },
+                {
+                  "value": "chg_manchon",
+                  "label": "Changement de manchon"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "essai",
+              "label": "Emboîture test",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "oui",
+                  "label": "Oui — avec emboîture test transparente",
+                  "desc": "Recommandé en première mise"
+                },
+                {
+                  "value": "non",
+                  "label": "Non"
+                }
+              ]
+            },
+            {
+              "id": "pied",
+              "label": "Type de pied",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "base",
+                  "label": "Pied de base souple"
+                },
+                {
+                  "value": "restitution",
+                  "label": "Pied à restitution d'énergie",
+                  "desc": "Entente préalable spécifique"
+                },
+                {
+                  "value": "multiflexion",
+                  "label": "Cheville multiflexion",
+                  "desc": "En complément du pied"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "amort_carbone",
+              "label": "Amortisseur de chocs en composite carbone",
+              "code_lpp": "AI8Z102"
+            },
+            {
+              "id": "amort_torsion_carbone",
+              "label": "Amortisseur de chocs et torsion carbone",
+              "code_lpp": "AI8Z103"
+            },
+            {
+              "id": "amort_alliage",
+              "label": "Amortisseur de chocs et torsion alliage léger",
+              "code_lpp": "AI8Z104"
+            },
+            {
+              "id": "aqualeg",
+              "label": "Prothèse étanche AQUALEG (bain/piscine)",
+              "alerteKey": "aqualeg_info",
+              "code_lpp": "EP_SPECIFIQUE"
+            },
+            {
+              "id": "garnissage_pied",
+              "label": "Garnissage de pied",
+              "code_lpp": "AI8C001"
+            },
+            {
+              "id": "courroie_susp",
+              "label": "Courroie de suspension",
+              "code_lpp": "AI3T001"
+            },
+            {
+              "id": "ceinture_silesienne",
+              "label": "Ceinture silésienne",
+              "code_lpp": "AI3T004"
+            },
+            {
+              "id": "esthetique",
+              "label": "Esthétique (mousse de recouvrement)",
+              "code_lpp": "AI8E001"
+            }
+          ],
+          "alertes": [],
+          "notes": "Entente préalable CPAM + fiche technique fabricant obligatoire. Pied à restitution d'énergie : entente préalable spécifique.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true,
+          "delai_renouvellement": {
+            "adulte": "sur_indication",
+            "enfant": "croissance"
+          }
+        },
+        {
+          "id": "prothese-desart-genou",
+          "label": "Désarticulation du genou",
+          "description": "Amputation au niveau du genou",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "chg_emboiture",
+                  "label": "Changement d'emboîture"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "genou",
+              "label": "Type de genou",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "monoaxial",
+                  "label": "Genou monoaxial",
+                  "desc": "Entente préalable"
+                },
+                {
+                  "value": "chapes",
+                  "label": "Articulation à chapes et roulements"
+                },
+                {
+                  "value": "polycentrique",
+                  "label": "Articulation polycentrique"
+                }
+              ]
+            },
+            {
+              "id": "pied",
+              "label": "Type de pied",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "base",
+                  "label": "Pied de base souple"
+                },
+                {
+                  "value": "restitution",
+                  "label": "Pied à restitution d'énergie"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "amort_carbone",
+              "label": "Amortisseur de chocs composite carbone",
+              "code_lpp": "AI8Z102"
+            },
+            {
+              "id": "garnissage_pied",
+              "label": "Garnissage de pied",
+              "code_lpp": "AI8C001"
+            },
+            {
+              "id": "aqualeg",
+              "label": "Prothèse étanche AQUALEG (bain/piscine)",
+              "alerteKey": "aqualeg_info",
+              "code_lpp": "EP_SPECIFIQUE"
+            },
+            {
+              "id": "esthetique",
+              "label": "Esthétique (mousse de recouvrement)",
+              "code_lpp": "AI8E001"
+            }
+          ],
+          "alertes": [],
+          "notes": "Appareillage provisoire de marche de droit.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-femorale",
+          "label": "Prothèse fémorale (transfémorale)",
+          "description": "Amputation au-dessus du genou",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "chg_emboiture",
+                  "label": "Changement d'emboîture"
+                },
+                {
+                  "value": "chg_manchon",
+                  "label": "Changement de manchon"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "essai",
+              "label": "Emboîture test",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "oui",
+                  "label": "Oui — avec emboîture test transparente"
+                },
+                {
+                  "value": "non",
+                  "label": "Non"
+                }
+              ]
+            },
+            {
+              "id": "genou",
+              "label": "Type de genou",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "monoaxial",
+                  "label": "Genou monoaxial",
+                  "desc": "Entente préalable"
+                },
+                {
+                  "value": "polycentrique",
+                  "label": "Genou polycentrique",
+                  "desc": "Entente préalable"
+                },
+                {
+                  "value": "microprocesseur",
+                  "label": "Genou à microprocesseur",
+                  "desc": "Entente préalable — prescription MPR"
+                }
+              ]
+            },
+            {
+              "id": "pied",
+              "label": "Type de pied",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "base",
+                  "label": "Pied de base souple"
+                },
+                {
+                  "value": "restitution",
+                  "label": "Pied à restitution d'énergie"
+                },
+                {
+                  "value": "multiflexion",
+                  "label": "Cheville multiflexion"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "amort_carbone",
+              "label": "Amortisseur de chocs composite carbone",
+              "code_lpp": "AI8Z102"
+            },
+            {
+              "id": "garnissage_pied",
+              "label": "Garnissage de pied",
+              "code_lpp": "AI8C001"
+            },
+            {
+              "id": "ceinture_neoprene",
+              "label": "Ceinture de suspension en néoprène",
+              "code_lpp": "AI3X002"
+            },
+            {
+              "id": "aqualeg",
+              "label": "Prothèse étanche AQUALEG (bain/piscine)",
+              "alerteKey": "aqualeg_info",
+              "code_lpp": "EP_SPECIFIQUE"
+            },
+            {
+              "id": "esthetique",
+              "label": "Esthétique (mousse de recouvrement)",
+              "code_lpp": "AI8E001"
+            }
+          ],
+          "alertes": [
+            "genou_prothese"
+          ],
+          "notes": "Chaque composant (emboîture + manchon + genou + pied) = code LPP individuel. Entente préalable obligatoire.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true,
+          "delai_renouvellement": {
+            "adulte": "sur_indication",
+            "enfant": "croissance"
+          }
+        },
+        {
+          "id": "prothese-hanche",
+          "label": "Désarticulation de hanche",
+          "description": "Amputation au niveau de la hanche",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "hanche",
+              "label": "Articulation de hanche",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "simple",
+                  "label": "Articulation de hanche simple"
+                },
+                {
+                  "value": "verrou",
+                  "label": "Verrou de hanche"
+                }
+              ]
+            },
+            {
+              "id": "genou",
+              "label": "Type de genou",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "monoaxial",
+                  "label": "Genou monoaxial",
+                  "desc": "Entente préalable"
+                },
+                {
+                  "value": "polycentrique",
+                  "label": "Genou polycentrique",
+                  "desc": "Entente préalable"
+                },
+                {
+                  "value": "microprocesseur",
+                  "label": "Genou à microprocesseur",
+                  "desc": "Entente préalable — prescription MPR"
+                }
+              ]
+            },
+            {
+              "id": "pied",
+              "label": "Type de pied",
+              "type": "radio",
+              "generic": true,
+              "condition": "nature=pm|nature=ren",
+              "options": [
+                {
+                  "value": "base",
+                  "label": "Pied de base souple"
+                },
+                {
+                  "value": "restitution",
+                  "label": "Pied à restitution d'énergie"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "amort_carbone",
+              "label": "Amortisseur de chocs composite carbone",
+              "code_lpp": "AI8Z102"
+            },
+            {
+              "id": "garnissage_pied",
+              "label": "Garnissage de pied",
+              "code_lpp": "AI8C001"
+            },
+            {
+              "id": "aqualeg",
+              "label": "Prothèse étanche AQUALEG (bain/piscine)",
+              "alerteKey": "aqualeg_info",
+              "code_lpp": "EP_SPECIFIQUE"
+            },
+            {
+              "id": "esthetique",
+              "label": "Esthétique (mousse de recouvrement)",
+              "code_lpp": "AI8E001"
+            }
+          ],
+          "alertes": [],
+          "notes": "Appareillage très complexe. Accord préalable CPAM obligatoire.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "amputation_ms",
+      "icon": "fa-hand",
+      "label": "Le patient a perdu un membre supérieur",
+      "color": "#1D4ED8",
+      "appareils": [
+        {
+          "id": "prothese-doigts",
+          "label": "Prothèse de doigts / main partielle",
+          "description": "Amputation des doigts ou transmétacarpienne",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage",
+              "label": "Usage principal",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "travail",
+                  "label": "Prothèse de travail",
+                  "desc": "Activité professionnelle ou manuelle"
+                },
+                {
+                  "value": "service",
+                  "label": "Prothèse de service",
+                  "desc": "Activités courantes quotidiennes"
+                },
+                {
+                  "value": "sociale",
+                  "label": "Prothèse de vie sociale",
+                  "desc": "Esthétique — silicone ou PVC"
+                },
+                {
+                  "value": "myoelectrique",
+                  "label": "Prothèse myoélectrique",
+                  "desc": "Commande électrique"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [
+            "myoelectrique_si_usage"
+          ],
+          "notes": "Prothèse esthétique (silicone/PVC) ou fonctionnelle selon usage. Entente préalable pour myoélectrique.",
+          "entente_prealable": false,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-avant-bras",
+          "label": "Prothèse d'avant-bras",
+          "description": "Amputation entre poignet et coude",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage",
+              "label": "Usage principal",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "travail",
+                  "label": "Prothèse de travail"
+                },
+                {
+                  "value": "service",
+                  "label": "Prothèse de service"
+                },
+                {
+                  "value": "sociale",
+                  "label": "Prothèse de vie sociale"
+                },
+                {
+                  "value": "myoelectrique",
+                  "label": "Prothèse myoélectrique"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [
+            "myoelectrique_si_usage"
+          ],
+          "notes": "Prothèse esthétique ou fonctionnelle. Entente préalable pour myoélectrique.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-bras",
+          "label": "Prothèse de bras",
+          "description": "Amputation au-dessus du coude",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "reparation",
+                  "label": "Réparation"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage",
+              "label": "Usage principal",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "travail",
+                  "label": "Prothèse de travail"
+                },
+                {
+                  "value": "service",
+                  "label": "Prothèse de service"
+                },
+                {
+                  "value": "sociale",
+                  "label": "Prothèse de vie sociale"
+                },
+                {
+                  "value": "myoelectrique",
+                  "label": "Prothèse myoélectrique"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [
+            "myoelectrique_si_usage"
+          ],
+          "notes": "Prothèse esthétique ou fonctionnelle. Entente préalable pour myoélectrique.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "prothese-desart-epaule",
+          "label": "Désarticulation scapulo-humérale",
+          "description": "Amputation au niveau de l'épaule",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage",
+              "label": "Usage principal",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "travail",
+                  "label": "Prothèse de travail"
+                },
+                {
+                  "value": "service",
+                  "label": "Prothèse de service"
+                },
+                {
+                  "value": "sociale",
+                  "label": "Prothèse de vie sociale"
+                },
+                {
+                  "value": "myoelectrique",
+                  "label": "Prothèse myoélectrique"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [
+            "myoelectrique_si_usage"
+          ],
+          "notes": "Prix = corselet (adjonction) + prothèse bras (hors emboîture).",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "marche",
+      "icon": "fa-person-walking-with-cane",
+      "label": "Le patient a des difficultés à marcher",
+      "color": "#B45309",
+      "appareils": [
+        {
+          "id": "afo",
+          "label": "Orthèse suro-pédieuse (AFO)",
+          "description": "Déficit moteur pied / cheville",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Port",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "m",
+                  "label": "Marche (diurne)"
+                },
+                {
+                  "value": "n",
+                  "label": "Nuit (posture nocturne)"
+                }
+              ]
+            },
+            {
+              "id": "denomination",
+              "label": "Dénomination",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "afo",
+                  "label": "Orthèse suro-pédieuse (AFO)"
+                },
+                {
+                  "value": "releveur",
+                  "label": "Releveur de pied sur moulage"
+                },
+                {
+                  "value": "sarmiento",
+                  "label": "Appareil de mise en décharge type Sarmiento"
+                }
+              ]
+            },
+            {
+              "id": "cheville",
+              "label": "Cheville",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "rigide",
+                  "label": "Rigide",
+                  "desc": "Cheville sans articulation"
+                },
+                {
+                  "value": "articulee",
+                  "label": "Articulée libre"
+                },
+                {
+                  "value": "limitee",
+                  "label": "Articulée limitée",
+                  "desc": "Préciser les amplitudes souhaitées"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "barre_abd",
+              "label": "Barre d'abduction",
+              "condition": "type=n",
+              "code_lpp": "AI4Z01"
+            },
+            {
+              "id": "butee_flexion",
+              "label": "Butée réglable de limitation de flexion",
+              "code_lpp": "AI7Z01"
+            },
+            {
+              "id": "ressort_mvt",
+              "label": "Limitation de mouvement par ressort",
+              "code_lpp": "AI7A33"
+            },
+            {
+              "id": "traction_mi",
+              "label": "Système de traction du membre inférieur",
+              "code_lpp": "AI7A31"
+            },
+            {
+              "id": "coque_talon",
+              "label": "Coque talonnière amovible",
+              "code_lpp": "AI7A31 / AI7A32"
+            },
+            {
+              "id": "neuro_swing",
+              "label": "Articulation de cheville NEURO SWING",
+              "alerteKey": "neuro_swing",
+              "code_lpp": "AI6A90",
+              "seulement_si": "type=carbone&age<15",
+              "alerte": "NEURO SWING : uniquement OI59F01 (carbone) + patient < 15 ans"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus (sauf OSDREMC). Sur moulage obligatoire.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": true,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "kafo",
+          "label": "Orthèse cruro-pédieuse (KAFO)",
+          "description": "Déficit moteur genou + cheville",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Port",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "m",
+                  "label": "Marche (diurne)"
+                },
+                {
+                  "value": "n",
+                  "label": "Nuit (posture nocturne)"
+                }
+              ]
+            },
+            {
+              "id": "cheville",
+              "label": "Cheville",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "rigide",
+                  "label": "Rigide"
+                },
+                {
+                  "value": "articulee",
+                  "label": "Articulée libre"
+                },
+                {
+                  "value": "limitee",
+                  "label": "Articulée limitée"
+                }
+              ]
+            },
+            {
+              "id": "poids",
+              "label": "Poids du patient (kg)",
+              "type": "number",
+              "generic": true
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "barre_abd",
+              "label": "Barre d'abduction",
+              "condition": "type=n",
+              "code_lpp": "AI4Z01"
+            },
+            {
+              "id": "appui_sous_isch",
+              "label": "Appui sous-ischiatique",
+              "code_lpp": "AI3A90"
+            },
+            {
+              "id": "plaque_condylienne",
+              "label": "Plaque condylienne capitonnée",
+              "code_lpp": "AI4Z02"
+            },
+            {
+              "id": "barre_abductrice",
+              "label": "Barre abductrice réglable",
+              "code_lpp": "AI4Z01"
+            },
+            {
+              "id": "bretelle_susp",
+              "label": "Bretelle de suspension",
+              "code_lpp": "AI3T01"
+            },
+            {
+              "id": "ceinture_cuir",
+              "label": "Ceinture en cuir",
+              "code_lpp": "AI1C01"
+            },
+            {
+              "id": "verrou_hanche",
+              "label": "Verrou de hanche",
+              "code_lpp": "AI1A30"
+            },
+            {
+              "id": "rallonges",
+              "label": "Rallonges (croissance enfant)",
+              "code_lpp": "AI3C50"
+            },
+            {
+              "id": "neuro_tronic",
+              "label": "Genou électronique NEURO TRONIC",
+              "alerteKey": "genou_electronique",
+              "code_lpp": "2771977",
+              "seulement_si": "prescripteur=MPR&type=carbone",
+              "alerte": "NEURO TRONIC : prescription MPR uniquement + orthèse carbone + EP obligatoire"
+            },
+            {
+              "id": "spl2_basko",
+              "label": "Genou automatique SPL2 BASKO",
+              "alerteKey": "genou_electronique",
+              "code_lpp": "2783443",
+              "seulement_si": "prescripteur=MPR&type=carbone",
+              "alerte": "SPL2 BASKO : prescription MPR uniquement + orthèse carbone + EP obligatoire"
+            },
+            {
+              "id": "e_mag",
+              "label": "Genou électronique E-MAG ACTIVE",
+              "alerteKey": "genou_electronique",
+              "code_lpp": "2771977"
+            },
+            {
+              "id": "c_brace",
+              "label": "Genou microprocesseur C-BRACE",
+              "alerteKey": "genou_electronique",
+              "code_lpp": "EP_SPECIFIQUE"
+            }
+          ],
+          "alertes": [],
+          "notes": "NEURO TRONIC et SPL2 BASKO : prescription MPR uniquement, en service spécialisé.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "ultraflex",
+          "label": "Orthèse Ultraflex (DIRAME)",
+          "description": "Orthèse dynamique à effet dynamique de genou",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "poids",
+              "label": "Poids du patient (kg)",
+              "type": "number",
+              "generic": true
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [
+            "ultraflex"
+          ],
+          "notes": "Prescription MPR uniquement. Orthèse dynamique à effet de rappel — genou.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "genouillere",
+          "label": "Genouillère sur moulage",
+          "description": "Instabilité de genou",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [],
+          "notes": "Genouillère sur moulage. Moulage en sus.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "station_assise",
+      "icon": "fa-wheelchair",
+      "label": "Le patient a des difficultés à tenir assis",
+      "color": "#B91C1C",
+      "appareils": [
+        {
+          "id": "corset-siege",
+          "label": "Corset-siège",
+          "description": "Maintien postural en station assise (déficience grave)",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                },
+                {
+                  "value": "regarnissage",
+                  "label": "Regarnissage"
+                }
+              ]
+            },
+            {
+              "id": "type",
+              "label": "Type",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "complet",
+                  "label": "Corset-siège complet",
+                  "desc": "Coque jusqu'à l'omoplate ou base du cou"
+                },
+                {
+                  "value": "assise",
+                  "label": "Assise seule"
+                },
+                {
+                  "value": "dossier",
+                  "label": "Dossier seul"
+                }
+              ]
+            },
+            {
+              "id": "age_patient",
+              "label": "Âge du patient (années)",
+              "type": "number",
+              "generic": true
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "stab_base",
+              "label": "Dispositif de stabilisation de la base",
+              "code_lpp": "AT43Z01"
+            },
+            {
+              "id": "tetiere",
+              "label": "Têtière ⚠️ non PEC si orthèse s'arrête en dessous",
+              "code_lpp": "AT43Z02",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "tetiere_regl",
+              "label": "Têtière réglable (hauteur, inclinaison) ⚠️ idem",
+              "code_lpp": "AT43Z03"
+            },
+            {
+              "id": "appui_clav",
+              "label": "Appui sous-claviculaire ⚠️ non PEC si orthèse s'arrête en dessous",
+              "code_lpp": "AT43Z04"
+            },
+            {
+              "id": "appui_sternal",
+              "label": "Appui sternal ⚠️ idem",
+              "code_lpp": "AT43Z05",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "maintien_thorac",
+              "label": "Maintien thoracique ou abdominopelvien souple (max 2)",
+              "code_lpp": "AT43Z06",
+              "max_par_an": 2
+            },
+            {
+              "id": "cale_abd",
+              "label": "Cale d'abduction amovible",
+              "code_lpp": "AT43Z07"
+            },
+            {
+              "id": "seg_jambier",
+              "label": "Segment jambier avec ou sans sangle",
+              "code_lpp": "AT43Z08"
+            },
+            {
+              "id": "seg_pedieux",
+              "label": "Segment pédieux avec ou sans sangle",
+              "code_lpp": "AT43Z09"
+            },
+            {
+              "id": "repose_pied",
+              "label": "Repose-pied",
+              "code_lpp": "AT43Z10"
+            },
+            {
+              "id": "tablette_accoudoir",
+              "label": "Tablette / accoudoir — ⚠️ non cumulable avec accoudoir seul",
+              "code_lpp": "AT43Z11",
+              "incompatible_avec": [
+                "at43z12"
+              ]
+            },
+            {
+              "id": "accoudoir_seul",
+              "label": "Accoudoir seul — ⚠️ non cumulable avec tablette",
+              "code_lpp": "AT43Z12",
+              "incompatible_avec": [
+                "at43z11"
+              ]
+            },
+            {
+              "id": "fixation_support",
+              "label": "Dispositif de fixation au support (max 2)",
+              "code_lpp": "AT43Z13"
+            },
+            {
+              "id": "fixation_femoral",
+              "label": "Fixation du segment fémoral",
+              "code_lpp": "AT43Z14"
+            },
+            {
+              "id": "socle_roulant",
+              "label": "Support roulant avec inclinaison — ⚠️ non cumulable avec socle simple",
+              "code_lpp": "AT43Z15",
+              "incompatible_avec": [
+                "at43z16"
+              ]
+            },
+            {
+              "id": "socle_inclinaison",
+              "label": "Dispositif d'inclinaison du socle — ⚠️ non cumulable avec support roulant",
+              "code_lpp": "AT43Z16",
+              "incompatible_avec": [
+                "at43z15",
+                "at43z22"
+              ]
+            },
+            {
+              "id": "mousse_epaisse",
+              "label": "Supplément mousse épaisse > 3 cm (déformations majeures)",
+              "code_lpp": "AT43Z17",
+              "incompatible_avec": [
+                "at43z20",
+                "at43z21"
+              ]
+            },
+            {
+              "id": "mentonniere",
+              "label": "Mentonnière ⚠️ non PEC si orthèse s'arrête en dessous",
+              "code_lpp": "AT43Z18",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "double_capitonnage",
+              "label": "Double capitonnage amovible",
+              "code_lpp": "AT43Z19"
+            },
+            {
+              "id": "anti_escarres",
+              "label": "Inserts anti-escarres gel (ischiatiques, trochantériens)",
+              "code_lpp": "AT43Z20",
+              "incompatible_avec": [
+                "at43z17",
+                "at43z21"
+              ]
+            },
+            {
+              "id": "art_jambier_verrou",
+              "label": "Articulation segment jambier avec verrouillage",
+              "code_lpp": "AT43Z21",
+              "incompatible_avec": [
+                "at43z17",
+                "at43z20"
+              ]
+            },
+            {
+              "id": "dossier_mobile",
+              "label": "Dossier mobile (conditions spécifiques nomenclature)",
+              "code_lpp": "AT43Z22",
+              "incompatible_avec": [
+                "at43z16",
+                "at43z17",
+                "at43z18",
+                "at43z21"
+              ],
+              "oblige": [
+                "at43z01",
+                "at43z13"
+              ]
+            },
+            {
+              "id": "housse_cs",
+              "label": "Housse corset-siège (max 2/an)",
+              "code_lpp": "AT43Z23",
+              "max_par_an": 2
+            },
+            {
+              "id": "housse_assise_dossier",
+              "label": "Housse assise ou dossier (max 2/an)",
+              "code_lpp": "AT43Z24",
+              "max_par_an": 2
+            }
+          ],
+          "alertes": [],
+          "notes": "RÈGLES DE CUMUL : Tablette non cumulable avec accoudoir seul. Support roulant non cumulable avec socle inclinaison. Têtière, appui sous-claviculaire, appui sternal, mentonnière : non PEC si l'orthèse s'arrête en dessous de leur niveau. RENOUVELLEMENT : Enfant = annuel. Adulte = 3 ans. Tablette/accoudoir/socle = récupérable et changeable annuellement (enfant). Regarnissage adulte = 2× max sur 3 ans. Housses = max 2/an.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true,
+          "delai_renouvellement": {
+            "adulte": "3_ans",
+            "enfant": "1_an"
+          }
+        },
+        {
+          "id": "selle",
+          "label": "Selle",
+          "description": "Maintien assis avec appui périnéal, possibilité de déambulation",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "support_roulant",
+              "label": "Châssis roulant (Titre IV — à mentionner sur la prescription)",
+              "code_lpp": "TITRE_IV"
+            }
+          ],
+          "alertes": [],
+          "notes": "Coque s'arrêtant à la charnière lombo-sacrée. Le tarif comprend le moulage. Peut être livrée sur châssis roulant (Titre IV).",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "station_debout",
+      "icon": "fa-person",
+      "label": "Le patient a besoin d'aide à la station debout",
+      "color": "#0369A1",
+      "appareils": [
+        {
+          "id": "verticalisateur",
+          "label": "Verticalisateur",
+          "description": "Orthèse de maintien en position verticale sur moulage",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "tetiere",
+              "label": "Têtière ⚠️ non PEC si orthèse s'arrête en dessous",
+              "code_lpp": "AT43Z02",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "appui_clav",
+              "label": "Appui sous-claviculaire ⚠️ non PEC si orthèse s'arrête en dessous",
+              "code_lpp": "AT47Z04",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "appui_sternal",
+              "label": "Appui sternal ou fessier",
+              "code_lpp": "AT47Z05",
+              "seulement_si": "hauteur=sup_charniere"
+            },
+            {
+              "id": "socle_progressif",
+              "label": "Socle à verticalisation progressive",
+              "code_lpp": "AT47Z08",
+              "incompatible_avec": [
+                "at47z07"
+              ]
+            },
+            {
+              "id": "module_pedieux",
+              "label": "Module pédieux moulé",
+              "code_lpp": "AT47Z09"
+            },
+            {
+              "id": "cale_abd",
+              "label": "Cale d'abduction",
+              "code_lpp": "AT47Z10"
+            },
+            {
+              "id": "tablette",
+              "label": "Tablette / accoudoir",
+              "code_lpp": "AT47Z11"
+            },
+            {
+              "id": "mentonniere",
+              "label": "Mentonnière ⚠️ non PEC si orthèse s'arrête en dessous",
+              "code_lpp": "AT43Z18",
+              "seulement_si": "hauteur=sup_charniere"
+            }
+          ],
+          "alertes": [],
+          "notes": "Têtière, appui sous-claviculaire, mentonnière : non PEC si l'orthèse s'arrête en dessous de leur niveau.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "matelas",
+          "label": "Matelas (maintien horizontal)",
+          "description": "Orthèse de maintien en position horizontale",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "housse_matelas",
+              "label": "Housses (coton max 4/an, matelas max 2/an)",
+              "code_lpp": "AT29Z19"
+            }
+          ],
+          "alertes": [],
+          "notes": "Matelas de positionnement sur moulage. Housses coton max 4/an, housses matelas max 2/an.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "appareil-paraplegie",
+          "label": "Appareil de marche pour paraplégique (HKAFO/RGO)",
+          "description": "Paraplégie / déficit MI total bilatéral — marche assistée",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [],
+          "alertes": [],
+          "notes": "Accord préalable CPAM OBLIGATOIRE. Appareillage provisoire de marche de droit.",
+          "entente_prealable": true,
+          "prescripteur_requis": "MPR",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "rachis",
+      "icon": "fa-bone",
+      "label": "Déformation ou pathologie du rachis / tronc",
+      "color": "#6B7280",
+      "appareils": [
+        {
+          "id": "corset-scoliose",
+          "label": "Corset de scoliose / cyphose",
+          "description": "Correction des déformations du rachis",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "indication",
+              "label": "Indication",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "scoliose",
+                  "label": "Scoliose idiopathique"
+                },
+                {
+                  "value": "scoliose_neuro",
+                  "label": "Scoliose neurologique / neuromusculaire"
+                },
+                {
+                  "value": "cyphose",
+                  "label": "Cyphose"
+                },
+                {
+                  "value": "cypho-scoliose",
+                  "label": "Cypho-scoliose"
+                }
+              ]
+            },
+            {
+              "id": "type_corset",
+              "label": "Type de corset (nom usuel)",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "ctm",
+                  "label": "CTM (Cheneau-Toulouse-Münster)",
+                  "desc": "Corset actif de réduction tridimensionnelle"
+                },
+                {
+                  "value": "cheneau",
+                  "label": "Cheneau",
+                  "desc": "Corset actif de réduction tridimensionnelle"
+                },
+                {
+                  "value": "charleston",
+                  "label": "Charleston (nocturne)",
+                  "desc": "Port nocturne uniquement"
+                },
+                {
+                  "value": "caen",
+                  "label": "Corset de Caen (nocturne)",
+                  "desc": "Correction nocturne en hypercorrection"
+                },
+                {
+                  "value": "saint_etienne",
+                  "label": "Toile de Saint-Étienne",
+                  "desc": "Scolioses < 30° — adolescent"
+                },
+                {
+                  "value": "milwaukee",
+                  "label": "Milwaukee",
+                  "desc": "Grand corset-cuirasse — cyphose"
+                },
+                {
+                  "value": "autre_type",
+                  "label": "Autre type"
+                }
+              ]
+            },
+            {
+              "id": "courbure",
+              "label": "Type de courbure",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "lombaire",
+                  "label": "Lombaire"
+                },
+                {
+                  "value": "dorso_lombaire",
+                  "label": "Dorso-lombaire"
+                },
+                {
+                  "value": "dorsale",
+                  "label": "Dorsale"
+                },
+                {
+                  "value": "combinee",
+                  "label": "Combinée (double courbure)"
+                },
+                {
+                  "value": "cervico_dorsale",
+                  "label": "Cervico-dorsale"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté de la convexité",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Convexité droite"
+                },
+                {
+                  "value": "g",
+                  "label": "Convexité gauche"
+                },
+                {
+                  "value": "double",
+                  "label": "Double courbure (S)"
+                }
+              ]
+            },
+            {
+              "id": "degres",
+              "label": "Angle de Cobb (degrés)",
+              "type": "number",
+              "generic": true,
+              "notes": "Angle de Cobb mesuré sur radiographie de face debout — prescription à partir de 12°"
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "mentonniere",
+              "label": "Mentonnière amovible",
+              "code_lpp": "AT00A01",
+              "seulement_si": "type!=tr27o12"
+            },
+            {
+              "id": "ajourages",
+              "label": "Ajourages",
+              "code_lpp": "AT00N51"
+            },
+            {
+              "id": "minerve_ext",
+              "label": "Minerve d'extension télescopique",
+              "code_lpp": "AT49C70"
+            },
+            {
+              "id": "tshirt",
+              "label": "T-shirt / chemise prothétique (max 3/an)",
+              "code_lpp": "HORS_LPP"
+            }
+          ],
+          "alertes": [
+            "charleston_nuit_si_type",
+            "caen_nuit_si_type"
+          ],
+          "notes": "Moulage en sus. Empreinte par moulage ou scan debout. Port prévu > 3 mois.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true,
+          "delai_renouvellement": {
+            "adulte": "6_mois",
+            "enfant": "6_mois"
+          }
+        },
+        {
+          "id": "corset-maintien",
+          "label": "Corset de maintien",
+          "description": "Maintien rachidien (lombaire, dorso-lombaire, thoracique)",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "type_maintien",
+              "label": "Étendue",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "lombaire",
+                  "label": "Lombaire (ceinture)",
+                  "desc": "Des trochanters aux fausses côtes"
+                },
+                {
+                  "value": "dorso_lombaire",
+                  "label": "Dorso-lombaire",
+                  "desc": "Des trochanters à la pointe de l'omoplate"
+                },
+                {
+                  "value": "complet",
+                  "label": "Corset-cuirasse complet",
+                  "desc": "Des trochanters à l'épine de l'omoplate"
+                },
+                {
+                  "value": "tlso",
+                  "label": "Corset TLSO (thoraco-lombo-sacré)",
+                  "desc": "TR39 — Corset complet thoraco-lombaire"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "cremaillere",
+              "label": "Système de réglage par crémaillère",
+              "code_lpp": "AT49A02"
+            },
+            {
+              "id": "raidisseurs",
+              "label": "Raidisseurs",
+              "code_lpp": "AT00N50"
+            },
+            {
+              "id": "ajourages",
+              "label": "Ajourages",
+              "code_lpp": "AT00N51"
+            },
+            {
+              "id": "gainage",
+              "label": "Gainage de l'armature",
+              "code_lpp": "AT00N50"
+            },
+            {
+              "id": "tshirt",
+              "label": "T-shirt / chemise prothétique (max 3/an)",
+              "code_lpp": "HORS_LPP"
+            }
+          ],
+          "alertes": [],
+          "notes": "Corsets en cuir (C) et alliage léger (D) : prise en charge unique (pas de cumul).",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "minerve",
+          "label": "Minerve",
+          "description": "Pathologie cervicale",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "mentonniere",
+              "label": "Mentonnière amovible",
+              "code_lpp": "AT00A01",
+              "seulement_si": "type!=tr27o12"
+            },
+            {
+              "id": "raidisseurs",
+              "label": "Raidisseurs",
+              "code_lpp": "AT00N50"
+            },
+            {
+              "id": "ajourages",
+              "label": "Ajourages",
+              "code_lpp": "AT00N51"
+            },
+            {
+              "id": "bandeau_frontal",
+              "label": "Bandeau frontal",
+              "code_lpp": "AT27Z01"
+            },
+            {
+              "id": "tshirt",
+              "label": "T-shirt / chemise prothétique (max 3/an)",
+              "code_lpp": "HORS_LPP"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus sauf TR27O12.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    },
+    {
+      "id": "membre_sup_orthese",
+      "icon": "fa-hand-fist",
+      "label": "Le patient a besoin d'une orthèse de membre supérieur",
+      "color": "#0891B2",
+      "appareils": [
+        {
+          "id": "orthese-main",
+          "label": "Orthèse de main et doigts (OS79)",
+          "description": "Main, doigts, poignet",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage_os",
+              "label": "Usage",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "repos",
+                  "label": "Repos (posture / immobilisation)",
+                  "desc": "Orthèse statique de maintien"
+                },
+                {
+                  "value": "travail",
+                  "label": "Travail / fonctionnel",
+                  "desc": "Orthèse dynamique d'aide à la fonction"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "palette_palmaire",
+              "label": "Palette palmaire amovible",
+              "code_lpp": "AS78A01"
+            },
+            {
+              "id": "ext_doigt",
+              "label": "Extension dynamique d'un doigt",
+              "code_lpp": "AS89A01"
+            },
+            {
+              "id": "flex_doigt",
+              "label": "Flexion dynamique d'un doigt",
+              "code_lpp": "AS89A02"
+            },
+            {
+              "id": "disp_radiale",
+              "label": "Dispositif pour paralysie radiale",
+              "code_lpp": "AS78A02"
+            },
+            {
+              "id": "ext_poignet",
+              "label": "Extension ou flexion dynamique du poignet",
+              "code_lpp": "AS78D01"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "orthese-avant-bras",
+          "label": "Orthèse d'avant-bras, main et doigts (OS58/OS59)",
+          "description": "Avant-bras avec ou sans main",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage_os",
+              "label": "Usage",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "repos",
+                  "label": "Repos (posture / immobilisation)"
+                },
+                {
+                  "value": "travail",
+                  "label": "Travail / fonctionnel"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "porte_outil",
+              "label": "Porte-outil sur avant-brassard",
+              "code_lpp": "AS8A01"
+            },
+            {
+              "id": "palette_palmaire",
+              "label": "Palette palmaire amovible",
+              "code_lpp": "AS78A01"
+            },
+            {
+              "id": "ext_doigt",
+              "label": "Extension ou flexion dynamique d'un doigt",
+              "code_lpp": "AS89A01 / AS89A02"
+            },
+            {
+              "id": "disp_radiale",
+              "label": "Dispositif pour paralysie radiale",
+              "code_lpp": "AS78A02"
+            },
+            {
+              "id": "ext_poignet",
+              "label": "Extension ou flexion dynamique du poignet",
+              "code_lpp": "AS78D01"
+            },
+            {
+              "id": "art_coude_chape",
+              "label": "Articulation de coude à chape",
+              "code_lpp": "AS4A10"
+            },
+            {
+              "id": "verrou_coude",
+              "label": "Verrou de coude manuel",
+              "code_lpp": "AS4A01"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "orthese-bras-avant-bras",
+          "label": "Orthèse avant-bras et bras (OS36/OS38)",
+          "description": "Articulée au coude / hélicoïdale",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage_os",
+              "label": "Usage",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "repos",
+                  "label": "Repos (posture / immobilisation)"
+                },
+                {
+                  "value": "travail",
+                  "label": "Travail / fonctionnel"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "epauliere",
+              "label": "Épaulière",
+              "code_lpp": "AS1C01"
+            },
+            {
+              "id": "art_epaule_simple",
+              "label": "Articulation simple d'épaule",
+              "code_lpp": "AS1A01"
+            },
+            {
+              "id": "art_epaule_double",
+              "label": "Articulation double d'épaule",
+              "code_lpp": "AS1A02"
+            },
+            {
+              "id": "prolongement_brachial",
+              "label": "Prolongement brachial sur l'épaule",
+              "code_lpp": "AS1S01"
+            },
+            {
+              "id": "palette_palmaire",
+              "label": "Prolongement antibrachial en palette palmaire",
+              "code_lpp": "AS78S01"
+            },
+            {
+              "id": "verrou_coude",
+              "label": "Verrou de coude",
+              "code_lpp": "AS4A20"
+            },
+            {
+              "id": "ressort_antigrav",
+              "label": "Ressort antigravitation au coude",
+              "code_lpp": "AS4A21"
+            },
+            {
+              "id": "pronosupination",
+              "label": "Pronosupination de la palette palmaire",
+              "code_lpp": "AS7A25"
+            },
+            {
+              "id": "art_coude_chape",
+              "label": "Articulation de coude à chape",
+              "code_lpp": "AS4A10"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus. OS36G01 : indication paralysie obstétricale uniquement.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "orthese-epaule-bras-avant-bras",
+          "label": "Orthèse épaule, bras et avant-bras (OS16)",
+          "description": "Incluant l'épaule",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage_os",
+              "label": "Usage",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "repos",
+                  "label": "Repos (posture / immobilisation)"
+                },
+                {
+                  "value": "travail",
+                  "label": "Travail / fonctionnel"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "epauliere",
+              "label": "Épaulière",
+              "code_lpp": "AS1C01"
+            },
+            {
+              "id": "art_epaule_simple",
+              "label": "Articulation simple d'épaule",
+              "code_lpp": "AS1A01"
+            },
+            {
+              "id": "art_epaule_double",
+              "label": "Articulation double d'épaule",
+              "code_lpp": "AS1A02"
+            },
+            {
+              "id": "art_coude_chape",
+              "label": "Articulation de coude à chape",
+              "code_lpp": "AS4A10"
+            },
+            {
+              "id": "verrou_coude",
+              "label": "Verrou de coude manuel",
+              "code_lpp": "AS4A01"
+            },
+            {
+              "id": "palette_palmaire",
+              "label": "Palette palmaire amovible",
+              "code_lpp": "AS78A01"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus.",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        },
+        {
+          "id": "orthese-epaule-bras",
+          "label": "Orthèse épaule et bras (OS13)",
+          "description": "Épaulière-brassard",
+          "champs": [
+            {
+              "id": "nature",
+              "label": "Nature",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "pm",
+                  "label": "Première mise"
+                },
+                {
+                  "value": "ren",
+                  "label": "Renouvellement"
+                }
+              ]
+            },
+            {
+              "id": "cote",
+              "label": "Côté",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "d",
+                  "label": "Droit"
+                },
+                {
+                  "value": "g",
+                  "label": "Gauche"
+                },
+                {
+                  "value": "2",
+                  "label": "Bilatéral"
+                }
+              ]
+            },
+            {
+              "id": "usage_os",
+              "label": "Usage",
+              "type": "radio",
+              "generic": true,
+              "options": [
+                {
+                  "value": "repos",
+                  "label": "Repos (posture / immobilisation)"
+                },
+                {
+                  "value": "travail",
+                  "label": "Travail / fonctionnel"
+                }
+              ]
+            }
+          ],
+          "adjonctions": [
+            {
+              "id": "epauliere",
+              "label": "Épaulière",
+              "code_lpp": "AS1C01"
+            },
+            {
+              "id": "art_epaule_simple",
+              "label": "Articulation simple d'épaule",
+              "code_lpp": "AS1A01"
+            },
+            {
+              "id": "art_epaule_double",
+              "label": "Articulation double d'épaule",
+              "code_lpp": "AS1A02"
+            }
+          ],
+          "alertes": [],
+          "notes": "Moulage en sus. PAS de verrou de coude (orthèse épaule-bras uniquement).",
+          "entente_prealable": true,
+          "prescripteur_requis": "specialiste",
+          "moulage_en_sus": false,
+          "dom_bizone_accepte": true
+        }
+      ]
+    }
+  ],
+  "alertes": {
+    "ultraflex": {
+      "type": "danger",
+      "title": "Prescription MPR obligatoire",
+      "message": "Les orthèses Ultraflex (DIRAME) nécessitent une prescription par un médecin MPR."
+    },
+    "genou_electronique": {
+      "type": "danger",
+      "title": "Prescription MPR + validation préalable",
+      "message": "Les genoux électroniques et à microprocesseur nécessitent une prescription MPR et une validation préalable par le service médical."
+    },
+    "genou_prothese": {
+      "type": "warning",
+      "title": "Genou prothétique",
+      "message": "Les genoux monoaxiaux, polycentriques et à microprocesseur nécessitent une entente préalable spécifique."
+    },
+    "myoelectrique_si_usage": {
+      "type": "danger",
+      "title": "Prothèse myoélectrique — MPR + centre agréé",
+      "message": "Les prothèses myoélectriques nécessitent un avis favorable d'un médecin MPR en service spécialisé et une entente préalable."
+    },
+    "neuro_swing": {
+      "type": "warning",
+      "title": "NEURO SWING — Articulation modulaire",
+      "message": "Articulation de cheville modulaire NEURO SWING. Uniquement sur les orthèses suro-pédieuses articulées. Taille et poids spécifiques selon le patient."
+    },
+    "aqualeg_info": {
+      "type": "warning",
+      "title": "AQUALEG — Prothèse étanche",
+      "message": "Prothèse de bain/piscine étanche. Permet l'accès à l'eau en toute sécurité. Entente préalable spécifique."
+    },
+    "entente_prealable_composant": {
+      "type": "warning",
+      "title": "Entente préalable spécifique",
+      "message": "Ce composant nécessite une entente préalable distincte auprès du service médical de la CPAM."
+    },
+    "premiere_mise": {
+      "type": "warning",
+      "title": "Prescription par un spécialiste obligatoire",
+      "message": "La première mise nécessite une prescription par un médecin spécialiste (MPR, chirurgien ortho, rhumatologue, neurologue, pédiatre rattaché à un ES...). Le médecin traitant ne peut prescrire que les renouvellements à l'identique."
+    },
+    "charleston_nuit_si_type": {
+      "type": "warning",
+      "title": "Port nocturne uniquement",
+      "message": "Le corset de type Charleston est conçu exclusivement pour un port nocturne."
+    },
+    "caen_nuit_si_type": {
+      "type": "warning",
+      "title": "Port nocturne uniquement",
+      "message": "Le corset de Caen est conçu pour un port nocturne en hypercorrection."
+    }
+  },
+  "conditions_generales": {
+    "specialites": "MPR · Orthopédie · Rhumatologie · Neurochirurgie · Neurologie · Endocrinologie · Chirurgie plastique · Chirurgie vasculaire",
+    "etablissement": "Pédiatrie, Dermatologie, Gériatrie → rattachement à un établissement de santé obligatoire",
+    "ordonnance": "Ordonnance particulière, indépendante des médicaments et de tout autre appareil",
+    "cerfa": "CERFA 12042*02 (S 3135 b) — 3 volets",
+    "entente": "Entente préalable obligatoire (formulaire S3604d) — silence 15 jours = acceptation",
+    "renouv": "Renouvellement : tout médecin (sauf dispositions particulières)",
+    "pro": "Orthoprothésiste agréé exclusivement",
+    "moulage": "Moulage en sus du tarif de base (sauf mention contraire)",
+    "redaction": "Encre noire ou bleue, sans rature, signature manuscrite sous la dernière ligne, ordonnance séparée"
+  },
+  "_vop_compatibility_assessment": {
+    "_description": "Evaluation de la compatibilite de ce JSON pour une future application VOP (orthoprothesiste)",
+    "points_forts": [
+      "Structure situations > appareils > champs/adjonctions bien normalisee, consommable par une autre app",
+      "Les champs sont typiques et generiques (nature, cote, type, etc.) avec des options structurees",
+      "Les alertes sont centralisees dans un objet dedie, facile a reutiliser",
+      "Les conditions (evalCond) sont exprimees en texte simple (field=value) et faciles a interpreter"
+    ],
+    "champs_manquants_pour_vop": [
+      "codeLPP : absent ici (present dans appareils-prescription.json mais pas dans situations-prescription.json)",
+      "tarif_base : aucun tarif LPP reference",
+      "code_acte : pas de code CCAM ou NGAP associe",
+      "delai_renouvellement : present dans le JS (objet REN) mais pas dans le JSON",
+      "materiau : non present pour les protheses MI (present pour les ortheses dans appareils-prescription.json)",
+      "variantes : absentes ici (presentes dans appareils-prescription.json)",
+      "moulage_inclus : booleen indiquant si le moulage est compris dans le tarif",
+      "entente_prealable : booleen ou objet specifiant si EP obligatoire et le formulaire",
+      "prescripteur_requis : specialite requise (MPR, specialiste, generaliste autorise)",
+      "patient_poids_min / patient_poids_max : limites de poids pour certains composants",
+      "garantie_duree : duree de garantie en mois",
+      "fiche_technique_requise : booleen"
+    ],
+    "recommandation": "Fusionner situations-prescription.json et appareils-prescription.json en un seul referentiel unifie, avec codeLPP, tarifs, delais et variantes pour chaque appareil. Cela permettra au VOP de consommer une seule source de verite."
+  }
+}
