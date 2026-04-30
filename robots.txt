@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /_archive/
+Disallow: /.netlify/
+Disallow: /.wrangler/
+
+Sitemap: https://orthoespace3d.fr/sitemap.xml

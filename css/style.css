@@ -820,7 +820,138 @@ html[dir="rtl"] .a11y-panel { right: auto; left: 0; border-left: none; border-ri
 .float { animation: float 4s ease-in-out infinite; }
 .pulse-ring { animation: pulse-ring 2s ease-out infinite; }
 
-/* ---------- 21. PRINT ---------- */
+/* ---------- 21. TIMELINE PARCOURS PATIENT ---------- */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: var(--sp-5);
+  counter-reset: step;
+}
+.timeline-step {
+  position: relative;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-md);
+  padding: var(--sp-5) var(--sp-4);
+  text-align: center;
+  counter-increment: step;
+  transition: all var(--t-base);
+}
+.timeline-step:hover { transform: translateY(-3px); box-shadow: var(--sh-2); border-color: var(--c-accent); }
+.timeline-step::before {
+  content: counter(step);
+  position: absolute;
+  top: -20px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  color: #fff;
+  display: grid; place-items: center;
+  font-weight: 800;
+  font-family: var(--ff-display);
+  box-shadow: var(--sh-2);
+}
+.timeline-step h3 {
+  margin-top: var(--sp-3);
+  font-family: var(--ff-display);
+  font-size: var(--fs-md);
+  color: var(--c-primary);
+}
+.timeline-step p { font-size: var(--fs-sm); margin-top: var(--sp-2); }
+.timeline-step-icon { font-size: 36px; margin-top: var(--sp-2); }
+
+/* ---------- 22. TÉMOIGNAGES ---------- */
+.testimonial {
+  position: relative;
+  padding: var(--sp-6);
+  background: var(--c-bg);
+  border-left: 4px solid var(--c-accent);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+}
+html[dir="rtl"] .testimonial { border-left: none; border-right: 4px solid var(--c-accent); }
+.testimonial::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 12px;
+  font-family: var(--ff-display);
+  font-size: 90px;
+  color: var(--c-accent);
+  opacity: 0.3;
+  line-height: 1;
+}
+.testimonial-text {
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--c-text);
+  margin-bottom: var(--sp-4);
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.testimonial-author-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  color: #fff;
+  display: grid; place-items: center;
+  font-family: var(--ff-display);
+  font-weight: 700;
+}
+.testimonial-author-name { font-weight: 600; color: var(--c-primary); font-size: var(--fs-sm); }
+.testimonial-author-meta { font-size: var(--fs-xs); color: var(--c-text-muted); }
+
+/* ---------- 23. PARTENAIRES ---------- */
+.partners {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--sp-3);
+}
+.partner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  background: var(--c-bg);
+  border: 1px solid var(--c-border-soft);
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  font-family: var(--ff-display);
+  color: var(--c-primary);
+  text-align: center;
+  font-size: var(--fs-sm);
+  min-height: 80px;
+  transition: all var(--t-fast);
+}
+.partner:hover { border-color: var(--c-accent); transform: translateY(-2px); box-shadow: var(--sh-1); }
+
+/* ---------- 24. DOCUMENT DEPOSIT ---------- */
+.deposit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--sp-4);
+}
+.deposit-card {
+  padding: var(--sp-5);
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--c-bg-warm), var(--c-bg-soft));
+  text-align: center;
+}
+.deposit-card-icon {
+  width: 60px; height: 60px;
+  margin: 0 auto var(--sp-3);
+  border-radius: 50%;
+  background: var(--c-accent);
+  color: var(--c-primary-d);
+  display: grid; place-items: center;
+  font-size: 26px;
+}
+
+/* ---------- 25. PRINT ---------- */
 @media print {
   .topbar, .a11y-fab, .a11y-panel, .splash, .hamburger, .footer { display: none !important; }
   body { background: #fff; color: #000; }
