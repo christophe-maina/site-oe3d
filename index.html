@@ -14,6 +14,25 @@
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
 
+<!-- Rideau d'entrée théâtral : photo Îles du Salut + cible centrale.
+     Au clic, le rideau s'ouvre en deux pour révéler le splash. -->
+<div id="curtain" class="curtain" role="dialog" aria-label="Entrée du site OE3D" aria-modal="true">
+  <div class="curtain-half curtain-half-left"  aria-hidden="true"></div>
+  <div class="curtain-half curtain-half-right" aria-hidden="true"></div>
+
+  <button type="button" id="curtainTarget" class="curtain-target" aria-label="Entrer sur le site OE3D">
+    <span class="curtain-ring"     aria-hidden="true"></span>
+    <span class="curtain-ring r2"  aria-hidden="true"></span>
+    <span class="curtain-ring r3"  aria-hidden="true"></span>
+    <span class="curtain-cross"    aria-hidden="true"></span>
+    <span class="curtain-dot"      aria-hidden="true"></span>
+    <span class="curtain-cta">Entrer</span>
+  </button>
+
+  <p class="curtain-place" aria-hidden="true">Îles du Salut · Guyane française</p>
+  <p class="curtain-hint"  aria-hidden="true">Cliquez sur la cible</p>
+</div>
+
 <main id="main" class="splash" role="main">
   <div class="splash-logo">OE3D</div>
   <p class="splash-tagline" data-i18n="tagline">L'appareillage sur mesure au service de votre autonomie</p>
@@ -45,6 +64,45 @@
 <script src="js/i18n.js"></script>
 <script src="js/a11y.js"></script>
 <script>
+/* === Rideau d'entrée === */
+(function () {
+  const curtain = document.getElementById("curtain");
+  if (!curtain) return;
+  const KEY = "oe3d_entered";
+  const target = document.getElementById("curtainTarget");
+
+  // Si l'utilisateur est déjà entré dans cette session, on saute le rideau.
+  if (sessionStorage.getItem(KEY) === "1") {
+    curtain.remove();
+  } else {
+    document.body.classList.add("curtain-locked");
+    target.focus({ preventScroll: true });
+
+    const open = () => {
+      if (curtain.classList.contains("opening")) return;
+      curtain.classList.add("opening");
+      sessionStorage.setItem(KEY, "1");
+      // Durée alignée sur la transition CSS (1400 ms) + petite marge
+      setTimeout(() => {
+        curtain.remove();
+        document.body.classList.remove("curtain-locked");
+      }, 1500);
+    };
+
+    target.addEventListener("click", open);
+    // Échap : ouverture immédiate sans animation (accessibilité)
+    document.addEventListener("keydown", function escHandler(e) {
+      if (e.key === "Escape") {
+        document.removeEventListener("keydown", escHandler);
+        curtain.remove();
+        document.body.classList.remove("curtain-locked");
+        sessionStorage.setItem(KEY, "1");
+      }
+    });
+  }
+})();
+
+/* === Sélecteur de langue === */
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("langGrid");
   const cur = OE3D_I18N.currentLang();
