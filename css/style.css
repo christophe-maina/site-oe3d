@@ -1205,31 +1205,45 @@ body.curtain-locked { overflow: hidden; }
 .curtain-target:hover .cm-label,
 .curtain-target:focus-visible .cm-label { opacity: 1; }
 
-/* CTA "Entrer" sous la carte */
+/* CTA SVG : logo OE3D en cours d'impression 3D (sous la carte) */
 .curtain-cta {
-  font-family: var(--ff-display, "Playfair Display", serif);
-  font-weight: 700;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: #fff;
-  white-space: nowrap;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, .85), 0 0 4px rgba(0, 0, 0, .6);
-  position: relative;
-  padding: 4px 0;
-  transition: letter-spacing .3s ease, color .3s ease;
+  display: block;
+  width: clamp(170px, 22vw, 220px);
+  height: auto;
+  filter: drop-shadow(0 0 12px rgba(212, 168, 71, 0.25));
+  transition: filter 0.4s ease, transform 0.4s ease;
+  animation: cta-float 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  overflow: visible;
 }
-.curtain-cta::after {
-  content: "→";
-  display: inline-block;
-  margin-left: .6em;
-  transition: transform .3s ease;
+.curtain-target:hover .curtain-cta,
+.curtain-target:focus-visible .curtain-cta {
+  filter: drop-shadow(0 0 24px rgba(212, 168, 71, 0.55));
 }
-.curtain-target:hover .curtain-cta {
-  color: #f5b041;
-  letter-spacing: .28em;
+.curtain-target:focus-visible .curtain-cta {
+  outline: 2px solid #d4a847;
+  outline-offset: 6px;
+  border-radius: 8px;
 }
-.curtain-target:hover .curtain-cta::after { transform: translateX(6px); }
+
+/* La tête d'imprimante : descend en boucle au survol */
+.curtain-target:hover .cta-printhead,
+.curtain-target:focus-visible .cta-printhead {
+  animation: cta-print 1.5s ease-in-out infinite;
+}
+
+@keyframes cta-float {
+  0%, 100% { transform: translateY(0)    rotateX(0) rotateY(0); }
+  50%      { transform: translateY(-4px) rotateX(0) rotateY(0); }
+}
+
+@keyframes cta-print {
+  0%   { opacity: 0;   transform: translateY(-12px); }
+  20%  { opacity: 0.9;                                }
+  80%  { opacity: 0.9;                                }
+  100% { opacity: 0;   transform: translateY( 60px); }
+}
 
 /* Lieu (haut) + indication (bas) */
 .curtain-place,
@@ -1281,7 +1295,10 @@ body.curtain-locked { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .curtain-map,
   .cm-pin-pulse,
-  .curtain-hint { animation: none !important; }
+  .curtain-hint,
+  .curtain-cta { animation: none !important; }
+  .curtain-target:hover .cta-printhead,
+  .curtain-target:focus-visible .cta-printhead { animation: none !important; }
   .curtain-target:hover .curtain-map,
   .curtain-target:focus-visible .curtain-map { transform: scale(1.05); }
   .curtain-half { transition: opacity .3s linear; }

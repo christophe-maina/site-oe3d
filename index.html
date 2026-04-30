@@ -60,7 +60,55 @@
           <text class="cm-label" x="148" y="98">Remire-Montjoly</text>
         </svg>
       </span>
-      <span class="curtain-cta">Entrer</span>
+      <svg class="curtain-cta" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="ctaGoldFade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%"   stop-color="#d4a847" stop-opacity="0.4"/>
+            <stop offset="55%"  stop-color="#d4a847" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#e9c46a" stop-opacity="1"/>
+          </linearGradient>
+          <clipPath id="ctaLettersClip">
+            <text x="110" y="78" text-anchor="middle"
+                  font-family="'Playfair Display', serif"
+                  font-size="56" font-weight="500"
+                  letter-spacing="6">OE3D</text>
+          </clipPath>
+        </defs>
+
+        <!-- Lettres OE3D (remplissage doré dégradé) -->
+        <text x="110" y="78" text-anchor="middle"
+              font-family="'Playfair Display', serif"
+              font-size="56" font-weight="500"
+              letter-spacing="6"
+              fill="url(#ctaGoldFade)">OE3D</text>
+
+        <!-- Strates d'impression (visibles seulement dans la moitié basse des lettres) -->
+        <g clip-path="url(#ctaLettersClip)" stroke="#5fb3c4" stroke-width="0.8" opacity="0.55">
+          <line x1="50"  y1="60" x2="170" y2="60"/>
+          <line x1="50"  y1="64" x2="170" y2="64"/>
+          <line x1="50"  y1="68" x2="170" y2="68"/>
+          <line x1="50"  y1="72" x2="170" y2="72"/>
+          <line x1="50"  y1="76" x2="170" y2="76"/>
+        </g>
+
+        <!-- Plateau imprimante 3D -->
+        <g stroke="#5fb3c4" stroke-width="1.2" fill="none" opacity="0.7">
+          <line x1="40"  y1="98" x2="180" y2="98"/>
+          <line x1="40"  y1="98" x2="36"  y2="104"/>
+          <line x1="180" y1="98" x2="184" y2="104"/>
+        </g>
+
+        <!-- Tête d'impression (animée au survol via CSS) -->
+        <line class="cta-printhead" x1="50" y1="42" x2="170" y2="42"
+              stroke="#d4a847" stroke-width="1.5" opacity="0"/>
+
+        <!-- Mot "ENTRER" -->
+        <text x="110" y="124" text-anchor="middle"
+              font-family="'Playfair Display', serif"
+              font-size="11" font-weight="500"
+              letter-spacing="6"
+              fill="#d4a847">ENTRER</text>
+      </svg>
     </button>
   </div>
 
@@ -133,6 +181,20 @@
         sessionStorage.setItem(KEY, "1");
       }
     });
+
+    /* Tilt 3D du logo OE3D-impression : suit la position de la souris */
+    const cta = curtain.querySelector(".curtain-cta");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (cta && !reduceMotion) {
+      cta.addEventListener("mousemove", e => {
+        const r = cta.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width  - 0.5;
+        const py = (e.clientY - r.top)  / r.height - 0.5;
+        cta.style.transform =
+          `perspective(800px) rotateY(${px *  8}deg) rotateX(${-py * 8}deg)`;
+      });
+      cta.addEventListener("mouseleave", () => { cta.style.transform = ""; });
+    }
   }
 })();
 
