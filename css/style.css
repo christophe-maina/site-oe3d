@@ -973,19 +973,33 @@ body.curtain-locked { overflow: hidden; }
 }
 
 /* Les deux moitiés affichent la même image, chacune montrant sa propre moitié.
-   Photo réelle = assets/iles-du-salut.jpg ; fallback SVG = assets/iles-du-salut-placeholder.svg */
+   Photo réelle = assets/iles-du-salut.jpg ; fallback SVG = assets/iles-du-salut-placeholder.svg
+   Astuce : un pseudo-élément ::after dimensionné à 100vw sert d'image continue,
+   décalé à gauche dans la half-left et à droite dans la half-right pour que
+   chaque moitié montre sa portion de l'image plein viewport (cover, sans déformation). */
 .curtain-half {
   flex: 1 1 50%;
-  background-image:
-    url("../assets/iles-du-salut.jpg"),
-    url("../assets/iles-du-salut-placeholder.svg");
-  background-repeat: no-repeat, no-repeat;
-  background-size: 200% 100%, 200% 100%;
+  position: relative;
+  overflow: hidden;
+  background: #050d14;
   transition: transform 1.4s cubic-bezier(.83, 0, .17, 1);
   will-change: transform;
 }
-.curtain-half-left  { background-position: left  center, left  center; }
-.curtain-half-right { background-position: right center, right center; }
+.curtain-half::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  background-image:
+    url("../assets/iles-du-salut.jpg"),
+    url("../assets/iles-du-salut-placeholder.svg");
+  background-size: cover, cover;
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+}
+.curtain-half-left::after  { left:  0; }
+.curtain-half-right::after { right: 0; }
 
 /* Voile assombrissant subtil pour faire ressortir la cible */
 .curtain::before {
