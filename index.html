@@ -14,23 +14,57 @@
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
 
-<!-- Rideau d'entrée théâtral : photo Îles du Salut + cible centrale.
-     Au clic, le rideau s'ouvre en deux pour révéler le splash. -->
+<!-- Rideau d'entrée théâtral : photo du fleuve Maroni + carte de la Guyane cliquable.
+     Au clic sur la carte, le rideau s'ouvre en deux pour révéler le splash. -->
 <div id="curtain" class="curtain" role="dialog" aria-label="Entrée du site OE3D" aria-modal="true">
   <div class="curtain-half curtain-half-left"  aria-hidden="true"></div>
   <div class="curtain-half curtain-half-right" aria-hidden="true"></div>
 
-  <button type="button" id="curtainTarget" class="curtain-target" aria-label="Entrer sur le site OE3D">
-    <span class="curtain-ring"     aria-hidden="true"></span>
-    <span class="curtain-ring r2"  aria-hidden="true"></span>
-    <span class="curtain-ring r3"  aria-hidden="true"></span>
-    <span class="curtain-cross"    aria-hidden="true"></span>
-    <span class="curtain-dot"      aria-hidden="true"></span>
-    <span class="curtain-cta">Entrer</span>
-  </button>
+  <p class="curtain-place" aria-hidden="true">Fleuve Maroni · Guyane française</p>
 
-  <p class="curtain-place" aria-hidden="true">Îles du Salut · Guyane française</p>
-  <p class="curtain-hint"  aria-hidden="true">Cliquez sur la cible</p>
+  <div class="curtain-stage">
+    <p class="curtain-eyebrow" aria-hidden="true">Bienvenue sur</p>
+    <h1 class="curtain-brand">OE3D <span class="curtain-brand-sep" aria-hidden="true">·</span> <span class="curtain-brand-full">Ortho Espace 3D</span></h1>
+
+    <button type="button" id="curtainTarget" class="curtain-target" aria-label="Entrer sur le site OE3D">
+      <span class="curtain-map" aria-hidden="true">
+        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <defs>
+            <linearGradient id="cmFill" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#5dade2" stop-opacity=".95"/>
+              <stop offset="60%"  stop-color="#48c9b0" stop-opacity=".9"/>
+              <stop offset="100%" stop-color="#1a5276" stop-opacity=".95"/>
+            </linearGradient>
+          </defs>
+          <!-- Silhouette stylisée de la Guyane française -->
+          <path class="cm-shape"
+                d="M 30 60
+                   Q 55 45 95 50
+                   Q 145 50 175 75
+                   Q 178 110 162 145
+                   Q 148 180 122 210
+                   Q 102 230 90 218
+                   Q 72 196 58 168
+                   Q 38 130 30 95 Z"/>
+          <!-- Fleuve Maroni (bordure ouest) -->
+          <path class="cm-river-maroni"
+                d="M 30 60 Q 35 95 50 130 Q 65 175 90 218" fill="none"/>
+          <!-- Fleuve Oyapock (bordure sud-est) -->
+          <path class="cm-river-oyapock"
+                d="M 175 75 Q 162 110 145 145 Q 122 188 90 218" fill="none"/>
+          <!-- Marqueur Remire-Montjoly (côte est) -->
+          <circle class="cm-pin-pulse" cx="155" cy="78" r="6"/>
+          <circle class="cm-pin-pulse cm-pin-pulse-2" cx="155" cy="78" r="6"/>
+          <circle class="cm-pin"        cx="155" cy="78" r="5"/>
+          <!-- Étiquette Remire-Montjoly -->
+          <text class="cm-label" x="148" y="98">Remire-Montjoly</text>
+        </svg>
+      </span>
+      <span class="curtain-cta">Entrer</span>
+    </button>
+  </div>
+
+  <p class="curtain-hint" aria-hidden="true">Survolez la carte · cliquez pour entrer</p>
 </div>
 
 <main id="main" class="splash" role="main">
