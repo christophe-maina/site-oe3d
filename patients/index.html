@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a5276">
+<title data-i18n="brand">OE3D — Espace Patients</title>
+<meta name="description" content="Espace patients OE3D : équipe, modes d'emploi, FAQ, contact. Orthèses, prothèses et impression 3D en Guyane.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html" aria-label="OE3D Accueil">
+      <span class="brand-mark" aria-hidden="true">OE</span>
+      <span>OE3D</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav-list" id="navList">
+        <li><a class="nav-link" href="#accueil" data-i18n="nav_home">Accueil</a></li>
+        <li><a class="nav-link" href="#expertises" data-i18n="nav_expertises">Expertises</a></li>
+        <li><a class="nav-link" href="#equipe" data-i18n="nav_team">Équipe</a></li>
+        <li><a class="nav-link" href="#modes" data-i18n="nav_modes">Modes d'emploi</a></li>
+        <li><a class="nav-link" href="#faq" data-i18n="nav_faq">FAQ</a></li>
+        <li><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
+        <li><a class="nav-link" href="../pro/index.html" data-i18n="nav_pro" style="color:var(--c-accent-d);font-weight:600">Espace Pro</a></li>
+      </ul>
+    </nav>
+    <div class="topbar-actions">
+      <select id="langSwitch" aria-label="Changer la langue" style="padding:6px 10px;border-radius:8px;border:1px solid var(--c-border);background:var(--c-bg)"></select>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section id="accueil" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow" data-i18n="hero_eyebrow">📍 Remire-Montjoly · Guyane française</span>
+        <h1 class="hero-title" data-i18n="hero_title">L'appareillage sur mesure au service de votre <span class="accent">autonomie</span></h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">Orthèses, prothèses et solutions d'impression 3D personnalisées. Une équipe dédiée, une approche humaine, un engagement éthique envers nos patients et notre territoire guyanais.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="#contact" data-i18n="cta_appointment">Prendre rendez-vous</a>
+          <a class="btn btn-ghost btn-lg" href="#modes" data-i18n="cta_modes">Voir les modes d'emploi</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <model-viewer
+          src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+          alt="Aperçu 3D — modèle de démonstration"
+          camera-controls auto-rotate
+          shadow-intensity="1"
+          ar
+          poster="" loading="lazy"></model-viewer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertises" class="section section-bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="sec_expert_eyebrow">Nos expertises</span>
+      <h2 class="section-title" data-i18n="sec_expert_title">Des solutions adaptées à chaque situation</h2>
+      <p class="section-subtitle" data-i18n="sec_expert_subtitle">Orthèses, prothèses, impression 3D et petit appareillage sous un même toit.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🦿</div>
+        <h3 class="card-title" data-i18n="exp_orth_title">Orthèses</h3>
+        <p data-i18n="exp_orth_desc">Corsets, bottes, gouttières, orthèses de main, scoliose, posture nuit. Conception sur mesure et suivi personnalisé.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🦾</div>
+        <h3 class="card-title" data-i18n="exp_proth_title">Prothèses</h3>
+        <p data-i18n="exp_proth_desc">Prothèses de membres, prothèses mammaires, prothèses esthétiques, solutions électroniques.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🖨️</div>
+        <h3 class="card-title" data-i18n="exp_3d_title">Impression 3D</h3>
+        <p data-i18n="exp_3d_desc">Conception numérique et impression d'appareillages personnalisés, légers, ajustés au millimètre.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🩹</div>
+        <h3 class="card-title" data-i18n="exp_petit_title">Petit appareillage</h3>
+        <p data-i18n="exp_petit_desc">Aides techniques, ceintures, bandages, semelles, accessoires d'autonomie au quotidien.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="vues-3d" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="sec_3d_eyebrow">Vues 3D interactives</span>
+      <h2 class="section-title" data-i18n="sec_3d_title">Explorez nos appareils sous tous les angles</h2>
+      <p class="section-subtitle" data-i18n="sec_3d_subtitle">Orientez, zoomez, observez. Bientôt enrichi avec nos propres scans 3D.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="card-feature card">
+        <h3 class="card-title">Orthèse de cheville (démo)</h3>
+        <div style="aspect-ratio:1/1;background:var(--c-bg);border-radius:var(--r-md);overflow:hidden">
+          <model-viewer
+            src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
+            alt="Modèle 3D de démonstration"
+            camera-controls auto-rotate
+            shadow-intensity="0.8" loading="lazy"
+            style="width:100%;height:100%"></model-viewer>
+        </div>
+        <p style="font-size:var(--fs-sm);margin-top:var(--sp-2)"><em>Modèle de démonstration. Les scans réels d'orthèses OE3D seront ajoutés prochainement.</em></p>
+      </div>
+      <div class="card-feature card">
+        <h3 class="card-title">Prothèse de pied (démo)</h3>
+        <div style="aspect-ratio:1/1;background:var(--c-bg);border-radius:var(--r-md);overflow:hidden">
+          <model-viewer
+            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+            alt="Modèle 3D de démonstration"
+            camera-controls auto-rotate
+            shadow-intensity="0.8" loading="lazy"
+            style="width:100%;height:100%"></model-viewer>
+        </div>
+        <p style="font-size:var(--fs-sm);margin-top:var(--sp-2)"><em>Modèle de démonstration. Les scans réels seront ajoutés prochainement.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipe" class="section section-bg-warm">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="sec_team_eyebrow">Notre équipe</span>
+      <h2 class="section-title" data-i18n="sec_team_title">Des professionnels à votre service</h2>
+      <p class="section-subtitle" data-i18n="sec_team_subtitle">Six métiers complémentaires : conception, fabrication, application, suivi.</p>
+    </div>
+    <div class="team-grid" id="teamGrid"></div>
+    <p style="margin-top:var(--sp-5);text-align:center;font-size:var(--fs-sm);color:var(--c-text-muted)">
+      <em>De nouveaux portraits, inspirés de l'identité actuelle de l'équipe, sont en préparation.</em>
+    </p>
+  </div>
+</section>
+
+<section id="modes" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="sec_modes_eyebrow">Modes d'emploi</span>
+      <h2 class="section-title" data-i18n="sec_modes_title">Comment utiliser et entretenir vos appareils</h2>
+      <p class="section-subtitle" data-i18n="sec_modes_subtitle">Notices détaillées en plusieurs langues. Téléchargez ou consultez en ligne.</p>
+    </div>
+    <div class="mode-list" id="modeList"></div>
+  </div>
+</section>
+
+<section id="videos" class="section section-bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="sec_faq_eyebrow">FAQ vidéo</span>
+      <h2 class="section-title" data-i18n="sec_faq_title">Vos questions, nos réponses en vidéo</h2>
+      <p class="section-subtitle" data-i18n="sec_faq_subtitle">Cinq capsules pédagogiques sous-titrées en 9 langues.</p>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="container container-narrow">
+    <div class="section-head">
+      <span class="section-eyebrow">Questions fréquentes</span>
+      <h2 class="section-title">Tout ce qu'il faut savoir avant votre rendez-vous</h2>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<section id="ethique" class="section section-bg-primary">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title" style="color:#fff" data-i18n="ethics_title">Notre engagement éthique</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff">
+        <div class="card-icon" aria-hidden="true" style="background:var(--c-accent);color:var(--c-primary-d)">🤝</div>
+        <h3 class="card-title" style="color:#fff">Respect du patient</h3>
+        <p style="color:#cfdfee">Chaque patient est accueilli avec dignité, sans distinction d'origine ou de situation.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff">
+        <div class="card-icon" aria-hidden="true" style="background:var(--c-accent);color:var(--c-primary-d)">🌿</div>
+        <h3 class="card-title" style="color:#fff">Ancrage guyanais</h3>
+        <p style="color:#cfdfee">Fabrication locale, emploi local, partenariats territoriaux. Fiers de notre territoire.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff">
+        <div class="card-icon" aria-hidden="true" style="background:var(--c-accent);color:var(--c-primary-d)">⚖️</div>
+        <h3 class="card-title" style="color:#fff">Indépendance</h3>
+        <p style="color:#cfdfee">Nos choix techniques sont guidés uniquement par l'intérêt du patient.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="sec_contact_eyebrow">Contact</span>
+      <h2 class="section-title" data-i18n="sec_contact_title">Une question ? Parlons-en.</h2>
+      <p class="section-subtitle" data-i18n="sec_contact_subtitle">Notre équipe vous répond du lundi au vendredi.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">📍</div>
+          <div class="contact-row-content">
+            <strong data-i18n="addr_label">Adresse</strong>
+            <p data-i18n="addr_value">1 rue des Arômes, 97354 Remire-Montjoly, Guyane française</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ortho+Espace+3D+1+rue+des+Aromes+Remire-Montjoly" target="_blank" rel="noopener">Voir sur Google Maps →</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">📞</div>
+          <div class="contact-row-content">
+            <strong data-i18n="tel_label">Téléphone</strong>
+            <p><a href="tel:+594594282808">+594 594 28 28 08</a></p>
+            <p data-i18n="tel_hours" style="font-size:var(--fs-xs);color:var(--c-text-muted)">Lun–Ven · 8h–17h</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">✉️</div>
+          <div class="contact-row-content">
+            <strong data-i18n="mail_label">Email</strong>
+            <p><a href="mailto:contact@orthoespace3d.fr">contact@orthoespace3d.fr</a></p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">💬</div>
+          <div class="contact-row-content">
+            <strong data-i18n="whatsapp_label">WhatsApp</strong>
+            <p><a href="https://wa.me/594594282808" target="_blank" rel="noopener">Service rappel sur demande</a></p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">🏥</div>
+          <div class="contact-row-content">
+            <strong data-i18n="sites_label">Sites de consultation</strong>
+            <p data-i18n="site_cay">Cayenne (siège) — Lun–Ven 7h30–15h30</p>
+            <p data-i18n="site_slm">Saint-Laurent du Maroni — Sur rendez-vous</p>
+            <p data-i18n="site_kou">Kourou — Sur rendez-vous</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-block" onsubmit="event.preventDefault(); alert('Démo locale — formulaire à brancher sur votre service mail.');">
+        <div class="form-row">
+          <label for="cf-name" data-i18n="form_name">Votre nom</label>
+          <input type="text" id="cf-name" required>
+        </div>
+        <div class="form-row">
+          <label for="cf-email" data-i18n="form_email">Votre email</label>
+          <input type="email" id="cf-email" required>
+        </div>
+        <div class="form-row">
+          <label for="cf-subject" data-i18n="form_subject">Objet</label>
+          <input type="text" id="cf-subject">
+        </div>
+        <div class="form-row">
+          <label for="cf-msg" data-i18n="form_message">Votre message</label>
+          <textarea id="cf-msg" rows="5" required></textarea>
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit" data-i18n="form_send">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>OE3D</h4>
+        <p data-i18n="footer_about">Orthoprothésiste agréé en Guyane. Orthèses, prothèses et solutions d'impression 3D sur mesure au service de votre mobilité.</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer_nav">Navigation</h4>
+        <ul>
+          <li><a href="#accueil" data-i18n="nav_home">Accueil</a></li>
+          <li><a href="#expertises" data-i18n="nav_expertises">Expertises</a></li>
+          <li><a href="#equipe" data-i18n="nav_team">Équipe</a></li>
+          <li><a href="#modes" data-i18n="nav_modes">Modes d'emploi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="nav_contact">Contact</h4>
+        <ul>
+          <li><a href="tel:+594594282808">+594 594 28 28 08</a></li>
+          <li><a href="mailto:contact@orthoespace3d.fr">contact@orthoespace3d.fr</a></li>
+          <li><a href="https://wa.me/594594282808" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Espaces</h4>
+        <ul>
+          <li><a href="../index.html">Choix de l'espace</a></li>
+          <li><a href="../pro/index.html" data-i18n="nav_pro">Espace Pro</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_credits">© 2026 Ortho Espace 3D — Tous droits réservés</span>
+      <span>Site v2 — refonte 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/a11y.js"></script>
+<script src="../js/main.js"></script>
+<script>
+const TEAM = [
+  { initials:"A", name:"Apoïna", role:"Orthoprothésiste — Application", img:"../photos et films/photos-equipe/apoina.jpg", tags:["Prothèses","Mammaires","Atelier"] },
+  { initials:"C", name:"Céline", role:"Orthoprothésiste — Application", img:"../photos et films/photos-equipe/celine.jpg", tags:["Mammaires","Scoliose","Atelier"] },
+  { initials:"Ch", name:"Christophe", role:"Directeur · Orthoprothésiste", img:"../photos et films/photos-equipe/christophe.jpg", tags:["Orthèses","3D","R&D"] },
+  { initials:"Cn", name:"Christian", role:"Technicien — Atelier", img:"../photos et films/photos-equipe/christian.jpg", tags:["Fabrication","3D","R&D"] },
+  { initials:"S", name:"Steeve", role:"Technicien — Atelier", img:"../photos et films/photos-equipe/steeve.jpg", tags:["Fabrication","Matériaux"] },
+  { initials:"T", name:"Thaïna", role:"Secrétariat & Coordination", img:"../photos et films/photos-equipe/thaina-portrait2.jpg", tags:["Accueil","Admin"] }
+];
+const MODES = [
+  { icon:"🦵", k:"mode_botte", d:"mode_botte_desc", t:"Botte et gouttière", dt:"Notice d'utilisation et d'entretien des bottes de marche et gouttières de posture." },
+  { icon:"🛌", k:"mode_coquille", d:"mode_coquille_desc", t:"Coquille de verticalisation et de nuit", dt:"Guide d'utilisation des coquilles : positionnement, réglages, précautions." },
+  { icon:"🦴", k:"mode_lombo", d:"mode_lombo_desc", t:"Corset lombostat / TLSO", dt:"Mise en place, ajustement des sangles, entretien et durée de port." },
+  { icon:"🧬", k:"mode_scoliose", d:"mode_scoliose_desc", t:"Corset de scoliose", dt:"Programme de port progressif, hygiène cutanée et surveillance." },
+  { icon:"✋", k:"mode_main", d:"mode_main_desc", t:"Orthèse de main et de bras", dt:"Positionnement, exercices complémentaires et entretien." },
+  { icon:"🪑", k:"mode_siege", d:"mode_siege_desc", t:"Siège et coquille", dt:"Installation, réglages, sécurité et nettoyage des assises moulées." }
+];
+const VIDEOS = [
+  { k:"faq_v1", t:"Comment entretenir mon orthèse ?", d:"Nettoyage, séchage et précautions au quotidien." },
+  { k:"faq_v2", t:"Quand faut-il reconsulter ?", d:"Les signes qui doivent vous alerter." },
+  { k:"faq_v3", t:"Mon premier rendez-vous", d:"Déroulement, documents à apporter, étapes." },
+  { k:"faq_v4", t:"Comment fonctionne la prise en charge ?", d:"Sécurité sociale, mutuelle, entente préalable." },
+  { k:"faq_v5", t:"Notre équipe et nos services", d:"Découvrez le cabinet et nos compétences." }
+];
+const FAQ = [
+  ["faq_q1","faq_a1"],["faq_q2","faq_a2"],["faq_q3","faq_a3"],["faq_q4","faq_a4"],["faq_q5","faq_a5"]
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tg = document.getElementById("teamGrid");
+  TEAM.forEach(m => {
+    const card = document.createElement("article");
+    card.className = "team-card";
+    card.innerHTML = `
+      <div class="team-portrait">
+        <img src="${m.img}" alt="${m.name} — ${m.role}" loading="lazy"
+             onerror="this.outerHTML='<div class=&quot;team-portrait-fallback&quot; aria-hidden=&quot;true&quot;>${m.initials}</div>'">
+      </div>
+      <h3 class="team-name">${m.name}</h3>
+      <p class="team-role">${m.role}</p>
+      <div class="team-tags">${m.tags.map(t=>`<span class="team-tag">${t}</span>`).join("")}</div>
+    `;
+    tg.appendChild(card);
+  });
+
+  const ml = document.getElementById("modeList");
+  MODES.forEach(m => {
+    const c = document.createElement("article");
+    c.className = "mode-card";
+    c.innerHTML = `
+      <div class="mode-thumb" aria-hidden="true">${m.icon}</div>
+      <div class="mode-content">
+        <h3 data-i18n="${m.k}">${m.t}</h3>
+        <p data-i18n="${m.d}">${m.dt}</p>
+        <div class="mode-actions">
+          <button class="btn btn-ghost" type="button" data-i18n="mode_view">Consulter</button>
+          <button class="btn btn-accent" type="button" data-i18n="mode_dl">Télécharger</button>
+        </div>
+      </div>`;
+    ml.appendChild(c);
+  });
+
+  const vg = document.getElementById("videoGrid");
+  VIDEOS.forEach(v => {
+    const c = document.createElement("article");
+    c.className = "video-card";
+    c.innerHTML = `
+      <div class="video-frame">
+        <div class="video-placeholder">
+          <span class="video-placeholder-icon" aria-hidden="true">▶</span>
+          <span style="font-size:var(--fs-xs)">Vidéo en cours de production</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <h3 data-i18n="${v.k}_title">${v.t}</h3>
+        <p data-i18n="${v.k}_desc">${v.d}</p>
+      </div>`;
+    vg.appendChild(c);
+  });
+
+  const fl = document.getElementById("faqList");
+  FAQ.forEach(([qk, ak]) => {
+    const item = document.createElement("div");
+    item.className = "faq-item";
+    item.innerHTML = `
+      <button class="faq-q" data-i18n="${qk}">${OE3D_I18N.t(qk)}</button>
+      <div class="faq-a"><p data-i18n="${ak}">${OE3D_I18N.t(ak)}</p></div>`;
+    fl.appendChild(item);
+  });
+
+  // Reapply i18n after dynamic insertion
+  if (window.OE3D_I18N) OE3D_I18N.apply();
+
+  // FAQ toggle (re-bind because items added after main.js)
+  document.querySelectorAll(".faq-item").forEach(item => {
+    const q = item.querySelector(".faq-q");
+    q.addEventListener("click", () => {
+      const open = item.classList.toggle("open");
+      q.setAttribute("aria-expanded", open);
+    });
+  });
+
+  // Lang switcher in topbar
+  const sel = document.getElementById("langSwitch");
+  OE3D_I18N.LANGS.forEach(code => {
+    const o = document.createElement("option");
+    o.value = code;
+    o.textContent = `${OE3D_I18N.FLAGS[code]} ${OE3D_I18N.DICT[code].lang_name}`;
+    if (code === OE3D_I18N.currentLang()) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.addEventListener("change", e => OE3D_I18N.setLang(e.target.value));
+});
+</script>
+</body>
+</html>

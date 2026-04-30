@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a5276">
+<title>OE3D — Espace Professionnels de santé</title>
+<meta name="description" content="Espace prescripteurs OE3D : outil de prescription LPPR, fiches techniques, annuaire, ressources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html" aria-label="OE3D Accueil">
+      <span class="brand-mark" aria-hidden="true">OE</span>
+      <span>OE3D · Pro</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav-list" id="navList">
+        <li><a class="nav-link" href="#accueil">Accueil</a></li>
+        <li><a class="nav-link" href="#prescription">Prescription</a></li>
+        <li><a class="nav-link" href="#protocoles">Protocoles</a></li>
+        <li><a class="nav-link" href="#ressources">Ressources</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+        <li><a class="nav-link" href="../patients/index.html" data-i18n="nav_patient" style="color:var(--c-accent-d);font-weight:600">Espace Patient</a></li>
+      </ul>
+    </nav>
+    <div class="topbar-actions">
+      <select id="langSwitch" aria-label="Changer la langue" style="padding:6px 10px;border-radius:8px;border:1px solid var(--c-border);background:var(--c-bg)"></select>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section id="accueil" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow">🩺 Espace réservé aux professionnels de santé</span>
+        <h1 class="hero-title">Prescrire en confiance, suivre en toute <span class="accent">sécurité</span></h1>
+        <p class="hero-subtitle">Outil de prescription LPPR conforme, fiches techniques par appareil, protocoles cliniques, suivi patient partagé. Ortho Espace 3D vous accompagne dans votre pratique quotidienne.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="outil-prescription.html">Ouvrir l'outil de prescription →</a>
+          <a class="btn btn-ghost btn-lg" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+      <div class="hero-visual" style="background:linear-gradient(135deg,var(--c-primary),var(--c-accent));display:grid;place-items:center;color:#fff;text-align:center;padding:var(--sp-6)">
+        <div>
+          <div style="font-size:64px" aria-hidden="true">🩺</div>
+          <p style="color:#fff;font-family:var(--ff-display);font-size:var(--fs-xl);margin-top:var(--sp-3)">Outil LPPR<br>+ 580 appareils référencés</p>
+          <p style="color:#cfdfee;font-size:var(--fs-sm);margin-top:var(--sp-2)">Recherche par situation clinique ou par appareil</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prescription" class="section section-bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Outil de prescription</span>
+      <h2 class="section-title">Une aide à la prescription, pas une substitution</h2>
+      <p class="section-subtitle">Construit avec et pour les médecins prescripteurs de Guyane. Codes LPPR à jour, choix par situation clinique, exports prêts à signer.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🎯</div>
+        <h3 class="card-title">Par situation clinique</h3>
+        <p>Décrivez la situation du patient (amputation, scoliose, hémiplégie, post-opératoire…) et l'outil propose les appareils adaptés.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🦿</div>
+        <h3 class="card-title">Par type d'appareil</h3>
+        <p>Recherche directe : 580+ appareils, classés par catégorie (orthèses MI/MS/tronc, prothèses, esthétique, aides techniques).</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">📋</div>
+        <h3 class="card-title">Champs intelligents</h3>
+        <p>Côté, taille, indications, options d'amputation, niveaux d'articulation : les champs s'adaptent automatiquement.</p>
+      </article>
+    </div>
+    <div class="text-center" style="margin-top:var(--sp-6)">
+      <a class="btn btn-primary btn-lg" href="outil-prescription.html">Lancer l'outil de prescription →</a>
+    </div>
+  </div>
+</section>
+
+<section id="protocoles" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Protocoles & Fiches techniques</span>
+      <h2 class="section-title">Documentation clinique structurée</h2>
+      <p class="section-subtitle">Fiches LPPR par appareil, protocoles d'application, guides d'entretien.</p>
+    </div>
+    <div class="mode-list">
+      <article class="mode-card">
+        <div class="mode-thumb" aria-hidden="true">📑</div>
+        <div class="mode-content">
+          <h3>Fiches techniques LPPR</h3>
+          <p>Codes, descriptifs, indications, conditions de prise en charge.</p>
+          <div class="mode-actions"><button class="btn btn-ghost" type="button">Bibliothèque</button></div>
+        </div>
+      </article>
+      <article class="mode-card">
+        <div class="mode-thumb" aria-hidden="true">🩻</div>
+        <div class="mode-content">
+          <h3>Protocoles cliniques</h3>
+          <p>Bilans, mesures, étapes de prise d'empreinte, suivi post-livraison.</p>
+          <div class="mode-actions"><button class="btn btn-ghost" type="button">Consulter</button></div>
+        </div>
+      </article>
+      <article class="mode-card">
+        <div class="mode-thumb" aria-hidden="true">📊</div>
+        <div class="mode-content">
+          <h3>Suivi patient partagé</h3>
+          <p>Code OE3D-XXXX par patient pour suivi conjoint prescripteur / orthoprothésiste.</p>
+          <div class="mode-actions"><button class="btn btn-ghost" type="button">En savoir plus</button></div>
+        </div>
+      </article>
+      <article class="mode-card">
+        <div class="mode-thumb" aria-hidden="true">📰</div>
+        <div class="mode-content">
+          <h3>Newsletter pro mensuelle</h3>
+          <p>Veille technique, nouveautés LPPR Guyane, cas cliniques.</p>
+          <div class="mode-actions"><button class="btn btn-accent" type="button">S'abonner</button></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="ressources" class="section section-bg-warm">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Ressources</span>
+      <h2 class="section-title">Formations, événements, partenariats</h2>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🎓</div>
+        <h3 class="card-title">Formations en cabinet</h3>
+        <p>Sessions de formation à destination des équipes médicales et paramédicales sur le matériel orthopédique de pointe.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🌍</div>
+        <h3 class="card-title">Partenaires</h3>
+        <p>Aqualeg, Ottobock, Össur, Blatchford, Anita, Bodynov : nos références fabricants indépendants.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">📞</div>
+        <h3 class="card-title">Hotline pro</h3>
+        <p>Une question urgente sur un cas patient ? Ligne directe pour les prescripteurs : <a href="tel:+594594282808">+594 594 28 28 08</a>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Contact pro</span>
+      <h2 class="section-title">Discutons de vos cas patients</h2>
+      <p class="section-subtitle">Christophe et l'équipe sont à votre disposition pour les avis techniques, les rendez-vous croisés et les visites de cabinet.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">📍</div>
+          <div class="contact-row-content">
+            <strong>Adresse</strong>
+            <p>1 rue des Arômes, 97354 Remire-Montjoly, Guyane française</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">📞</div>
+          <div class="contact-row-content">
+            <strong>Ligne professionnelle</strong>
+            <p><a href="tel:+594594282808">+594 594 28 28 08</a></p>
+            <p style="font-size:var(--fs-xs);color:var(--c-text-muted)">Lun–Ven · 8h–17h</p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">✉️</div>
+          <div class="contact-row-content">
+            <strong>Email pro</strong>
+            <p><a href="mailto:contact@orthoespace3d.fr">contact@orthoespace3d.fr</a></p>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon" aria-hidden="true">🏥</div>
+          <div class="contact-row-content">
+            <strong>Sites de consultation</strong>
+            <p>Cayenne (siège) — Lun–Ven 7h30–15h30</p>
+            <p>Saint-Laurent du Maroni — Sur rendez-vous</p>
+            <p>Kourou — Sur rendez-vous</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-block" onsubmit="event.preventDefault(); alert('Démo locale — formulaire à brancher sur votre service mail.');">
+        <div class="form-row">
+          <label for="pf-name">Nom et fonction</label>
+          <input type="text" id="pf-name" required placeholder="Dr Dupont, MPR">
+        </div>
+        <div class="form-row">
+          <label for="pf-email">Email professionnel</label>
+          <input type="email" id="pf-email" required>
+        </div>
+        <div class="form-row">
+          <label for="pf-rpps">Numéro RPPS / ADELI <span class="hint">(optionnel)</span></label>
+          <input type="text" id="pf-rpps">
+        </div>
+        <div class="form-row">
+          <label for="pf-msg">Votre demande</label>
+          <textarea id="pf-msg" rows="5" required placeholder="Cas patient, demande d'avis, demande de rendez-vous croisé…"></textarea>
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Envoyer la demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>OE3D — Espace Pro</h4>
+        <p>Ortho Espace 3D · Orthoprothésiste agréé en Guyane française.</p>
+      </div>
+      <div>
+        <h4>Espace Pro</h4>
+        <ul>
+          <li><a href="outil-prescription.html">Outil de prescription</a></li>
+          <li><a href="#protocoles">Protocoles</a></li>
+          <li><a href="#ressources">Ressources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+594594282808">+594 594 28 28 08</a></li>
+          <li><a href="mailto:contact@orthoespace3d.fr">contact@orthoespace3d.fr</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Espaces</h4>
+        <ul>
+          <li><a href="../index.html">Choix de l'espace</a></li>
+          <li><a href="../patients/index.html">Espace Patient</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ortho Espace 3D — Tous droits réservés</span>
+      <span>Site v2 — refonte 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/a11y.js"></script>
+<script src="../js/main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sel = document.getElementById("langSwitch");
+  OE3D_I18N.LANGS.forEach(code => {
+    const o = document.createElement("option");
+    o.value = code;
+    o.textContent = `${OE3D_I18N.FLAGS[code]} ${OE3D_I18N.DICT[code].lang_name}`;
+    if (code === OE3D_I18N.currentLang()) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.addEventListener("change", e => OE3D_I18N.setLang(e.target.value));
+});
+</script>
+</body>
+</html>
