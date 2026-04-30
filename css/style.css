@@ -660,21 +660,54 @@ body.a11y-dark .topbar { background: rgba(14, 24, 34, 0.92); }
 }
 .video-frame {
   aspect-ratio: 16 / 9;
-  background: var(--c-bg-warm);
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
   position: relative;
   display: grid; place-items: center;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: #fff;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.video-frame:hover,
+.video-frame:focus-visible {
+  outline: none;
+  transform: scale(1.02);
+  box-shadow: 0 8px 28px rgba(26, 82, 118, .35);
 }
 .video-frame video { width: 100%; height: 100%; object-fit: cover; }
+.video-card-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,.35) 100%);
+  pointer-events: none;
+  transition: background .3s ease;
+}
+.video-frame:hover .video-card-overlay { background: radial-gradient(ellipse at center, rgba(0,0,0,0) 25%, rgba(0,0,0,.55) 100%); }
 .video-placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--sp-2);
-  color: var(--c-primary);
+  color: #fff;
   text-align: center;
   padding: var(--sp-4);
 }
-.video-placeholder-icon { font-size: 48px; opacity: 0.7; }
+.video-placeholder-icon {
+  font-size: 56px;
+  width: 84px; height: 84px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(255,255,255,.45);
+  color: #fff;
+  position: relative; z-index: 1;
+  transition: transform .3s ease, background .3s ease;
+}
+.video-frame:hover .video-placeholder-icon { transform: scale(1.1); background: rgba(255,255,255,.3); }
 .video-info { padding: var(--sp-4); }
 .video-info h3 { font-family: var(--ff-display); font-size: var(--fs-md); color: var(--c-primary); margin-bottom: var(--sp-2); }
 .video-info p { font-size: var(--fs-sm); }
@@ -1162,4 +1195,133 @@ body.curtain-locked { overflow: hidden; }
   .curtain-cta   { letter-spacing: .14em; }
   .curtain-place { top: 18px; }
   .curtain-hint  { bottom: 18px; }
+}
+
+/* ---------- 27. MODALS (PDF & VIDÉO FAQ) ---------- */
+.m-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(8, 18, 28, .82);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 2vw, 24px);
+  animation: m-modal-fade .25s ease;
+}
+.m-modal[hidden] { display: none; }
+@keyframes m-modal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.m-modal-dialog {
+  background: var(--c-bg);
+  border-radius: var(--r-lg, 14px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .55);
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: m-modal-pop .35s cubic-bezier(.18, .89, .32, 1.28);
+}
+@keyframes m-modal-pop {
+  from { transform: scale(.92) translateY(20px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+.m-modal-dialog-pdf   { max-width: 980px; height: 92vh; }
+.m-modal-dialog-video { max-width: 880px; }
+
+.m-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  background: linear-gradient(135deg, var(--c-primary), var(--c-primary-d));
+  color: #fff;
+  flex-shrink: 0;
+}
+.m-modal-title {
+  margin: 0;
+  font-family: var(--ff-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+}
+.m-modal-close {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, .15);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .15s, transform .15s;
+}
+.m-modal-close:hover,
+.m-modal-close:focus-visible { background: rgba(255, 255, 255, .35); transform: rotate(90deg); outline: none; }
+
+.m-modal-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  background: var(--c-bg-soft);
+}
+
+/* — Modal PDF : iframe plein cadre — */
+.m-modal-dialog-pdf .m-modal-body { padding: 0; overflow: hidden; }
+#pdfModalFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* — Modal vidéo : player + sélecteur langues — */
+.m-video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.m-video-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.m-video-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: center;
+  padding: var(--sp-4);
+  background: var(--c-bg-soft);
+}
+.m-video-lang {
+  border: 1px solid var(--c-border);
+  background: var(--c-bg);
+  color: var(--c-text);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  cursor: pointer;
+  transition: all .15s;
+  font-weight: 600;
+}
+.m-video-lang:hover { border-color: var(--c-accent); color: var(--c-primary); }
+.m-video-lang.is-active {
+  background: var(--c-accent);
+  color: #fff;
+  border-color: var(--c-accent);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .m-modal-dialog-pdf { height: 100vh; max-height: 100vh; border-radius: 0; }
+  .m-modal-dialog-video { border-radius: 0; }
 }

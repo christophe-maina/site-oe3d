@@ -454,6 +454,38 @@
   </div>
 </footer>
 
+<!-- ========== MODAL PDF (modes d'emploi) ========== -->
+<div class="m-modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" hidden>
+  <div class="m-modal-dialog m-modal-dialog-pdf">
+    <div class="m-modal-head">
+      <h3 class="m-modal-title" id="pdfModalTitle">Mode d'emploi</h3>
+      <button type="button" class="m-modal-close" data-close aria-label="Fermer">×</button>
+    </div>
+    <div class="m-modal-body">
+      <iframe id="pdfModalFrame" title="Notice PDF" src="about:blank"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MODAL VIDÉO (FAQ HeyGen multi-langues) ========== -->
+<div class="m-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle" hidden>
+  <div class="m-modal-dialog m-modal-dialog-video">
+    <div class="m-modal-head">
+      <h3 class="m-modal-title" id="videoModalTitle">Vidéo</h3>
+      <button type="button" class="m-modal-close" data-close aria-label="Fermer">×</button>
+    </div>
+    <div class="m-modal-body">
+      <div class="m-video-frame">
+        <video id="videoPlayer" controls controlsList="nodownload" preload="metadata" playsinline>
+          <source id="videoSource" src="" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture vidéo.
+        </video>
+      </div>
+      <div class="m-video-langs" id="videoLangSwitcher" role="toolbar" aria-label="Choisir la langue de la vidéo"></div>
+    </div>
+  </div>
+</div>
+
 <script src="../js/i18n.js"></script>
 <script src="../js/a11y.js"></script>
 <script src="../js/main.js"></script>
@@ -467,23 +499,167 @@ const TEAM = [
   { initials:"T", name:"Thaïna", role:"Secrétariat & Coordination", img:"../photos et films/photos-equipe/thaina-portrait2.jpg", tags:["Accueil","Admin"] }
 ];
 const MODES = [
-  { icon:"🦵", k:"mode_botte", d:"mode_botte_desc", t:"Botte et gouttière", dt:"Notice d'utilisation et d'entretien des bottes de marche et gouttières de posture." },
-  { icon:"🛌", k:"mode_coquille", d:"mode_coquille_desc", t:"Coquille de verticalisation et de nuit", dt:"Guide d'utilisation des coquilles : positionnement, réglages, précautions." },
-  { icon:"🦴", k:"mode_lombo", d:"mode_lombo_desc", t:"Corset lombostat / TLSO", dt:"Mise en place, ajustement des sangles, entretien et durée de port." },
-  { icon:"🧬", k:"mode_scoliose", d:"mode_scoliose_desc", t:"Corset de scoliose", dt:"Programme de port progressif, hygiène cutanée et surveillance." },
-  { icon:"✋", k:"mode_main", d:"mode_main_desc", t:"Orthèse de main et de bras", dt:"Positionnement, exercices complémentaires et entretien." },
-  { icon:"🪑", k:"mode_siege", d:"mode_siege_desc", t:"Siège et coquille", dt:"Installation, réglages, sécurité et nettoyage des assises moulées." }
+  { icon:"🦵", k:"mode_botte",    d:"mode_botte_desc",    t:"Botte et gouttière",                 dt:"Notice d'utilisation et d'entretien des bottes de marche et gouttières de posture.",  pdf:"botte"     },
+  { icon:"🛌", k:"mode_coquille", d:"mode_coquille_desc", t:"Coquille de verticalisation et de nuit", dt:"Guide d'utilisation des coquilles : positionnement, réglages, précautions.",        pdf:"coquille"  },
+  { icon:"🦴", k:"mode_lombo",    d:"mode_lombo_desc",    t:"Corset lombostat / TLSO",            dt:"Mise en place, ajustement des sangles, entretien et durée de port.",                  pdf:"lombostat" },
+  { icon:"🧬", k:"mode_scoliose", d:"mode_scoliose_desc", t:"Corset de scoliose",                 dt:"Programme de port progressif, hygiène cutanée et surveillance.",                      pdf:"scoliose"  },
+  { icon:"✋", k:"mode_main",     d:"mode_main_desc",     t:"Orthèse de main et de bras",         dt:"Positionnement, exercices complémentaires et entretien.",                             pdf:"main"      },
+  { icon:"🪑", k:"mode_siege",    d:"mode_siege_desc",    t:"Siège et coquille",                  dt:"Installation, réglages, sécurité et nettoyage des assises moulées.",                  pdf:"siege"     }
 ];
 const VIDEOS = [
-  { k:"faq_v1", t:"Comment entretenir mon orthèse ?", d:"Nettoyage, séchage et précautions au quotidien." },
-  { k:"faq_v2", t:"Quand faut-il reconsulter ?", d:"Les signes qui doivent vous alerter." },
-  { k:"faq_v3", t:"Mon premier rendez-vous", d:"Déroulement, documents à apporter, étapes." },
-  { k:"faq_v4", t:"Comment fonctionne la prise en charge ?", d:"Sécurité sociale, mutuelle, entente préalable." },
-  { k:"faq_v5", t:"Notre équipe et nos services", d:"Découvrez le cabinet et nos compétences." }
+  { k:"faq_v1", t:"Comment entretenir mon orthèse ?",       d:"Nettoyage, séchage et précautions au quotidien.",  script:1 },
+  { k:"faq_v2", t:"Quand faut-il reconsulter ?",            d:"Les signes qui doivent vous alerter.",             script:2 },
+  { k:"faq_v3", t:"Mon premier rendez-vous",                d:"Déroulement, documents à apporter, étapes.",       script:3 },
+  { k:"faq_v4", t:"Comment fonctionne la prise en charge ?", d:"Sécurité sociale, mutuelle, entente préalable.", script:4 },
+  { k:"faq_v5", t:"Notre équipe et nos services",           d:"Découvrez le cabinet et nos compétences.",         script:5 }
 ];
 const FAQ = [
   ["faq_q1","faq_a1"],["faq_q2","faq_a2"],["faq_q3","faq_a3"],["faq_q4","faq_a4"],["faq_q5","faq_a5"]
 ];
+
+/* ───── Chemins PDF (multi-langues) ───── */
+const PDF_NAMES = {
+  botte:     {fr:"BOTTE ET GOUTTIERE",                       en:"WALKING BOOT AND GUTTER SPLINT", pt:"BOTA E CALHA",          nl:"LOOPSCHOEN EN GOOTSPALK",  es:"BOTA Y CANALETA",          gcr:"BOT EPI GOUTIYE",           ar:"HIZA TIBBI WA JABIRA"},
+  coquille:  {fr:"COQUILLE DE VERTICALISATEUR ET COQUILLE DE NUIT", en:"STANDING SHELL AND NIGHT SHELL", pt:"COQUILHA DE VERTICALIZADOR", nl:"STASCHAAL EN NACHTSCHAAL", es:"COQUILLA DE BIPEDESTADOR", gcr:"KOKIY VERTIKALIZATE", ar:"QAWQAA WUQUF WA LAYL"},
+  lombostat: {fr:"CORSET Lombostat TLSO",                    en:"LUMBAR CORSET TLSO",             pt:"COLETE LOMBAR TLSO",    nl:"LUMBAAL KORSET TLSO",      es:"CORSE LUMBAR TLSO",        gcr:"KORSE LONBOSTA TLSO",       ar:"MISHAD QATANI TLSO"},
+  scoliose:  {fr:"CORSET SCOLIOSE",                          en:"SCOLIOSIS CORSET",               pt:"COLETE ESCOLIOSE",      nl:"SCOLIOSE KORSET",          es:"CORSE ESCOLIOSIS",         gcr:"KORSE SKOLYOZ",             ar:"MISHAD JUNUF"},
+  main:      {fr:"ORTHESE DE MAIN ET DE BRAS",               en:"HAND AND ARM ORTHOSIS",          pt:"ORTESE DE MAO E BRACO", nl:"HAND EN ARMORTHESE",       es:"ORTESIS DE MANO Y BRAZO",  gcr:"ORTEZ LANMEN EPI BRA",      ar:"JABIRA YAD WA DHIRAA"},
+  siege:     {fr:"SIEGE ET OU COQUILLE",                     en:"SEAT AND OR SHELL",              pt:"ASSENTO E OU COQUILHA", nl:"ZITSCHAAL EN SCHAAL",      es:"ASIENTO Y O COQUILLA",     gcr:"SYEJ E OBEN KOKIY",         ar:"MAQAD WA QAWQAA"}
+};
+function getPdfUrl(pdfKey, lang) {
+  const names = PDF_NAMES[pdfKey];
+  if (!names) return "";
+  const code = (lang && names[lang]) ? lang : "fr";
+  const fileName = names[code] || names.fr;
+  const langFolder = (code === "fr") ? "" : (code + "/");
+  // Le dossier "site/mode d'emploie/" est servi à la racine du repo
+  return "../site/mode d'emploie/pdf/" + langFolder + fileName + ".pdf";
+}
+
+/* ───── Suffixes vidéos HeyGen ───── */
+const VIDEO_LANGS = [
+  {code:"fr",  label:"🇫🇷 FR",  suffix:"_v4", altSuffix:"_v1"}, // Script1=_v4, Scripts2-5=_v1
+  {code:"en",  label:"🇬🇧 EN",  suffix:"_en"},
+  {code:"pt",  label:"🇧🇷 PT",  suffix:"_pt"},
+  {code:"es",  label:"🇪🇸 ES",  suffix:"_es"},
+  {code:"nl",  label:"🇳🇱 NL",  suffix:"_nl"},
+  {code:"ar",  label:"🇸🇦 AR",  suffix:"_ar"},
+  {code:"zh",  label:"🇨🇳 ZH",  suffix:"_zh"},
+  {code:"gcr", label:"🇬🇫 GCR", suffix:"_gcr"},
+  {code:"hmn", label:"🇱🇦 HMN", suffix:"_hmn"}
+];
+function getVideoUrl(scriptNum, langObj) {
+  let suffix = langObj.suffix;
+  if (langObj.code === "fr" && scriptNum > 1 && langObj.altSuffix) suffix = langObj.altSuffix;
+  return "../videos/OE3D_Script" + scriptNum + suffix + ".mp4";
+}
+function getSubtitleUrl(scriptNum, langCode) {
+  return "../subtitles/OE3D_Script" + scriptNum + "_" + langCode + ".vtt";
+}
+
+/* ───── Modal generics ───── */
+function openModal(modalId) {
+  const m = document.getElementById(modalId);
+  m.hidden = false;
+  document.body.style.overflow = "hidden";
+  // Focus le bouton fermer pour l'accessibilité
+  const closeBtn = m.querySelector("[data-close]");
+  if (closeBtn) closeBtn.focus({preventScroll:true});
+}
+function closeModal(modalId) {
+  const m = document.getElementById(modalId);
+  m.hidden = true;
+  document.body.style.overflow = "";
+  if (modalId === "pdfModal")   document.getElementById("pdfModalFrame").src = "about:blank";
+  if (modalId === "videoModal") {
+    const p = document.getElementById("videoPlayer");
+    p.pause();
+    p.removeAttribute("src");
+    document.getElementById("videoSource").src = "";
+    p.load();
+    document.getElementById("videoLangSwitcher").innerHTML = "";
+  }
+}
+document.addEventListener("click", e => {
+  if (e.target.matches("[data-close]") || e.target.classList.contains("m-modal")) {
+    const m = e.target.closest(".m-modal");
+    if (m) closeModal(m.id);
+  }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".m-modal:not([hidden])").forEach(m => closeModal(m.id));
+  }
+});
+
+/* ───── Ouvrir un PDF ───── */
+function openPdf(pdfKey, title) {
+  const lang = (window.OE3D_I18N && OE3D_I18N.currentLang()) || "fr";
+  const url = getPdfUrl(pdfKey, lang);
+  document.getElementById("pdfModalTitle").textContent = title;
+  document.getElementById("pdfModalFrame").src = url;
+  openModal("pdfModal");
+}
+/* ───── Télécharger le PDF (lien direct, pas de modal) ───── */
+function getDownloadPdfHref(pdfKey) {
+  const lang = (window.OE3D_I18N && OE3D_I18N.currentLang()) || "fr";
+  return getPdfUrl(pdfKey, lang);
+}
+
+/* ───── Ouvrir une vidéo FAQ multi-langues ───── */
+function openVideoFAQ(scriptNum, title) {
+  const cur = (window.OE3D_I18N && OE3D_I18N.currentLang()) || "fr";
+  const langObj = VIDEO_LANGS.find(l => l.code === cur) || VIDEO_LANGS[0];
+
+  document.getElementById("videoModalTitle").textContent = title;
+
+  const player = document.getElementById("videoPlayer");
+  const source = document.getElementById("videoSource");
+
+  // Charger la vidéo dans la langue courante
+  source.src = getVideoUrl(scriptNum, langObj);
+  player.load();
+
+  // Recréer les pistes de sous-titres (toutes langues)
+  player.querySelectorAll("track").forEach(t => t.remove());
+  VIDEO_LANGS.forEach(lang => {
+    const track = document.createElement("track");
+    track.kind = "subtitles";
+    track.label = lang.label.replace(/^.+ /, ""); // retire le drapeau
+    track.srclang = lang.code;
+    track.src = getSubtitleUrl(scriptNum, lang.code);
+    if (lang.code === langObj.code) track.default = true;
+    player.appendChild(track);
+  });
+
+  // Reconstruire le sélecteur de langue
+  const ls = document.getElementById("videoLangSwitcher");
+  ls.innerHTML = "";
+  VIDEO_LANGS.forEach(lang => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "m-video-lang" + (lang.code === langObj.code ? " is-active" : "");
+    btn.textContent = lang.label;
+    btn.addEventListener("click", () => {
+      const wasPlaying = !player.paused;
+      const t = player.currentTime;
+      source.src = getVideoUrl(scriptNum, lang);
+      player.load();
+      player.currentTime = t || 0;
+      if (wasPlaying) player.play().catch(() => {});
+      ls.querySelectorAll(".m-video-lang").forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      // Activer le bon track de sous-titres
+      for (let i = 0; i < player.textTracks.length; i++) {
+        player.textTracks[i].mode = (player.textTracks[i].language === lang.code) ? "showing" : "hidden";
+      }
+    });
+    ls.appendChild(btn);
+  });
+
+  openModal("videoModal");
+  player.play().catch(() => {/* lecture auto bloquée → user devra cliquer */});
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const tg = document.getElementById("teamGrid");
@@ -512,11 +688,19 @@ document.addEventListener("DOMContentLoaded", () => {
         <h3 data-i18n="${m.k}">${m.t}</h3>
         <p data-i18n="${m.d}">${m.dt}</p>
         <div class="mode-actions">
-          <button class="btn btn-ghost" type="button" data-i18n="mode_view">Consulter</button>
-          <button class="btn btn-accent" type="button" data-i18n="mode_dl">Télécharger</button>
+          <button class="btn btn-ghost"  type="button" data-action="view"     data-pdf="${m.pdf}" data-title="${m.t}" data-i18n="mode_view">Consulter</button>
+          <a      class="btn btn-accent" href="#" data-action="download" data-pdf="${m.pdf}" data-i18n="mode_dl" download>Télécharger</a>
         </div>
       </div>`;
     ml.appendChild(c);
+  });
+
+  // Brancher les actions des cartes Modes d'emploi
+  document.querySelectorAll(".mode-card [data-action='view']").forEach(b => {
+    b.addEventListener("click", () => openPdf(b.dataset.pdf, b.dataset.title));
+  });
+  document.querySelectorAll(".mode-card [data-action='download']").forEach(a => {
+    a.addEventListener("click", e => { a.href = getDownloadPdfHref(a.dataset.pdf); });
   });
 
   const vg = document.getElementById("videoGrid");
@@ -524,17 +708,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const c = document.createElement("article");
     c.className = "video-card";
     c.innerHTML = `
-      <div class="video-frame">
-        <div class="video-placeholder">
-          <span class="video-placeholder-icon" aria-hidden="true">▶</span>
-          <span style="font-size:var(--fs-xs)">Vidéo en cours de production</span>
-        </div>
-      </div>
+      <button class="video-frame" type="button" data-script="${v.script}" data-title="${v.t}" aria-label="Lire la vidéo : ${v.t}">
+        <span class="video-placeholder-icon" aria-hidden="true">▶</span>
+        <span class="video-card-overlay" aria-hidden="true"></span>
+      </button>
       <div class="video-info">
         <h3 data-i18n="${v.k}_title">${v.t}</h3>
         <p data-i18n="${v.k}_desc">${v.d}</p>
       </div>`;
     vg.appendChild(c);
+  });
+  // Brancher les vidéos
+  document.querySelectorAll(".video-card .video-frame").forEach(b => {
+    b.addEventListener("click", () => openVideoFAQ(parseInt(b.dataset.script, 10), b.dataset.title));
   });
 
   const fl = document.getElementById("faqList");
