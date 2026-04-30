@@ -1103,146 +1103,97 @@ body.curtain-locked { overflow: hidden; }
   letter-spacing: 0;
 }
 
-/* --- Bouton-carte cliquable --- */
-.curtain-target {
+/* --- CTA bouton : logo OE3D 3D centré, seul élément cliquable du rideau --- */
+.curtain-cta {
   background: transparent;
   border: 0;
-  padding: 0;
+  padding: 16px 24px;
   cursor: pointer;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  gap: clamp(10px, 1.5vw, 18px);
+  justify-content: center;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45))
+          drop-shadow(0 0 18px rgba(244, 217, 118, 0.25));
+  transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
   transform-style: preserve-3d;
-  transition: transform .5s cubic-bezier(.18, .89, .32, 1.28);
-  margin-top: clamp(8px, 1vw, 16px);
+  perspective: 1000px;
+  margin-top: clamp(12px, 2vw, 24px);
+  /* Animation d'entrée à l'apparition du rideau, puis flottement permanent */
+  opacity: 0;
+  transform: translateY(20px) scale(0.92);
+  animation: cta-enter 1s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards,
+             cta-float 5s 1.4s ease-in-out infinite;
 }
-.curtain-target:focus-visible { outline: none; }
-.curtain-target:focus-visible .cm-shape { stroke: #f5b041; stroke-width: 3; }
-
-/* — La carte SVG — */
-.curtain-map {
+.curtain-cta svg {
   display: block;
-  width: clamp(140px, 18vw, 220px);
-  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, .55));
-  transition: transform .55s cubic-bezier(.18, .89, .32, 1.28), filter .4s ease;
-  animation: cm-float 4s ease-in-out infinite;
-}
-.curtain-map svg {
-  display: block;
-  width: 100%;
+  width: 240px;
   height: auto;
   overflow: visible;
 }
-@keyframes cm-float {
-  0%, 100% { transform: translateY(0)    rotate(0deg); }
-  50%      { transform: translateY(-6px) rotate(-1deg); }
+
+.curtain-cta:hover,
+.curtain-cta:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55))
+          drop-shadow(0 0 36px rgba(244, 217, 118, 0.65));
+}
+.curtain-cta:focus-visible {
+  outline: 2px solid #f4d976;
+  outline-offset: 8px;
+  border-radius: 12px;
 }
 
-/* — Hover : la carte s'incline en 3D et s'agrandit — */
-.curtain-target:hover .curtain-map,
-.curtain-target:focus-visible .curtain-map {
-  animation-play-state: paused;
-  transform: rotateX(10deg) rotateY(-14deg) scale(1.10);
-  filter: drop-shadow(0 20px 40px rgba(245, 176, 65, .35)) drop-shadow(0 4px 18px rgba(0,0,0,.6));
+/* Tête d'impression : descend en boucle au survol (barre + buse synchrones) */
+.curtain-cta:hover .cta-printhead-bar,
+.curtain-cta:focus-visible .cta-printhead-bar,
+.curtain-cta:hover .cta-printhead-nozzle,
+.curtain-cta:focus-visible .cta-printhead-nozzle {
+  animation: cta-print 1.6s ease-in-out infinite;
 }
 
-/* — Forme de la Guyane — */
-.cm-shape {
-  fill: url(#cmFill);
-  stroke: rgba(255, 255, 255, .85);
-  stroke-width: 2;
-  stroke-linejoin: round;
-  transition: stroke .3s ease, stroke-width .3s ease;
+/* Particules dorées : montent en cascade au survol */
+.curtain-cta:hover .cta-particles circle,
+.curtain-cta:focus-visible .cta-particles circle {
+  animation: cta-spark 1.8s ease-out infinite;
 }
-.curtain-target:hover .cm-shape { stroke-width: 2.5; }
-
-/* — Fleuves Maroni & Oyapock — */
-.cm-river-maroni,
-.cm-river-oyapock {
-  stroke: #aee3f6;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 4px rgba(174, 227, 246, .9));
-  opacity: .9;
-}
-.cm-river-maroni { stroke: #ffffff; opacity: 1; stroke-width: 2.5; }
-
-/* — Marqueur Remire-Montjoly + ondes — */
-.cm-pin {
-  fill: #f5b041;
-  stroke: #fff;
-  stroke-width: 2.2;
-  filter: drop-shadow(0 0 8px rgba(245, 176, 65, .95));
-}
-.cm-pin-pulse {
-  fill: #f5b041;
+.curtain-cta:hover .cta-particles circle:nth-child(1),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(1) { animation-delay: 0s;   }
+.curtain-cta:hover .cta-particles circle:nth-child(2),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(2) { animation-delay: .3s;  }
+.curtain-cta:hover .cta-particles circle:nth-child(3),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(3) { animation-delay: .6s;  }
+.curtain-cta:hover .cta-particles circle:nth-child(4),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(4) { animation-delay: .9s;  }
+.curtain-cta:hover .cta-particles circle:nth-child(5),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(5) { animation-delay: 1.2s; }
+.cta-particles circle {
   transform-box: fill-box;
   transform-origin: center;
-  animation: cm-pulse 2s cubic-bezier(.4, 0, .2, 1) infinite;
-}
-.cm-pin-pulse-2 { animation-delay: 1s; }
-@keyframes cm-pulse {
-  0%   { transform: scale(1);   opacity: .8; }
-  100% { transform: scale(3.2); opacity: 0;  }
-}
-
-/* — Étiquette ville — */
-.cm-label {
-  fill: #fff;
-  font-size: 9px;
-  font-weight: 600;
-  font-family: "Inter", sans-serif;
-  letter-spacing: .03em;
-  paint-order: stroke;
-  stroke: rgba(0, 0, 0, .6);
-  stroke-width: 3px;
-  stroke-linejoin: round;
   opacity: 0;
-  transition: opacity .3s ease;
-}
-.curtain-target:hover .cm-label,
-.curtain-target:focus-visible .cm-label { opacity: 1; }
-
-/* CTA SVG : logo OE3D en cours d'impression 3D (sous la carte) */
-.curtain-cta {
-  display: block;
-  width: clamp(170px, 22vw, 220px);
-  height: auto;
-  filter: drop-shadow(0 0 12px rgba(212, 168, 71, 0.25));
-  transition: filter 0.4s ease, transform 0.4s ease;
-  animation: cta-float 4s ease-in-out infinite;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  overflow: visible;
-}
-.curtain-target:hover .curtain-cta,
-.curtain-target:focus-visible .curtain-cta {
-  filter: drop-shadow(0 0 24px rgba(212, 168, 71, 0.55));
-}
-.curtain-target:focus-visible .curtain-cta {
-  outline: 2px solid #d4a847;
-  outline-offset: 6px;
-  border-radius: 8px;
 }
 
-/* La tête d'imprimante : descend en boucle au survol */
-.curtain-target:hover .cta-printhead,
-.curtain-target:focus-visible .cta-printhead {
-  animation: cta-print 1.5s ease-in-out infinite;
+@keyframes cta-enter {
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 @keyframes cta-float {
-  0%, 100% { transform: translateY(0)    rotateX(0) rotateY(0); }
-  50%      { transform: translateY(-4px) rotateX(0) rotateY(0); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes cta-print {
+  0%   { opacity: 0;    transform: translateY(-8px);  }
+  20%  { opacity: 0.95;                                }
+  80%  { opacity: 0.95;                                }
+  100% { opacity: 0;    transform: translateY(120px); }
+}
+@keyframes cta-spark {
+  0%   { opacity: 0; transform: translateY(0)   scale(0.5); }
+  20%  { opacity: 1;                                         }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
 }
 
-@keyframes cta-print {
-  0%   { opacity: 0;   transform: translateY(-12px); }
-  20%  { opacity: 0.9;                                }
-  80%  { opacity: 0.9;                                }
-  100% { opacity: 0;   transform: translateY( 60px); }
+/* Mobile : SVG plus petit */
+@media (max-width: 600px) {
+  .curtain-cta svg { width: 180px; }
 }
 
 /* Lieu (haut) + indication (bas) */
@@ -1293,24 +1244,26 @@ body.curtain-locked { overflow: hidden; }
 
 /* Respect des préférences utilisateur (motion réduit) */
 @media (prefers-reduced-motion: reduce) {
-  .curtain-map,
-  .cm-pin-pulse,
-  .curtain-hint,
-  .curtain-cta { animation: none !important; }
-  .curtain-target:hover .cta-printhead,
-  .curtain-target:focus-visible .cta-printhead { animation: none !important; }
-  .curtain-target:hover .curtain-map,
-  .curtain-target:focus-visible .curtain-map { transform: scale(1.05); }
+  .curtain-hint { animation: none !important; }
+  .curtain-cta {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+  .curtain-cta:hover .cta-printhead-bar,
+  .curtain-cta:focus-visible .cta-printhead-bar,
+  .curtain-cta:hover .cta-printhead-nozzle,
+  .curtain-cta:focus-visible .cta-printhead-nozzle,
+  .curtain-cta:hover .cta-particles circle,
+  .curtain-cta:focus-visible .cta-particles circle { animation: none !important; }
   .curtain-half { transition: opacity .3s linear; }
   .curtain.opening .curtain-half-left,
   .curtain.opening .curtain-half-right { transform: none; opacity: 0; }
 }
 
-/* Mobile : carte un peu plus petite, textes resserrés */
+/* Mobile : marque resserrée, textes du rideau plus compacts */
 @media (max-width: 480px) {
-  .curtain-map   { width: 130px; }
   .curtain-brand { font-size: 1.4rem; }
-  .curtain-cta   { letter-spacing: .16em; }
   .curtain-place { top: 18px; font-size: .85rem; }
   .curtain-hint  { bottom: 18px; }
 }

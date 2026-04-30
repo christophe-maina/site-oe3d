@@ -19,8 +19,8 @@
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
 
-<!-- Rideau d'entrée théâtral : photo du fleuve Maroni + carte de la Guyane cliquable.
-     Au clic sur la carte, le rideau s'ouvre en deux pour révéler le splash. -->
+<!-- Rideau d'entrée théâtral : photo du fleuve Maroni + logo OE3D 3D centré.
+     Au clic sur le logo, le rideau s'ouvre en deux pour révéler le splash. -->
 <div id="curtain" class="curtain" role="dialog" aria-label="Entrée du site OE3D" aria-modal="true">
   <div class="curtain-half curtain-half-left"  aria-hidden="true"></div>
   <div class="curtain-half curtain-half-right" aria-hidden="true"></div>
@@ -31,93 +31,101 @@
     <p class="curtain-eyebrow" aria-hidden="true">Bienvenue sur</p>
     <h1 class="curtain-brand">OE3D <span class="curtain-brand-sep" aria-hidden="true">·</span> <span class="curtain-brand-full">Ortho Espace 3D</span></h1>
 
-    <button type="button" id="curtainTarget" class="curtain-target" aria-label="Entrer sur le site OE3D">
-      <span class="curtain-map" aria-hidden="true">
-        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <defs>
-            <linearGradient id="cmFill" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%"   stop-color="#5dade2" stop-opacity=".95"/>
-              <stop offset="60%"  stop-color="#48c9b0" stop-opacity=".9"/>
-              <stop offset="100%" stop-color="#1a5276" stop-opacity=".95"/>
-            </linearGradient>
-          </defs>
-          <!-- Silhouette stylisée de la Guyane française -->
-          <path class="cm-shape"
-                d="M 30 60
-                   Q 55 45 95 50
-                   Q 145 50 175 75
-                   Q 178 110 162 145
-                   Q 148 180 122 210
-                   Q 102 230 90 218
-                   Q 72 196 58 168
-                   Q 38 130 30 95 Z"/>
-          <!-- Fleuve Maroni (bordure ouest) -->
-          <path class="cm-river-maroni"
-                d="M 30 60 Q 35 95 50 130 Q 65 175 90 218" fill="none"/>
-          <!-- Fleuve Oyapock (bordure sud-est) -->
-          <path class="cm-river-oyapock"
-                d="M 175 75 Q 162 110 145 145 Q 122 188 90 218" fill="none"/>
-          <!-- Marqueur Remire-Montjoly (côte est) -->
-          <circle class="cm-pin-pulse" cx="155" cy="78" r="6"/>
-          <circle class="cm-pin-pulse cm-pin-pulse-2" cx="155" cy="78" r="6"/>
-          <circle class="cm-pin"        cx="155" cy="78" r="5"/>
-          <!-- Étiquette Remire-Montjoly -->
-          <text class="cm-label" x="148" y="98">Remire-Montjoly</text>
-        </svg>
-      </span>
-      <svg class="curtain-cta" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <button type="button" id="curtainTarget" class="curtain-cta" aria-label="Entrer sur le site Ortho Espace 3D">
+      <svg viewBox="0 0 320 200" width="240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <defs>
-          <linearGradient id="ctaGoldFade" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%"   stop-color="#d4a847" stop-opacity="0.4"/>
-            <stop offset="55%"  stop-color="#d4a847" stop-opacity="1"/>
-            <stop offset="100%" stop-color="#e9c46a" stop-opacity="1"/>
+          <!-- Dégradé doré pour la face avant -->
+          <linearGradient id="goldFront" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#fff2c5"/>
+            <stop offset="35%"  stop-color="#f4d976"/>
+            <stop offset="100%" stop-color="#c9962f"/>
           </linearGradient>
-          <clipPath id="ctaLettersClip">
-            <text x="110" y="78" text-anchor="middle"
+          <!-- Strates d'impression : clip sur les lettres -->
+          <clipPath id="lettersClip">
+            <text x="160" y="118" text-anchor="middle"
                   font-family="'Playfair Display', serif"
-                  font-size="56" font-weight="500"
-                  letter-spacing="6">OE3D</text>
+                  font-size="80" font-weight="500"
+                  letter-spacing="8">OE3D</text>
           </clipPath>
+          <!-- Motif grille subtile pour le plateau -->
+          <pattern id="bedGrid" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+            <path d="M0 0 L0 14 M0 0 L14 0" stroke="#5fb3c4" stroke-width="0.4" opacity="0.4"/>
+          </pattern>
         </defs>
 
-        <!-- Lettres OE3D (remplissage doré dégradé) -->
-        <text x="110" y="78" text-anchor="middle"
-              font-family="'Playfair Display', serif"
-              font-size="56" font-weight="500"
-              letter-spacing="6"
-              fill="url(#ctaGoldFade)">OE3D</text>
-
-        <!-- Strates d'impression (visibles seulement dans la moitié basse des lettres) -->
-        <g clip-path="url(#ctaLettersClip)" stroke="#5fb3c4" stroke-width="0.8" opacity="0.55">
-          <line x1="50"  y1="60" x2="170" y2="60"/>
-          <line x1="50"  y1="64" x2="170" y2="64"/>
-          <line x1="50"  y1="68" x2="170" y2="68"/>
-          <line x1="50"  y1="72" x2="170" y2="72"/>
-          <line x1="50"  y1="76" x2="170" y2="76"/>
+        <!-- Plateau d'impression avec grille -->
+        <g opacity="0.55">
+          <rect x="40"  y="146" width="240" height="22" fill="url(#bedGrid)"/>
+          <line x1="40"  y1="146" x2="280" y2="146" stroke="#5fb3c4" stroke-width="1.4"/>
+          <line x1="40"  y1="146" x2="32"  y2="156" stroke="#5fb3c4" stroke-width="1.4"/>
+          <line x1="280" y1="146" x2="288" y2="156" stroke="#5fb3c4" stroke-width="1.4"/>
         </g>
 
-        <!-- Plateau imprimante 3D -->
-        <g stroke="#5fb3c4" stroke-width="1.2" fill="none" opacity="0.7">
-          <line x1="40"  y1="98" x2="180" y2="98"/>
-          <line x1="40"  y1="98" x2="36"  y2="104"/>
-          <line x1="180" y1="98" x2="184" y2="104"/>
+        <!-- Extrusion 3D : 8 couches empilées avec offset, du sombre au clair -->
+        <g class="cta-extrude">
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#5a3f0c" opacity="0.85"
+                transform="translate(7,7)">OE3D</text>
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#7a5717"
+                transform="translate(6,6)">OE3D</text>
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#956c1f"
+                transform="translate(5,5)">OE3D</text>
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#b08526"
+                transform="translate(4,4)">OE3D</text>
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#c9962f"
+                transform="translate(3,3)">OE3D</text>
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#dba93a"
+                transform="translate(2,2)">OE3D</text>
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="#e9bd47"
+                transform="translate(1,1)">OE3D</text>
+          <!-- Face avant brillante avec dégradé -->
+          <text x="160" y="118" text-anchor="middle" font-family="'Playfair Display', serif"
+                font-size="80" font-weight="500" letter-spacing="8" fill="url(#goldFront)">OE3D</text>
         </g>
 
-        <!-- Tête d'impression (animée au survol via CSS) -->
-        <line class="cta-printhead" x1="50" y1="42" x2="170" y2="42"
-              stroke="#d4a847" stroke-width="1.5" opacity="0"/>
+        <!-- Strates d'impression turquoise sur la moitié basse des lettres -->
+        <g clip-path="url(#lettersClip)" stroke="#5fb3c4" stroke-width="1" opacity="0.55">
+          <line x1="60" y1="92"  x2="260" y2="92"/>
+          <line x1="60" y1="98"  x2="260" y2="98"/>
+          <line x1="60" y1="104" x2="260" y2="104"/>
+          <line x1="60" y1="110" x2="260" y2="110"/>
+          <line x1="60" y1="116" x2="260" y2="116"/>
+        </g>
 
-        <!-- Mot "ENTRER" -->
-        <text x="110" y="124" text-anchor="middle"
+        <!-- Tête d'impression : barre + buse (animée au survol via CSS) -->
+        <g class="cta-printhead-group">
+          <line   class="cta-printhead-bar"    x1="60" y1="50" x2="260" y2="50"
+                  stroke="#f4d976" stroke-width="1.5" opacity="0"/>
+          <circle class="cta-printhead-nozzle" cx="160" cy="50" r="3"
+                  fill="#fff2c5" opacity="0"/>
+        </g>
+
+        <!-- Particules dorées (animées au survol) -->
+        <g class="cta-particles">
+          <circle cx="80"  cy="160" r="1.4" fill="#f4d976"/>
+          <circle cx="120" cy="160" r="1.2" fill="#dba93a"/>
+          <circle cx="160" cy="160" r="1.6" fill="#fff2c5"/>
+          <circle cx="200" cy="160" r="1.2" fill="#dba93a"/>
+          <circle cx="240" cy="160" r="1.4" fill="#f4d976"/>
+        </g>
+
+        <!-- Mot ENTRER -->
+        <text x="160" y="190" text-anchor="middle"
               font-family="'Playfair Display', serif"
-              font-size="11" font-weight="500"
-              letter-spacing="6"
-              fill="#d4a847">ENTRER</text>
+              font-size="13" font-weight="500"
+              letter-spacing="8"
+              fill="#f4d976">ENTRER</text>
       </svg>
     </button>
   </div>
 
-  <p class="curtain-hint" aria-hidden="true">Survolez la carte · cliquez pour entrer</p>
+  <p class="curtain-hint" aria-hidden="true">Cliquez pour entrer</p>
 </div>
 
 <main id="main" class="splash" role="main">
@@ -187,7 +195,7 @@
       }
     });
 
-    /* Tilt 3D du logo OE3D-impression : suit la position de la souris */
+    /* Tilt 3D renforcé du logo OE3D : suit la position de la souris (16°/14° + translateZ) */
     const cta = curtain.querySelector(".curtain-cta");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (cta && !reduceMotion) {
@@ -196,7 +204,7 @@
         const px = (e.clientX - r.left) / r.width  - 0.5;
         const py = (e.clientY - r.top)  / r.height - 0.5;
         cta.style.transform =
-          `perspective(800px) rotateY(${px *  8}deg) rotateX(${-py * 8}deg)`;
+          `perspective(900px) rotateY(${px * 16}deg) rotateX(${-py * 14}deg) translateZ(20px)`;
       });
       cta.addEventListener("mouseleave", () => { cta.style.transform = ""; });
     }
