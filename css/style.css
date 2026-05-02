@@ -336,6 +336,72 @@ body.a11y-dark .topbar { background: rgba(14, 24, 34, 0.92); }
   justify-content: center;
   padding: var(--sp-5);
   overflow-y: auto;
+  isolation: isolate;
+}
+
+/* Diaporama d'arrière-plan : photos de Guyane et des locaux en transparence */
+.splash-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Variante globale : utilisée sur toutes les pages (patients, pro, etc.).
+   Position fixed pour rester visible pendant le scroll. */
+.splash-slideshow--global {
+  position: fixed;
+  z-index: -10;
+}
+.splash-slideshow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.6s ease-in-out;
+  filter: saturate(0.85);
+}
+.splash-slideshow img.active {
+  opacity: 0.45;
+}
+/* Sur les pages internes, opacité visible mais discrète pour ne pas gêner la lecture */
+.splash-slideshow--global img.active {
+  opacity: 0.32;
+}
+/* Voile blanc dégradé entre les photos et le contenu pour la lisibilité */
+.splash-slideshow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,.35) 0%, rgba(255,255,255,.7) 60%, rgba(255,255,255,.9) 100%);
+  pointer-events: none;
+}
+/* Le contenu du splash passe par-dessus le diaporama */
+.splash > *:not(.splash-slideshow) {
+  position: relative;
+  z-index: 1;
+}
+/* Voile blanc semi-transparent sur les pages internes pour garantir le contraste */
+.splash-slideshow--global::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.65);
+  pointer-events: none;
+}
+/* Rendre le body transparent pour que le diaporama en z-index négatif reste visible */
+body.has-bg-slideshow {
+  background: transparent;
+}
+/* Mais garder le contraste sur les sections et cards : on ne touche pas à leur fond */
+@media (prefers-reduced-motion: reduce) {
+  .splash-slideshow img {
+    transition: none;
+  }
 }
 .splash-logo {
   font-family: var(--ff-display);
@@ -348,12 +414,38 @@ body.a11y-dark .topbar { background: rgba(14, 24, 34, 0.92); }
   letter-spacing: -0.03em;
   margin-bottom: var(--sp-2);
 }
+/* Logo image officiel sur le splash */
+.splash-logo-img {
+  width: clamp(220px, 32vw, 380px);
+  height: auto;
+  margin-bottom: var(--sp-3);
+  filter: drop-shadow(0 6px 20px rgba(26, 82, 118, 0.18));
+}
+/* Logo image officiel dans la barre de navigation patients/pro */
+.brand-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+.brand-suffix {
+  margin-left: 8px;
+  font-weight: 600;
+  color: var(--c-accent-d, var(--c-accent));
+  font-size: 0.95em;
+}
 .splash-tagline {
-  font-size: var(--fs-md);
-  color: var(--c-text-soft);
+  font-size: var(--fs-sm);
+  color: #2d4a8a;
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   margin-bottom: var(--sp-7);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+.splash-tagline .t-key,
+.hero-title .t-key {
+  color: #e67e22;
 }
 
 .lang-grid {
@@ -559,6 +651,200 @@ body.a11y-dark .topbar { background: rgba(14, 24, 34, 0.92); }
   border-radius: var(--r-pill);
   background: var(--c-bg-warm);
   color: var(--c-primary);
+}
+
+/* Bannière photo de groupe (Option A — refonte équipe sans portraits individuels) */
+.team-banner {
+  margin: 0 0 var(--sp-6);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-3, 0 12px 32px rgba(0, 0, 0, 0.18));
+  background: var(--c-bg);
+  position: relative;
+}
+.team-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+}
+.team-banner figcaption {
+  padding: var(--sp-3) var(--sp-5);
+  font-size: var(--fs-sm);
+  color: var(--c-text-soft);
+  text-align: center;
+  background: var(--c-bg);
+  border-top: 1px solid var(--c-border, rgba(0,0,0,0.08));
+  font-style: italic;
+}
+
+/* Liste compacte des membres sous la bannière */
+.team-roster {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--sp-2) var(--sp-5);
+  max-width: 880px;
+  margin: 0 auto;
+}
+.team-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--c-border, rgba(0,0,0,0.08));
+}
+.team-row-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.team-row-name {
+  font-family: var(--ff-display);
+  font-size: var(--fs-md);
+  color: var(--c-primary);
+  font-weight: 700;
+}
+.team-row-role {
+  font-size: var(--fs-sm);
+  color: var(--c-text-soft);
+}
+.team-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* ---------- Galerie 3D interactive ---------- */
+.model-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--sp-5);
+  margin-top: var(--sp-5);
+}
+.model-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--c-bg);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-2, 0 4px 16px rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--c-border, rgba(0, 0, 0, 0.06));
+  transition: transform var(--t-med, 0.3s) ease, box-shadow var(--t-med, 0.3s) ease;
+}
+.model-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-3, 0 12px 32px rgba(0, 0, 0, 0.12));
+}
+.model-stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #f8f9fb 0%, #e8edf5 100%);
+}
+.model-stage model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+}
+.model-fullscreen {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 5;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--c-primary);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+.model-fullscreen:hover {
+  background: #fff;
+  transform: scale(1.08);
+}
+.model-meta {
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+}
+.model-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: var(--c-bg-warm);
+  color: var(--c-primary);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+.model-title {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--ff-display);
+  font-size: var(--fs-lg);
+  color: var(--c-primary);
+}
+.model-desc {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--c-text);
+}
+.model-specs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--c-border, rgba(0, 0, 0, 0.08));
+  padding-top: var(--sp-3);
+}
+.model-specs li {
+  font-size: var(--fs-xs);
+  color: var(--c-text-soft);
+  padding: 4px 0;
+}
+.model-specs strong {
+  color: var(--c-primary);
+  font-weight: 600;
+}
+.model-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--c-bg-warm);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  color: var(--c-text-soft);
+  text-align: center;
+}
+.model-icon-ar {
+  font-size: 1.4em;
+}
+
+/* Plein écran : un model-viewer en mode fullscreen via :fullscreen ou via classe utilitaire */
+.model-stage:fullscreen,
+.model-stage.is-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: auto;
+  border-radius: 0;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+.model-stage:fullscreen .model-fullscreen,
+.model-stage.is-fullscreen .model-fullscreen {
+  top: 24px;
+  right: 24px;
+  width: 48px; height: 48px;
+  font-size: 22px;
 }
 
 /* ---------- 12. SECTION TITLES ---------- */
@@ -1034,11 +1320,13 @@ body.curtain-locked { overflow: hidden; }
 .curtain-half-left::after  { left:  0; }
 .curtain-half-right::after { right: 0; }
 
-/* Voile assombrissant subtil pour faire ressortir la cible */
+/* Voile assombrissant pour faire ressortir le contenu central et le logo 3D */
 .curtain::before {
   content: "";
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,.45) 75%, rgba(0,0,0,.7) 100%);
+  background:
+    radial-gradient(ellipse 65% 55% at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.4) 45%, rgba(0,0,0,.62) 80%, rgba(0,0,0,.88) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.4) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -1069,8 +1357,11 @@ body.curtain-locked { overflow: hidden; }
   font-weight: 600;
   font-size: clamp(.95rem, 1.6vw, 1.25rem);
   letter-spacing: .04em;
-  color: rgba(255, 255, 255, .85);
-  text-shadow: 0 2px 14px rgba(0, 0, 0, .75);
+  color: rgba(255, 255, 255, .92);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 1),
+    0 2px 10px rgba(0, 0, 0, .95),
+    0 4px 24px rgba(0, 0, 0, .8);
 }
 .curtain-brand {
   margin: 0;
@@ -1080,7 +1371,11 @@ body.curtain-locked { overflow: hidden; }
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: #fff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, .8), 0 0 40px rgba(72, 201, 176, .35);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 1),
+    0 3px 8px rgba(0, 0, 0, .95),
+    0 6px 28px rgba(0, 0, 0, .85),
+    0 0 50px rgba(72, 201, 176, .25);
   position: relative;
 }
 .curtain-brand::after {
@@ -1166,6 +1461,14 @@ body.curtain-locked { overflow: hidden; }
 .curtain-cta:focus-visible .cta-particles circle:nth-child(4) { animation-delay: .9s;  }
 .curtain-cta:hover .cta-particles circle:nth-child(5),
 .curtain-cta:focus-visible .cta-particles circle:nth-child(5) { animation-delay: 1.2s; }
+.curtain-cta:hover .cta-particles circle:nth-child(6),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(6) { animation-delay: .15s; }
+.curtain-cta:hover .cta-particles circle:nth-child(7),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(7) { animation-delay: .45s; }
+.curtain-cta:hover .cta-particles circle:nth-child(8),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(8) { animation-delay: .75s; }
+.curtain-cta:hover .cta-particles circle:nth-child(9),
+.curtain-cta:focus-visible .cta-particles circle:nth-child(9) { animation-delay: 1.05s; }
 .cta-particles circle {
   transform-box: fill-box;
   transform-origin: center;
@@ -1185,10 +1488,12 @@ body.curtain-locked { overflow: hidden; }
   80%  { opacity: 0.95;                                }
   100% { opacity: 0;    transform: translateY(120px); }
 }
+/* Particules qui tombent du logo vers le bas (clin d'œil aux orpailleurs du Maroni) */
 @keyframes cta-spark {
-  0%   { opacity: 0; transform: translateY(0)   scale(0.5); }
-  20%  { opacity: 1;                                         }
-  100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
+  0%   { opacity: 0; transform: translateY(0)    scale(0.4); }
+  15%  { opacity: 1; transform: translateY(20px) scale(1.1); }
+  60%  { opacity: 1; transform: translateY(80px) scale(1);   }
+  100% { opacity: 0; transform: translateY(140px) scale(0.7); }
 }
 
 /* Mobile : SVG plus petit */

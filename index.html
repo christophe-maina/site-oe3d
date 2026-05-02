@@ -51,6 +51,15 @@
           <pattern id="bedGrid" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
             <path d="M0 0 L0 14 M0 0 L14 0" stroke="#5fb3c4" stroke-width="0.4" opacity="0.4"/>
           </pattern>
+          <!-- Glow doré pour les particules -->
+          <filter id="sparkGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
 
         <!-- Plateau d'impression avec grille -->
@@ -106,13 +115,17 @@
                   fill="#fff2c5" opacity="0"/>
         </g>
 
-        <!-- Particules dorées (animées au survol) -->
-        <g class="cta-particles">
-          <circle cx="80"  cy="160" r="1.4" fill="#f4d976"/>
-          <circle cx="120" cy="160" r="1.2" fill="#dba93a"/>
-          <circle cx="160" cy="160" r="1.6" fill="#fff2c5"/>
-          <circle cx="200" cy="160" r="1.2" fill="#dba93a"/>
-          <circle cx="240" cy="160" r="1.4" fill="#f4d976"/>
+        <!-- Particules dorées qui tombent du logo (clin d'œil au Maroni) -->
+        <g class="cta-particles" filter="url(#sparkGlow)">
+          <circle cx="70"  cy="92"  r="3"   fill="#f4d976"/>
+          <circle cx="105" cy="98"  r="2.5" fill="#dba93a"/>
+          <circle cx="140" cy="92"  r="3.2" fill="#fff2c5"/>
+          <circle cx="180" cy="92"  r="3.2" fill="#fff2c5"/>
+          <circle cx="215" cy="98"  r="2.5" fill="#dba93a"/>
+          <circle cx="250" cy="92"  r="3"   fill="#f4d976"/>
+          <circle cx="90"  cy="108" r="2"   fill="#dba93a"/>
+          <circle cx="160" cy="108" r="2.5" fill="#f4d976"/>
+          <circle cx="230" cy="108" r="2"   fill="#dba93a"/>
         </g>
 
         <!-- Mot ENTRER -->
@@ -129,8 +142,25 @@
 </div>
 
 <main id="main" class="splash" role="main">
-  <div class="splash-logo">OE3D</div>
-  <p class="splash-tagline" data-i18n="tagline">L'appareillage sur mesure au service de votre autonomie</p>
+  <!-- Diaporama d'arrière-plan : photos de Guyane + locaux OE3D -->
+  <div class="splash-slideshow" aria-hidden="true">
+    <img src="assets/bg-photos/guyane-dsc00168.jpg" alt="" class="active" loading="lazy">
+    <img src="assets/bg-photos/guyane-dsc00261.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-dsc00283.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_0325.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_0559.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/locaux-facade-oe3d.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_0919.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_0932.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/locaux-accueil-oe3d.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_1257.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_1863.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/locaux-accueil-oe3d-2.jpg" alt="" loading="lazy">
+    <img src="assets/bg-photos/guyane-img_1899.jpg" alt="" loading="lazy">
+  </div>
+
+  <img class="splash-logo-img" src="assets/logo/oe3d-logo.png" alt="Ortho Espace 3D" width="380">
+  <p class="splash-tagline" data-i18n="tagline"><span class="t-key">L'innovation</span> au service de <span class="t-key">l'autonomie</span></p>
 
   <div class="lang-grid" id="langGrid" role="group" aria-label="Choisir la langue"></div>
 
@@ -230,6 +260,20 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.appendChild(btn);
   });
 });
+
+/* === Diaporama d'arrière-plan du splash === */
+(function () {
+  const slides = document.querySelectorAll(".splash-slideshow img");
+  if (slides.length < 2) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let i = 0;
+  setInterval(() => {
+    slides[i].classList.remove("active");
+    i = (i + 1) % slides.length;
+    slides[i].classList.add("active");
+  }, 5000);
+})();
 </script>
 </body>
 </html>

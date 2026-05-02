@@ -23,8 +23,7 @@
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="../index.html" aria-label="OE3D Accueil">
-      <span class="brand-mark" aria-hidden="true">OE</span>
-      <span>OE3D</span>
+      <img class="brand-logo" src="../assets/logo/oe3d-logo-small.png" alt="OE3D — Ortho Espace 3D">
     </a>
     <nav aria-label="Navigation principale">
       <ul class="nav-list" id="navList">
@@ -33,6 +32,7 @@
         <li><a class="nav-link" href="#parcours">Parcours</a></li>
         <li><a class="nav-link" href="#equipe" data-i18n="nav_team">Équipe</a></li>
         <li><a class="nav-link" href="#modes" data-i18n="nav_modes">Modes d'emploi</a></li>
+        <li><a class="nav-link" href="#videos">Vidéos</a></li>
         <li><a class="nav-link" href="#faq" data-i18n="nav_faq">FAQ</a></li>
         <li><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
         <li><a class="nav-link" href="../pro/index.html" data-i18n="nav_pro" style="color:var(--c-accent-d);font-weight:600">Espace Pro</a></li>
@@ -52,7 +52,7 @@
     <div class="hero-grid">
       <div>
         <span class="hero-eyebrow" data-i18n="hero_eyebrow">📍 Remire-Montjoly · Guyane française</span>
-        <h1 class="hero-title" data-i18n="hero_title">L'appareillage sur mesure au service de votre <span class="accent">autonomie</span></h1>
+        <h1 class="hero-title" data-i18n="hero_title"><span class="t-key">L'innovation</span> au service de <span class="t-key">l'autonomie</span></h1>
         <p class="hero-subtitle" data-i18n="hero_subtitle">Orthèses, prothèses et solutions d'impression 3D personnalisées. Une équipe dédiée, une approche humaine, un engagement éthique envers nos patients et notre territoire guyanais.</p>
         <div class="hero-cta">
           <a class="btn btn-primary btn-lg" href="#contact" data-i18n="cta_appointment">Prendre rendez-vous</a>
@@ -61,11 +61,13 @@
       </div>
       <div class="hero-visual">
         <model-viewer
-          src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-          alt="Aperçu 3D — modèle de démonstration"
+          src="../assets/3d/siege-mousse-tetiere.glb"
+          alt="Siège mousse avec têtière — Ortho Espace 3D"
           camera-controls auto-rotate
           shadow-intensity="1"
-          ar
+          environment-image="neutral"
+          exposure="1"
+          ar ar-modes="webxr scene-viewer quick-look"
           poster="" loading="lazy"></model-viewer>
       </div>
     </div>
@@ -109,34 +111,101 @@
     <div class="section-head">
       <span class="section-eyebrow" data-i18n="sec_3d_eyebrow">Vues 3D interactives</span>
       <h2 class="section-title" data-i18n="sec_3d_title">Explorez nos appareils sous tous les angles</h2>
-      <p class="section-subtitle" data-i18n="sec_3d_subtitle">Orientez, zoomez, observez. Bientôt enrichi avec nos propres scans 3D.</p>
+      <p class="section-subtitle" data-i18n="sec_3d_subtitle">Orientez, zoomez, observez nos pièces réelles imprimées 3D dans nos ateliers de Remire-Montjoly. Compatible réalité augmentée sur smartphone.</p>
     </div>
-    <div class="grid grid-2">
-      <div class="card-feature card">
-        <h3 class="card-title">Orthèse de cheville (démo)</h3>
-        <div style="aspect-ratio:1/1;background:var(--c-bg);border-radius:var(--r-md);overflow:hidden">
+
+    <div class="model-gallery">
+
+      <article class="model-card">
+        <div class="model-stage">
           <model-viewer
-            src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
-            alt="Modèle 3D de démonstration"
-            camera-controls auto-rotate
-            shadow-intensity="0.8" loading="lazy"
-            style="width:100%;height:100%"></model-viewer>
+            src="../assets/3d/botte.glb"
+            alt="Botte d'immobilisation imprimée 3D — Ortho Espace 3D"
+            camera-controls auto-rotate auto-rotate-delay="3000"
+            interaction-prompt="auto"
+            camera-orbit="-30deg 75deg 110%"
+            min-camera-orbit="auto auto 60%"
+            max-camera-orbit="auto auto 200%"
+            shadow-intensity="1" shadow-softness="0.8"
+            environment-image="neutral" exposure="1.05"
+            ar ar-modes="webxr scene-viewer quick-look"
+            loading="lazy"></model-viewer>
+          <button class="model-fullscreen" aria-label="Voir en plein écran" data-target-prev>⛶</button>
         </div>
-        <p style="font-size:var(--fs-sm);margin-top:var(--sp-2)"><em>Modèle de démonstration. Les scans réels d'orthèses OE3D seront ajoutés prochainement.</em></p>
-      </div>
-      <div class="card-feature card">
-        <h3 class="card-title">Prothèse de pied (démo)</h3>
-        <div style="aspect-ratio:1/1;background:var(--c-bg);border-radius:var(--r-md);overflow:hidden">
+        <div class="model-meta">
+          <span class="model-tag">Orthèse</span>
+          <h3 class="model-title">Botte d'immobilisation</h3>
+          <p class="model-desc">Immobilisation post-chirurgicale ou traumatique de la cheville et du pied. Conception sur scan 3D du patient pour un ajustement précis.</p>
+          <ul class="model-specs">
+            <li><strong>Indication</strong> : entorse sévère, fracture, post-op</li>
+            <li><strong>Matériau</strong> : polypropylène (PP) ou polyéthylène (PE)</li>
+            <li><strong>Délai</strong> : adapté à l'urgence de la prescription</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="model-card">
+        <div class="model-stage">
           <model-viewer
-            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-            alt="Modèle 3D de démonstration"
-            camera-controls auto-rotate
-            shadow-intensity="0.8" loading="lazy"
-            style="width:100%;height:100%"></model-viewer>
+            src="../assets/3d/tibiale.glb"
+            alt="Prothèse tibiale imprimée 3D — Ortho Espace 3D"
+            camera-controls auto-rotate auto-rotate-delay="3000"
+            interaction-prompt="auto"
+            camera-orbit="20deg 80deg 110%"
+            min-camera-orbit="auto auto 60%"
+            max-camera-orbit="auto auto 200%"
+            shadow-intensity="1" shadow-softness="0.8"
+            environment-image="neutral" exposure="1.05"
+            ar ar-modes="webxr scene-viewer quick-look"
+            loading="lazy"></model-viewer>
+          <button class="model-fullscreen" aria-label="Voir en plein écran" data-target-prev>⛶</button>
         </div>
-        <p style="font-size:var(--fs-sm);margin-top:var(--sp-2)"><em>Modèle de démonstration. Les scans réels seront ajoutés prochainement.</em></p>
-      </div>
+        <div class="model-meta">
+          <span class="model-tag">Prothèse</span>
+          <h3 class="model-title">Prothèse tibiale</h3>
+          <p class="model-desc">Prothèse de jambe pour amputation tibiale, emboîture sur mesure réalisée par scan 3D du moignon. Légère, ventilée, retouchable.</p>
+          <ul class="model-specs">
+            <li><strong>Indication</strong> : amputation transtibiale</li>
+            <li><strong>Matériau</strong> : composite carbone + emboîture polymère</li>
+            <li><strong>Suivi</strong> : accompagnement personnalisé, comme tous nos appareillages</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="model-card">
+        <div class="model-stage">
+          <model-viewer
+            src="../assets/3d/siege-mousse-tetiere.glb"
+            alt="Siège mousse avec têtière — Ortho Espace 3D"
+            camera-controls auto-rotate auto-rotate-delay="3000"
+            interaction-prompt="auto"
+            camera-orbit="0deg 75deg 110%"
+            min-camera-orbit="auto auto 60%"
+            max-camera-orbit="auto auto 200%"
+            shadow-intensity="1" shadow-softness="0.8"
+            environment-image="neutral" exposure="1.05"
+            ar ar-modes="webxr scene-viewer quick-look"
+            loading="lazy"></model-viewer>
+          <button class="model-fullscreen" aria-label="Voir en plein écran" data-target-prev>⛶</button>
+        </div>
+        <div class="model-meta">
+          <span class="model-tag">Posture</span>
+          <h3 class="model-title">Siège mousse avec têtière</h3>
+          <p class="model-desc">Coquille de positionnement sur mesure pour fauteuil roulant ou poussette adaptée. Confort, soutien postural, prévention des escarres.</p>
+          <ul class="model-specs">
+            <li><strong>Indication</strong> : maintien postural, scoliose, IMC</li>
+            <li><strong>Matériau</strong> : mousse haute densité moulée</li>
+            <li><strong>Adapté</strong> : enfants et adultes</li>
+          </ul>
+        </div>
+      </article>
+
     </div>
+
+    <p class="model-cta-row">
+      <span class="model-icon-ar" aria-hidden="true">📱</span>
+      <span>Sur smartphone, touchez l'icône <strong>RA</strong> en bas du modèle pour voir la pièce <strong>en taille réelle dans votre pièce</strong>.</span>
+    </p>
   </div>
 </section>
 
@@ -147,7 +216,18 @@
       <h2 class="section-title" data-i18n="sec_team_title">Des professionnels à votre service</h2>
       <p class="section-subtitle" data-i18n="sec_team_subtitle">Six métiers complémentaires : conception, fabrication, application, suivi.</p>
     </div>
-    <div class="team-grid" id="teamGrid"></div>
+
+    <figure class="team-banner">
+      <img src="../assets/team/oe3d-equipe.jpg"
+           alt="Illustration symbolique de l'équipe Ortho Espace 3D"
+           loading="lazy">
+      <figcaption>
+        Visuel d'ambiance — illustration générée par intelligence artificielle.
+        L'équipe réelle vous accueille en cabinet à Remire-Montjoly, Saint-Laurent-du-Maroni et Kourou.
+      </figcaption>
+    </figure>
+
+    <ul class="team-roster" id="teamRoster"></ul>
     <p style="margin-top:var(--sp-5);text-align:center;font-size:var(--fs-sm);color:var(--c-text-muted)">
       <em>De nouveaux portraits, inspirés de l'identité actuelle de l'équipe, sont en préparation.</em>
     </p>
@@ -388,7 +468,7 @@
           <div class="contact-row-icon" aria-hidden="true">🏥</div>
           <div class="contact-row-content">
             <strong data-i18n="sites_label">Sites de consultation</strong>
-            <p data-i18n="site_cay">Cayenne (siège) — Lun–Ven 7h30–15h30</p>
+            <p data-i18n="site_cay">Remire-Montjoly (siège) — Lun–Ven 7h30–15h30</p>
             <p data-i18n="site_slm">Saint-Laurent du Maroni — Sur rendez-vous</p>
             <p data-i18n="site_kou">Kourou — Sur rendez-vous</p>
           </div>
@@ -494,14 +574,15 @@
 <script>document.write('<script src="../js/i18n.js?v=' + window.__v + '"><\/script>');</script>
 <script>document.write('<script src="../js/a11y.js?v=' + window.__v + '"><\/script>');</script>
 <script>document.write('<script src="../js/main.js?v=' + window.__v + '"><\/script>');</script>
+<script>document.write('<script src="../js/bg-slideshow.js?v=' + window.__v + '"><\/script>');</script>
 <script>
 const TEAM = [
-  { initials:"A", name:"Apoïna", role:"Orthoprothésiste — Application", img:"../photos et films/photos-equipe/apoina.jpg", tags:["Prothèses","Mammaires","Atelier"] },
-  { initials:"C", name:"Céline", role:"Orthoprothésiste — Application", img:"../photos et films/photos-equipe/celine.jpg", tags:["Mammaires","Scoliose","Atelier"] },
-  { initials:"Ch", name:"Christophe", role:"Directeur · Orthoprothésiste", img:"../photos et films/photos-equipe/christophe.jpg", tags:["Orthèses","3D","R&D"] },
-  { initials:"Cn", name:"Christian", role:"Technicien — Atelier", img:"../photos et films/photos-equipe/christian.jpg", tags:["Fabrication","3D","R&D"] },
-  { initials:"S", name:"Steeve", role:"Technicien — Atelier", img:"../photos et films/photos-equipe/steeve.jpg", tags:["Fabrication","Matériaux"] },
-  { initials:"T", name:"Thaïna", role:"Secrétariat & Coordination", img:"../photos et films/photos-equipe/thaina-portrait2.jpg", tags:["Accueil","Admin"] }
+  { initials:"A", name:"Apoïna", role:"Orthoprothésiste — Application", img:"../assets/team/apoina.jpg", tags:["Prothèses","Mammaires","Atelier"] },
+  { initials:"C", name:"Céline", role:"Orthoprothésiste — Application", img:"../assets/team/celine.jpg", tags:["Mammaires","Scoliose","Atelier"] },
+  { initials:"Ch", name:"Christophe", role:"Directeur · Orthoprothésiste", img:"../assets/team/christophe.jpg", tags:["Orthèses","3D","R&D"] },
+  { initials:"Cn", name:"Christian", role:"Technicien — Atelier", img:"../assets/team/christian.jpg", tags:["Fabrication","3D","R&D"] },
+  { initials:"S", name:"Steeve", role:"Technicien — Atelier", img:"../assets/team/steeve.jpg", tags:["Fabrication","Matériaux"] },
+  { initials:"T", name:"Thaïna", role:"Secrétariat & Coordination", img:"../assets/team/thaina.jpg", tags:["Accueil","Admin"] }
 ];
 const MODES = [
   { icon:"🦵", k:"mode_botte",    d:"mode_botte_desc",    t:"Botte et gouttière",                 dt:"Notice d'utilisation et d'entretien des bottes de marche et gouttières de posture.",  pdf:"botte"     },
@@ -667,21 +748,21 @@ function openVideoFAQ(scriptNum, title) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const tg = document.getElementById("teamGrid");
-  TEAM.forEach(m => {
-    const card = document.createElement("article");
-    card.className = "team-card";
-    card.innerHTML = `
-      <div class="team-portrait">
-        <img src="${m.img}" alt="${m.name} — ${m.role}" loading="lazy"
-             onerror="this.outerHTML='<div class=&quot;team-portrait-fallback&quot; aria-hidden=&quot;true&quot;>${m.initials}</div>'">
-      </div>
-      <h3 class="team-name">${m.name}</h3>
-      <p class="team-role">${m.role}</p>
-      <div class="team-tags">${m.tags.map(t=>`<span class="team-tag">${t}</span>`).join("")}</div>
-    `;
-    tg.appendChild(card);
-  });
+  const tr = document.getElementById("teamRoster");
+  if (tr) {
+    TEAM.forEach(m => {
+      const li = document.createElement("li");
+      li.className = "team-row";
+      li.innerHTML = `
+        <div class="team-row-id">
+          <strong class="team-row-name">${m.name}</strong>
+          <span class="team-row-role">${m.role}</span>
+        </div>
+        <div class="team-row-tags">${m.tags.map(t=>`<span class="team-tag">${t}</span>`).join("")}</div>
+      `;
+      tr.appendChild(li);
+    });
+  }
 
   const ml = document.getElementById("modeList");
   MODES.forEach(m => {
@@ -760,6 +841,32 @@ document.addEventListener("DOMContentLoaded", () => {
     sel.appendChild(o);
   });
   sel.addEventListener("change", e => OE3D_I18N.setLang(e.target.value));
+});
+
+/* === Galerie 3D : bouton plein écran === */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".model-fullscreen").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const stage = btn.closest(".model-stage");
+      if (!stage) return;
+      if (document.fullscreenElement === stage) {
+        document.exitFullscreen();
+      } else if (stage.requestFullscreen) {
+        stage.requestFullscreen().catch(() => {
+          // Fallback : classe CSS si l'API fullscreen est bloquée
+          stage.classList.toggle("is-fullscreen");
+        });
+      } else {
+        stage.classList.toggle("is-fullscreen");
+      }
+    });
+  });
+  // Échap = sortir du fallback
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".model-stage.is-fullscreen").forEach(s => s.classList.remove("is-fullscreen"));
+    }
+  });
 });
 </script>
 </body>
