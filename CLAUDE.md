@@ -51,6 +51,29 @@ Pour relancer : double-clic sur `~/Desktop/restart-server.command`.
 
 ---
 
+## 🔄 Workflow de travail (mode C — push à la demande)
+
+**Convention adoptée le 3 mai 2026** : on travaille en double rail local + GitHub Pages.
+
+| Site | URL | Mise à jour |
+|---|---|---|
+| **Local** (validation immédiate) | http://localhost:8000/ | Hot-reload via `live-server` à chaque sauvegarde |
+| **GitHub Pages** (équipe + bêta-testeurs) | https://christophe-maina.github.io/site-oe3d/ | Auto-déploie en 30-60 s après chaque `git push` |
+
+**Cycle :**
+1. Claude édite les fichiers → `live-server` reflète immédiatement sur localhost
+2. Christophe valide le rendu sur localhost
+3. Christophe dit « pousse » ou « push » → Claude lance `~/Desktop/push-changes.command` via le Mac
+4. GitHub Pages auto-déploie en moins d'une minute
+
+**Source GitHub Pages** : "Deploy from a branch" sur `claude/resume-website-redesign-v2-Vvwhh` (Settings → Pages).
+La branche `main` n'est pas modifiée pour l'instant — V2 reste isolée jusqu'à validation finale.
+
+**Règle anti-conflit Git** : Christophe et Claude ne touchent pas aux mêmes fichiers en même temps.
+Pour les médias (photos, PDFs, vidéos déposées par Christophe) : Claude n'y touche pas par défaut.
+
+---
+
 ## 🏗️ Architecture
 
 ```

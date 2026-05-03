@@ -955,6 +955,9 @@
       <span data-i18n="footer_credits">© 2026 Ortho Espace 3D — Tous droits réservés</span>
       <span>Site v2 — refonte 2026</span>
     </div>
+    <p class="footer-credit-cter">
+      Conception du site : <a href="https://www.c-ter.fr" target="_blank" rel="noopener"><strong>C-TER</strong> · www.c-ter.fr</a>
+    </p>
   </div>
 </footer>
 
@@ -996,9 +999,9 @@
 <script>document.write('<script src="../js/bg-slideshow.js?v=' + window.__v + '"><\/script>');</script>
 <script>
 const TEAM = [
-  { initials:"A", name:"Apoïna", role:"Orthoprothésiste — Application", img:"../assets/team/apoina.jpg", tags:["Prothèses","Mammaires","Atelier"] },
-  { initials:"C", name:"Céline", role:"Orthoprothésiste — Application", img:"../assets/team/celine.jpg", tags:["Mammaires","Scoliose","Atelier"] },
-  { initials:"Ch", name:"Christophe", role:"Directeur · Orthoprothésiste", img:"../assets/team/christophe.jpg", tags:["Orthèses","3D","R&D"] },
+  { initials:"A", name:"Apoïna", role:"Orthoprothésiste — Application", img:"../assets/team/apoina.jpg", tags:["Prothèses","Prothèses mammaires","Atelier"] },
+  { initials:"C", name:"Céline", role:"Orthoprothésiste — Application", img:"../assets/team/celine.jpg", tags:["Prothèses mammaires","Orthèses","Atelier"] },
+  { initials:"Ch", name:"Christophe", role:"Orthoprothésiste — Application", img:"../assets/team/christophe.jpg", tags:["Orthèses","3D","R&D"] },
   { initials:"Cn", name:"Christian", role:"Technicien — Atelier", img:"../assets/team/christian.jpg", tags:["Fabrication","3D","R&D"] },
   { initials:"S", name:"Steeve", role:"Technicien — Atelier", img:"../assets/team/steeve.jpg", tags:["Fabrication","Matériaux"] },
   { initials:"T", name:"Thaïna", role:"Secrétariat & Coordination", img:"../assets/team/thaina.jpg", tags:["Accueil","Admin"] }
@@ -1207,6 +1210,29 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".mode-card [data-action='download']").forEach(a => {
     a.addEventListener("click", e => { a.href = getDownloadPdfHref(a.dataset.pdf); });
   });
+
+  // Deep-link via flash code (?mode=KEY) — ouvre directement le PDF du mode demandé
+  // Utilisé par les QR codes distribués aux patients
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const modeKey = params.get("mode");
+    if (modeKey) {
+      const target = MODES.find(m => m.pdf === modeKey);
+      if (target) {
+        // Petit délai pour que la modal soit bien initialisée
+        setTimeout(() => {
+          openPdf(target.pdf, target.t);
+          // Faire défiler la section #modes en arrière-plan
+          const modesSection = document.getElementById("modes");
+          if (modesSection) modesSection.scrollIntoView({ behavior: "instant", block: "start" });
+        }, 200);
+        // Nettoyer l'URL (sans recharger) pour ne pas garder le ?mode= en historique
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState({}, "", window.location.pathname + "#modes");
+        }
+      }
+    }
+  } catch (e) { /* deep-link silently ignored */ }
 
   const vg = document.getElementById("videoGrid");
   VIDEOS.forEach(v => {

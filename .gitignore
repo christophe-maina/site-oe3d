@@ -15,3 +15,6 @@ test_*.png
 .DS_Store
 .AppleDouble
 *.icloud
+
+# Generated QR codes for modes d'emploi (regenerable)
+_qr-modes/
