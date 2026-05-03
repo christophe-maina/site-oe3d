@@ -1,9 +1,14 @@
 # Dossiers lourds / media — hors Git
 _deploy/
 _versions/
-videos/
 photos et films/
-site/
+
+# Le dossier site/ contient des photos lourdes (73 Mo) — on ne pousse que les PDFs des modes d'emploi
+site/*
+!site/mode d'emploie/
+!site/mode d'emploie/**
+
+# (videos/ est versionné : 82 Mo — vidéos HeyGen FAQ multilingues, indispensable au site)
 
 # QR codes d'accès pro (contiennent les tokens personnels — privé)
 _qr-acces/
