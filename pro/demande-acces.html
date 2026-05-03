@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demande d'accès — Outil de prescription OE3D</title>
+<meta name="robots" content="noindex,nofollow">
+<script>window.__v = Date.now();</script>
+<script>document.write('<link rel="stylesheet" href="../css/style.css?v=' + window.__v + '">');</script>
+<style>
+  body { background: var(--c-bg); }
+  .demande-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--sp-7) var(--sp-5);
+  }
+  .demande-card {
+    background: var(--c-bg);
+    border-radius: var(--r-lg);
+    padding: var(--sp-6) var(--sp-5);
+    box-shadow: var(--sh-3, 0 12px 32px rgba(0,0,0,0.12));
+  }
+  .demande-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--c-text-soft);
+    text-decoration: none;
+    font-size: var(--fs-sm);
+    margin-bottom: var(--sp-3);
+  }
+  .demande-back:hover { color: var(--c-primary); }
+  .demande-title {
+    font-family: var(--ff-display);
+    font-size: var(--fs-xl);
+    color: var(--c-primary);
+    margin: 0 0 var(--sp-2);
+  }
+  .demande-intro {
+    margin: 0 0 var(--sp-5);
+    color: var(--c-text);
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+  }
+  .demande-info {
+    background: #eaf2fa;
+    border-left: 4px solid var(--c-primary);
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-md);
+    margin-bottom: var(--sp-5);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+  }
+  .demande-info strong { color: var(--c-primary); }
+  .demande-success {
+    background: #e0f5ec;
+    border-left: 4px solid #1e8a55;
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--r-md);
+    margin-bottom: var(--sp-4);
+    color: #0f5235;
+    font-size: var(--fs-sm);
+    display: none;
+  }
+  .demande-success.is-visible { display: block; }
+  .demande-success a {
+    color: var(--c-primary);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="demande-wrap">
+  <a href="index.html" class="demande-back">← Retour à l'espace pro</a>
+
+  <div class="demande-card">
+    <h1 class="demande-title">Demande d'accès à l'outil de prescription</h1>
+    <p class="demande-intro">
+      L'outil d'aide au libellé de prescription LPPR Chapitre 4 est réservé aux professionnels de santé.
+      Remplissez ce formulaire — votre demande sera traitée sous 48 heures ouvrées.
+    </p>
+
+    <div class="demande-info">
+      <strong>📋 Vérification</strong><br>
+      Votre numéro RPPS sera vérifié sur l'<a href="https://annuaire.sante.fr/" target="_blank" rel="noopener">annuaire santé officiel</a>.
+      Pour les orthoprothésistes : numéro ADELI ou agrément CPAM.
+    </div>
+
+    <div id="successMsg" class="demande-success">
+      ✅ <strong>Votre client de messagerie va s'ouvrir avec votre demande pré-remplie.</strong>
+      Vérifiez les informations puis envoyez l'email. Si rien ne s'est ouvert, copiez le message ci-dessous
+      et envoyez-le manuellement à <a href="mailto:c.maina@me.com">c.maina@me.com</a>.
+    </div>
+
+    <form id="demandeForm">
+      <div class="form-row">
+        <label for="d-nom">Nom *</label>
+        <input type="text" id="d-nom" required>
+      </div>
+      <div class="form-row">
+        <label for="d-prenom">Prénom *</label>
+        <input type="text" id="d-prenom" required>
+      </div>
+      <div class="form-row">
+        <label for="d-rpps">N° RPPS ou ADELI *</label>
+        <input type="text" id="d-rpps" required pattern="[0-9]{9,11}" inputmode="numeric"
+               placeholder="ex : 10000456789 (11 chiffres pour RPPS)">
+      </div>
+      <div class="form-row">
+        <label for="d-profession">Profession *</label>
+        <select id="d-profession" required>
+          <option value="">— Sélectionner —</option>
+          <optgroup label="Première mise — spécialistes">
+            <option>Médecin MPR (Médecine Physique et Réadaptation)</option>
+            <option>Chirurgien orthopédiste</option>
+            <option>Rhumatologue</option>
+            <option>Neurochirurgien</option>
+            <option>Neurologue</option>
+            <option>Endocrinologue</option>
+            <option>Chirurgien plasticien</option>
+            <option>Chirurgien vasculaire</option>
+          </optgroup>
+          <optgroup label="Sous condition (rattachement établissement)">
+            <option>Pédiatre (en établissement de santé)</option>
+            <option>Dermatologue (en établissement de santé)</option>
+            <option>Gériatre (en établissement de santé)</option>
+          </optgroup>
+          <optgroup label="Renouvellement à l'identique">
+            <option>Médecin traitant / généraliste</option>
+          </optgroup>
+          <optgroup label="Autre">
+            <option>Orthoprothésiste agréé</option>
+            <option>Autre (préciser dans le motif)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="d-etabl">Établissement / Cabinet *</label>
+        <input type="text" id="d-etabl" required placeholder="ex : Centre Hospitalier de Cayenne">
+      </div>
+      <div class="form-row">
+        <label for="d-email">Email professionnel *</label>
+        <input type="email" id="d-email" required>
+      </div>
+      <div class="form-row">
+        <label for="d-tel">Téléphone</label>
+        <input type="tel" id="d-tel">
+      </div>
+      <div class="form-row">
+        <label for="d-motif">Motif de la demande / commentaire</label>
+        <textarea id="d-motif" rows="3" placeholder="ex : suivi de patients OE3D ; intégration équipe ..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:var(--sp-3)">
+        Envoyer ma demande
+      </button>
+    </form>
+
+    <p style="margin-top:var(--sp-5);font-size:var(--fs-xs);color:var(--c-text-muted);line-height:1.55;">
+      <strong>Données personnelles :</strong> les informations transmises sont utilisées uniquement
+      pour traiter votre demande d'accès et vérifier votre statut professionnel. Conservation : 3 ans
+      après dernière utilisation. RGPD : pour exercer vos droits, contactez
+      <a href="mailto:c.maina@me.com">c.maina@me.com</a>.
+    </p>
+  </div>
+</div>
+
+<script>
+document.getElementById("demandeForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var v = id => document.getElementById(id).value.trim();
+  var subject = "[OE3D Pro] Demande d'accès outil de prescription — " + v("d-nom") + " " + v("d-prenom");
+  var body =
+    "Bonjour Christophe,\n\n" +
+    "Demande d'accès à l'outil de prescription OE3D :\n\n" +
+    "• Nom : " + v("d-nom") + "\n" +
+    "• Prénom : " + v("d-prenom") + "\n" +
+    "• RPPS / ADELI : " + v("d-rpps") + "\n" +
+    "• Profession : " + v("d-profession") + "\n" +
+    "• Établissement : " + v("d-etabl") + "\n" +
+    "• Email : " + v("d-email") + "\n" +
+    "• Téléphone : " + (v("d-tel") || "—") + "\n" +
+    "• Motif : " + (v("d-motif") || "—") + "\n\n" +
+    "Vérification RPPS suggérée : https://annuaire.sante.fr/\n\n" +
+    "Cordialement.";
+
+  window.location.href = "mailto:c.maina@me.com?subject=" +
+    encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+  document.getElementById("successMsg").classList.add("is-visible");
+});
+</script>
+
+<!-- Diaporama d'arrière-plan global (cohérence identité site) -->
+<script>document.write('<script src="../js/bg-slideshow.js?v=' + window.__v + '"><\/script>');</script>
+</body>
+</html>

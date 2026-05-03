@@ -339,14 +339,398 @@
 </head>
 <body>
 
+<!-- ============================================================
+     PORTE D'ACCÈS — outil réservé aux professionnels de santé
+     ============================================================ -->
+<div id="prescriber-gate" class="pgate" role="dialog" aria-modal="true" aria-labelledby="pgate-title">
+  <div class="pgate-card">
+    <div class="pgate-header">
+      <div class="pgate-icon" aria-hidden="true">
+        <i class="fa fa-stethoscope"></i>
+      </div>
+      <h1 id="pgate-title">Outil réservé aux professionnels de santé</h1>
+      <p class="pgate-subtitle">Aide au libellé d'ordonnance — Grand appareillage LPPR Chapitre 4</p>
+    </div>
+
+    <div class="pgate-body">
+      <div class="pgate-alert pgate-alert-info">
+        <strong><i class="fa fa-circle-info"></i> Pour qui ?</strong>
+        <p>Cet outil est destiné exclusivement aux <strong>professionnels de santé prescripteurs</strong>
+        habilités à prescrire le grand appareillage (LPPR Chapitre 4) :</p>
+        <p style="margin-top:6px;"><strong>Première mise — médecin spécialiste :</strong>
+        MPR, chirurgien orthopédiste, rhumatologue, neurochirurgien, neurologue, endocrinologue,
+        chirurgien plasticien, chirurgien vasculaire.</p>
+        <p style="margin-top:6px;"><strong>Sous condition de rattachement à un établissement de santé :</strong>
+        pédiatre, dermatologue, gériatre.</p>
+        <p style="margin-top:6px;"><strong>Renouvellement à l'identique :</strong>
+        tout médecin (y compris médecin traitant).</p>
+        <p style="margin-top:6px;">Également ouvert aux <strong>orthoprothésistes agréés</strong>.</p>
+      </div>
+
+      <div class="pgate-alert pgate-alert-warning">
+        <strong><i class="fa fa-triangle-exclamation"></i> Outil d'aide en cours de test</strong>
+        <p>Cet outil est en phase d'évaluation et ne se substitue pas à l'expertise du prescripteur ni
+        au texte officiel de la nomenclature LPPR. <strong>Vérifiez toujours les codes LPP en vigueur
+        sur</strong> <a href="https://www.ameli.fr/" target="_blank" rel="noopener">ameli.fr</a> ou le
+        BOSS. En cas de doute, contactez OE3D au +594 594 28 28 08.</p>
+      </div>
+
+      <div class="pgate-alert pgate-alert-danger">
+        <strong><i class="fa fa-shield-halved"></i> Données patient</strong>
+        <p>Cet outil ne stocke aucune donnée patient. N'y saisissez <strong>aucune information
+        identifiante</strong> (nom, prénom, n° de sécurité sociale, date de naissance précise).
+        L'ordonnance définitive doit être rédigée sur support sécurisé conforme RGPD/HDS.</p>
+      </div>
+
+      <div class="pgate-alert pgate-alert-locked">
+        <strong><i class="fa fa-lock"></i> Accès strictement sur invitation</strong>
+        <p>L'outil de prescription OE3D est en phase de test fermé. L'accès est délivré <strong>nominativement</strong>
+        sous la forme d'un lien personnel envoyé par email après validation de votre statut professionnel.
+        Aucune connexion par mot de passe ou simple confirmation n'est possible.</p>
+      </div>
+    </div>
+
+    <div class="pgate-footer">
+      <a href="index.html" class="pgate-btn pgate-btn-ghost">
+        <i class="fa fa-arrow-left"></i> Retour à l'espace pro
+      </a>
+      <a href="demande-acces.html" class="pgate-btn pgate-btn-primary">
+        <i class="fa fa-paper-plane"></i> Demander un accès
+      </a>
+    </div>
+
+    <div class="pgate-request">
+      <p>Vous n'avez pas encore reçu votre lien d'accès personnel ?</p>
+      <a href="demande-acces.html" class="pgate-request-link">
+        <i class="fa fa-paper-plane"></i> Faire une demande d'accès
+      </a>
+    </div>
+  </div>
+
+  <!-- Bandeau "Connecté en tant que..." (visible après token validé) -->
+  <div id="pgate-banner" class="pgate-banner" style="display:none;">
+    <span class="pgate-banner-icon" aria-hidden="true">✅</span>
+    <span>Connecté : <strong id="pgate-banner-name">—</strong></span>
+    <button id="pgate-logout" class="pgate-banner-logout">Se déconnecter</button>
+  </div>
+</div>
+
+<style>
+.pgate {
+  position: fixed; inset: 0;
+  background: rgba(15, 30, 50, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+.pgate.is-hidden { display: none; }
+.pgate-card {
+  background: #fff;
+  max-width: 720px;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.pgate-header {
+  background: linear-gradient(135deg, #2d4a8a, #1a5276);
+  color: #fff;
+  padding: 28px 32px;
+  text-align: center;
+}
+.pgate-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: grid; place-items: center;
+  font-size: 24px;
+}
+.pgate-header h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.pgate-subtitle {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+.pgate-body {
+  padding: 24px 32px;
+}
+.pgate-alert {
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.pgate-alert strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.pgate-alert strong i { margin-right: 6px; }
+.pgate-alert p { margin: 0; }
+.pgate-alert a { color: inherit; text-decoration: underline; }
+.pgate-alert-info {
+  background: #eaf2fa;
+  color: #1a3a5a;
+  border-left: 4px solid #2d4a8a;
+}
+.pgate-alert-warning {
+  background: #fff4e0;
+  color: #7a4a10;
+  border-left: 4px solid #e67e22;
+}
+.pgate-alert-danger {
+  background: #fceeee;
+  color: #7a1f1f;
+  border-left: 4px solid #c0392b;
+}
+.pgate-alert-locked {
+  background: #f3eef9;
+  color: #432b6b;
+  border-left: 4px solid #6b4ba8;
+  margin-top: 20px;
+}
+.pgate-alert-locked strong i { margin-right: 8px; }
+.pgate-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 2px solid #2d4a8a;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a3a5a;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.pgate-consent:hover { background: #eaf2fa; }
+.pgate-consent input {
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  cursor: pointer;
+  accent-color: #2d4a8a;
+}
+.pgate-consent input:checked + span {
+  color: #2d4a8a;
+}
+.pgate-footer {
+  padding: 20px 32px;
+  background: #f5f7fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pgate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 8px;
+  border: 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.pgate-btn-ghost {
+  background: transparent;
+  color: #5a6a7a;
+  border: 1px solid #d0d6dc;
+}
+.pgate-btn-ghost:hover {
+  background: #fff;
+  color: #2d4a8a;
+}
+.pgate-btn-primary {
+  background: linear-gradient(135deg, #2d4a8a, #1a5276);
+  color: #fff;
+}
+.pgate-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.pgate-btn-primary:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+.pgate-request {
+  border-top: 1px solid #e0e6ec;
+  padding: 18px 32px;
+  text-align: center;
+  font-size: 13px;
+  color: #5a6a7a;
+  background: #fff;
+}
+.pgate-request p { margin: 0 0 8px; }
+.pgate-request-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: #2d4a8a;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid #2d4a8a;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.pgate-request-link:hover {
+  background: #2d4a8a;
+  color: #fff;
+}
+.pgate-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: linear-gradient(135deg, #1e8a55, #0f6b3f);
+  color: #fff;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  z-index: 9000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.pgate-banner-icon { font-size: 16px; }
+.pgate-banner-logout {
+  margin-left: auto;
+  background: rgba(255,255,255,0.18);
+  border: 0;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.pgate-banner-logout:hover { background: rgba(255,255,255,0.28); }
+body.pgate-authed { padding-top: 38px; }
+@media (max-width: 540px) {
+  .pgate-header { padding: 22px 20px; }
+  .pgate-body { padding: 18px 20px; }
+  .pgate-footer { padding: 16px 20px; flex-direction: column; }
+  .pgate-btn { width: 100%; justify-content: center; }
+  .pgate-header h1 { font-size: 18px; }
+}
+</style>
+
+<!-- Liste blanche des tokens d'accès (édition manuelle par l'admin) -->
+<script src="_access-list.js"></script>
+<script>
+(function () {
+  var KEY_TOKEN   = "oe3d_pro_access_token";
+  var KEY_NAME    = "oe3d_pro_access_name";
+  // ⚠️ ACCÈS STRICTEMENT PAR TOKEN — aucune confirmation manuelle possible
+  var LEGACY_KEY_GATE_OK = "oe3d_prescriber_gate_passed"; // nettoyage des sessions historiques
+
+  var gate     = document.getElementById("prescriber-gate");
+  var banner   = document.getElementById("pgate-banner");
+  var bannerName = document.getElementById("pgate-banner-name");
+  var logoutBtn  = document.getElementById("pgate-logout");
+
+  function showBanner(name) {
+    bannerName.textContent = name;
+    banner.style.display = "flex";
+    document.body.classList.add("pgate-authed");
+  }
+  function unlock() {
+    gate.classList.add("is-hidden");
+    document.body.style.overflow = "";
+  }
+  function lockScroll() {
+    document.body.style.overflow = "hidden";
+  }
+
+  // 1. URL contient ?acces=TOKEN ?
+  var params = new URLSearchParams(window.location.search);
+  var urlToken = params.get("acces");
+  var WL = window.OE3D_ACCESS_LIST || {};
+
+  function isValidToken(tok) {
+    if (!tok || !WL[tok]) return null;
+    var entry = WL[tok];
+    if (entry.expire) {
+      var today = new Date().toISOString().slice(0, 10);
+      if (today > entry.expire) return null; // expiré
+    }
+    return entry;
+  }
+
+  if (urlToken) {
+    var entry = isValidToken(urlToken);
+    if (entry) {
+      try {
+        localStorage.setItem(KEY_TOKEN, urlToken);
+        localStorage.setItem(KEY_NAME, entry.nom);
+      } catch (e) {}
+      // Nettoyer l'URL pour ne pas exposer le token dans l'historique
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+      showBanner(entry.nom);
+      unlock();
+      return;
+    }
+  }
+
+  // 2. Token déjà mémorisé en localStorage ?
+  try {
+    var savedToken = localStorage.getItem(KEY_TOKEN);
+    var savedEntry = isValidToken(savedToken);
+    if (savedEntry) {
+      showBanner(savedEntry.nom);
+      unlock();
+      return;
+    } else if (savedToken) {
+      // Token périmé/révoqué → on nettoie
+      localStorage.removeItem(KEY_TOKEN);
+      localStorage.removeItem(KEY_NAME);
+    }
+  } catch (e) {}
+
+  // 3. Aucune autre voie : on nettoie les anciennes sessions historiques
+  //    (au cas où un visiteur avait passé l'ancien gate par checkbox)
+  try {
+    sessionStorage.removeItem(LEGACY_KEY_GATE_OK);
+  } catch (e) {}
+
+  // 4. Afficher la gate verrouillée — pas d'option d'entrée sans token
+  lockScroll();
+
+  // Bouton "se déconnecter" du bandeau (visible uniquement si déjà connecté)
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+      try {
+        localStorage.removeItem(KEY_TOKEN);
+        localStorage.removeItem(KEY_NAME);
+        sessionStorage.removeItem(LEGACY_KEY_GATE_OK);
+      } catch (e) {}
+      window.location.reload();
+    });
+  }
+})();
+</script>
+
 <!-- NAV -->
 <nav class="nav">
-  <a href="prescripteurs.html?mode=pro" class="nav-logo">
-    <img src="site/logo/logo-oe3d.png" onerror="this.style.display='none'" alt="OE3D"/>
+  <a href="index.html" class="nav-logo">
+    <img src="../assets/logo/oe3d-logo-small.png" onerror="this.style.display='none'" alt="OE3D"/>
     <span>Ortho Espace 3D</span>
   </a>
   <div>
-    <a href="prescripteurs.html?mode=pro" class="nav-back"><i class="fa fa-arrow-left"></i> Espace Pro</a>
+    <a href="index.html" class="nav-back"><i class="fa fa-arrow-left"></i> Espace Pro</a>
   </div>
 </nav>
 
@@ -461,7 +845,7 @@
   </div>
 </div>
 
-<div class="page-footer">Ortho Espace 3D — Remire-Montjoly, Guyane · <a href="prescripteurs.html?mode=pro">Retour</a></div>
+<div class="page-footer">Ortho Espace 3D — Remire-Montjoly, Guyane · <a href="index.html">Retour à l'espace pro</a></div>
 
 <script>
 var DATA=null,currentStep='situations',currentSituation=null,currentAppareil=null,selections={},adjSelections={};
@@ -980,6 +1364,5 @@ function calcRen(){
 }
 function resetRen(){document.getElementById('ren-app').value='';document.getElementById('ren-age').value='';document.getElementById('ren-result').classList.remove('visible')}
 </script>
-<script src="../js/bg-slideshow.js"></script>
 </body>
 </html>

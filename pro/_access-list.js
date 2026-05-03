@@ -20,7 +20,35 @@
 
 window.OE3D_ACCESS_LIST = {
 
+  // ============================================================
+  // ACCÈS PERMANENTS — Équipe OE3D et bêta-testeurs
+  // ============================================================
+
+  "cm-master-7e3a-9b4c-1f2d-5a8e": {
+    nom: "Christophe Maina",
+    rpps: "—",
+    profession: "Co-direction OE3D · Orthoprothésiste",
+    etabl: "Ortho Espace 3D — Remire-Montjoly",
+    email: "c.maina@me.com",
+    date_octroi: "2026-05-03",
+    expire: null,
+    role: "admin"
+  },
+
+  "ma-beta-8b1d-3f5a-9c2e-6d7b": {
+    nom: "Marc Anatovi",
+    rpps: "—",
+    profession: "Bêta-testeur",
+    etabl: "—",
+    email: "—",
+    date_octroi: "2026-05-03",
+    expire: null,
+    role: "beta-tester"
+  },
+
+  // ============================================================
   // EXEMPLE (laissé en commentaire pour montrer le format) :
+  // ============================================================
   // "k7m9-xq2v-3rt8": {
   //   nom: "Dr Jean Dupont",
   //   rpps: "10000456789",
@@ -31,13 +59,4 @@ window.OE3D_ACCESS_LIST = {
   //   expire: null
   // },
 
-  "2cjr-afeb-34ed": {
-    nom: "ANATOVI Marc",
-    rpps: "88+7+77",
-    profession: "Medecin MPR",
-    etabl: "Cayenne",
-    email: "m;anatovi@aol.fr",
-    date_octroi: "2026-05-03",
-    expire: null
-  },
 };

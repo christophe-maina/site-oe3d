@@ -5,6 +5,9 @@ videos/
 photos et films/
 site/
 
+# QR codes d'accès pro (contiennent les tokens personnels — privé)
+_qr-acces/
+
 # Fichiers tests temporaires
 test_*.png
 

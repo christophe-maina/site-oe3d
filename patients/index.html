@@ -17,7 +17,7 @@
 <noscript><link rel="stylesheet" href="../css/style.css"></noscript>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
-<body>
+<body class="has-glass-sections">
 <a class="skip-link" href="#main">Aller au contenu</a>
 
 <header class="topbar">
@@ -25,25 +25,61 @@
     <a class="brand" href="../index.html" aria-label="OE3D Accueil">
       <img class="brand-logo" src="../assets/logo/oe3d-logo-small.png" alt="OE3D — Ortho Espace 3D">
     </a>
-    <nav aria-label="Navigation principale">
-      <ul class="nav-list" id="navList">
-        <li><a class="nav-link" href="#accueil" data-i18n="nav_home">Accueil</a></li>
-        <li><a class="nav-link" href="#expertises" data-i18n="nav_expertises">Expertises</a></li>
-        <li><a class="nav-link" href="#parcours">Parcours</a></li>
-        <li><a class="nav-link" href="#equipe" data-i18n="nav_team">Équipe</a></li>
-        <li><a class="nav-link" href="#modes" data-i18n="nav_modes">Modes d'emploi</a></li>
-        <li><a class="nav-link" href="#videos">Vidéos</a></li>
-        <li><a class="nav-link" href="#faq" data-i18n="nav_faq">FAQ</a></li>
-        <li><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
-        <li><a class="nav-link" href="../pro/index.html" data-i18n="nav_pro" style="color:var(--c-accent-d);font-weight:600">Espace Pro</a></li>
-      </ul>
-    </nav>
+    <button id="megaMenuBtn" class="megamenu-toggle megamenu-toggle--lively" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="megaMenu">
+      <span class="megamenu-toggle-icon" aria-hidden="true">☰</span>
+      <span class="megamenu-toggle-label">Menu</span>
+      <span class="megamenu-toggle-pulse" aria-hidden="true"></span>
+    </button>
+    <div class="topbar-spacer" aria-hidden="true"></div>
     <div class="topbar-actions">
-      <select id="langSwitch" aria-label="Changer la langue" style="padding:6px 10px;border-radius:8px;border:1px solid var(--c-border);background:var(--c-bg)"></select>
-      <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">☰</button>
+      <label class="topbar-lang" title="Choisir la langue / Choose language">
+        <span class="topbar-lang-icon" aria-hidden="true">🌐</span>
+        <span class="topbar-lang-label">Langue</span>
+        <select id="langSwitch" aria-label="Changer la langue / Change language"></select>
+        <span class="topbar-lang-caret" aria-hidden="true">▾</span>
+      </label>
+      <a class="topbar-btn-pro" href="../pro/index.html" data-i18n="nav_pro">
+        <span class="topbar-btn-pro-icon" aria-hidden="true">🩻</span>
+        <span class="topbar-btn-pro-label">Espace Pro</span>
+      </a>
     </div>
   </div>
 </header>
+
+<!-- ============================================================
+     MEGA-MENU plein écran (toutes les sections en grille de boutons)
+     ============================================================ -->
+<div id="megaMenu" class="megamenu" role="dialog" aria-modal="true" aria-labelledby="megaMenuTitle" hidden>
+  <div class="megamenu-overlay" data-megamenu-close></div>
+  <div class="megamenu-panel">
+    <div class="megamenu-header">
+      <h2 id="megaMenuTitle">Naviguer dans le site</h2>
+      <button class="megamenu-close" aria-label="Fermer le menu" data-megamenu-close>✕</button>
+    </div>
+    <nav aria-label="Toutes les sections">
+      <div class="megamenu-grid">
+        <a class="megabtn" href="#accueil" data-megamenu-close><span class="megabtn-icon">🏠</span><span class="megabtn-label">Accueil</span></a>
+        <a class="megabtn" href="#expertises" data-megamenu-close><span class="megabtn-icon">🩺</span><span class="megabtn-label">Nos expertises</span></a>
+        <a class="megabtn" href="#prise-en-charge" data-megamenu-close><span class="megabtn-icon">🏥</span><span class="megabtn-label">Prise en charge</span></a>
+        <a class="megabtn" href="#esthetique" data-megamenu-close><span class="megabtn-icon">🎨</span><span class="megabtn-label">Couleurs & esthétique</span></a>
+        <a class="megabtn" href="#impression3d" data-megamenu-close><span class="megabtn-icon">🖨️</span><span class="megabtn-label">Impression 3D</span></a>
+        <a class="megabtn" href="#nouveautes" data-megamenu-close><span class="megabtn-icon">✨</span><span class="megabtn-label">Nouveautés</span></a>
+        <a class="megabtn" href="#vues-3d" data-megamenu-close><span class="megabtn-icon">📐</span><span class="megabtn-label">Vues 3D interactives</span></a>
+        <a class="megabtn" href="#modes" data-megamenu-close><span class="megabtn-icon">📋</span><span class="megabtn-label">Modes d'emploi</span></a>
+        <a class="megabtn" href="#videos" data-megamenu-close><span class="megabtn-icon">▶️</span><span class="megabtn-label">Vidéos FAQ</span></a>
+        <a class="megabtn" href="#parcours" data-megamenu-close><span class="megabtn-icon">🛤️</span><span class="megabtn-label">Parcours patient</span></a>
+        <a class="megabtn" href="#equipe" data-megamenu-close><span class="megabtn-icon">👥</span><span class="megabtn-label">Notre équipe</span></a>
+        <a class="megabtn" href="#temoignages" data-megamenu-close><span class="megabtn-icon">💬</span><span class="megabtn-label">Témoignages</span></a>
+        <a class="megabtn" href="#partenaires" data-megamenu-close><span class="megabtn-icon">🤝</span><span class="megabtn-label">Engagement local</span></a>
+        <a class="megabtn" href="#depot" data-megamenu-close><span class="megabtn-icon">📤</span><span class="megabtn-label">Dépôt de documents</span></a>
+        <a class="megabtn" href="#ethique" data-megamenu-close><span class="megabtn-icon">⚖️</span><span class="megabtn-label">Notre engagement</span></a>
+        <a class="megabtn" href="#faq" data-megamenu-close><span class="megabtn-icon">❓</span><span class="megabtn-label">Questions fréquentes</span></a>
+        <a class="megabtn" href="#contact" data-megamenu-close><span class="megabtn-icon">📞</span><span class="megabtn-label">Contact</span></a>
+        <a class="megabtn megabtn-pro" href="../pro/index.html" data-megamenu-close><span class="megabtn-icon">🩻</span><span class="megabtn-label">Espace Pro</span></a>
+      </div>
+    </nav>
+  </div>
+</div>
 
 <main id="main">
 
@@ -51,28 +87,52 @@
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="hero-eyebrow" data-i18n="hero_eyebrow">📍 Remire-Montjoly · Guyane française</span>
-        <h1 class="hero-title" data-i18n="hero_title"><span class="t-key">L'innovation</span> au service de <span class="t-key">l'autonomie</span></h1>
+        <img class="hero-logo" src="../assets/logo/oe3d-logo.png" alt="Ortho Espace 3D" width="320">
+        <h1 class="hero-title" data-i18n="hero_title"><span class="t-key t-key-ortho">L'innovation</span> au service de <span class="t-key t-key-3d">l'autonomie</span></h1>
         <p class="hero-subtitle" data-i18n="hero_subtitle">Orthèses, prothèses et solutions d'impression 3D personnalisées. Une équipe dédiée, une approche humaine, un engagement éthique envers nos patients et notre territoire guyanais.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary btn-lg" href="#contact" data-i18n="cta_appointment">Prendre rendez-vous</a>
-          <a class="btn btn-ghost btn-lg" href="#modes" data-i18n="cta_modes">Voir les modes d'emploi</a>
+          <a class="btn btn-primary btn-lg" href="#contact" data-i18n="cta_appointment">📞 Prendre rendez-vous</a>
+          <a class="btn btn-secondary btn-lg" href="#modes" data-i18n="cta_modes">📋 Voir les modes d'emploi</a>
+          <a class="btn btn-secondary btn-lg" href="#esthetique">🎨 Choix des transferts</a>
+          <a class="btn btn-secondary btn-lg" href="#depot">📤 Dépôt de documents</a>
         </div>
       </div>
-      <div class="hero-visual">
-        <model-viewer
-          src="../assets/3d/siege-mousse-tetiere.glb"
-          alt="Siège mousse avec têtière — Ortho Espace 3D"
-          camera-controls auto-rotate
-          shadow-intensity="1"
-          environment-image="neutral"
-          exposure="1"
-          ar ar-modes="webxr scene-viewer quick-look"
-          poster="" loading="lazy"></model-viewer>
+      <div class="hero-right-stack">
+        <figure class="hero-photo-card">
+          <img
+            src="../assets/bg-photos/locaux-facade-oe3d.jpg"
+            alt="Façade du cabinet Ortho Espace 3D, 1 rue des Arômes, Remire-Montjoly, Guyane française"
+            loading="eager" fetchpriority="high">
+          <figcaption class="hero-photo-badge">
+            <span class="hero-photo-badge-pin" aria-hidden="true">📍</span>
+            <span class="hero-photo-badge-text">
+              <strong>1 rue des Arômes</strong>
+              <span>Remire-Montjoly · Guyane française</span>
+            </span>
+          </figcaption>
+        </figure>
+        <div class="hero-map-card" aria-label="Plan d'accès au cabinet">
+          <iframe
+            title="Plan d'accès — Ortho Espace 3D, 1 rue des Arômes, Remire-Montjoly"
+            src="https://www.google.com/maps?q=1%20rue%20des%20Ar%C3%B4mes%2C%2097354%20Remire-Montjoly%2C%20Guyane%20fran%C3%A7aise&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+          <a class="hero-map-link"
+             href="https://www.google.com/maps/dir/?api=1&destination=1+rue+des+Ar%C3%B4mes%2C+97354+Remire-Montjoly%2C+Guyane+fran%C3%A7aise"
+             target="_blank" rel="noopener">
+             ➜ Itinéraire
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<aside class="legal-notice container" role="note">
+  <span class="legal-notice-icon" aria-hidden="true">ℹ️</span>
+  <strong>Site d'information uniquement.</strong> Ortho Espace 3D ne pratique pas la vente en ligne. Toute prise en charge se fait sur <strong>prescription médicale</strong> et en partenariat avec la <strong>Sécurité sociale</strong> (LPPR Chapitre 4) et votre mutuelle. Pour engager une démarche, prenez rendez-vous au cabinet.
+</aside>
 
 <section id="expertises" class="section section-bg-soft">
   <div class="container">
@@ -97,12 +157,72 @@
         <h3 class="card-title" data-i18n="exp_3d_title">Impression 3D</h3>
         <p data-i18n="exp_3d_desc">Conception numérique et impression d'appareillages personnalisés, légers, ajustés au millimètre.</p>
       </article>
-      <article class="card">
+      <article class="card card-soon">
+        <span class="card-soon-badge">Bientôt</span>
         <div class="card-icon" aria-hidden="true">🩹</div>
-        <h3 class="card-title" data-i18n="exp_petit_title">Petit appareillage</h3>
-        <p data-i18n="exp_petit_desc">Aides techniques, ceintures, bandages, semelles, accessoires d'autonomie au quotidien.</p>
+        <h3 class="card-title">Petit appareillage</h3>
+        <p>Ceintures, bandages, semelles, aides techniques, accessoires d'autonomie au quotidien. <strong>Service à venir</strong> — nous vous tiendrons informés dès qu'il sera disponible au cabinet.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<section id="impression3d" class="section section-bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Innovation</span>
+      <h2 class="section-title">Impression 3D &amp; développement</h2>
+      <p class="section-subtitle">Notre atelier dispose de technologies d'impression 3D de pointe pour concevoir, prototyper et fabriquer des appareillages sur mesure directement en Guyane.</p>
+    </div>
+
+    <div class="i3d-grid">
+      <div class="grid grid-2 i3d-tech">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🖨️</div>
+          <h3 class="card-title">Impression FDM filament</h3>
+          <p>Dépôt couche par couche de filament thermoplastique (PP, PETG, PLA…). Technologie robuste, adaptée aux orthèses et coques imprimées sur mesure.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">📐</div>
+          <h3 class="card-title">Scan 3D</h3>
+          <p>Numérisation précise de l'anatomie du patient pour une adaptation parfaite, sans plâtre.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🧬</div>
+          <h3 class="card-title">CAO médicale</h3>
+          <p>Conception assistée par ordinateur spécialisée en biomécanique.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🌍</div>
+          <h3 class="card-title">Local Guyane</h3>
+          <p>Fabrication locale, délais réduits, circuit court et éco-responsable.</p>
+        </article>
+      </div>
+
+      <div class="i3d-gallery">
+        <figure class="i3d-figure i3d-figure-wide">
+          <img src="../assets/sections/impression3d/cheneau-3d.jpg" alt="Corset Cheneau imprimé 3D — atelier OE3D" loading="lazy">
+          <figcaption>Corset Cheneau imprimé 3D, conçu sur scan du patient.</figcaption>
+        </figure>
+        <figure class="i3d-figure">
+          <img src="../assets/sections/impression3d/ecran-cfao.jpg" alt="Écran CFAO — conception assistée par ordinateur" loading="lazy">
+          <figcaption>CFAO — Conception sur mesure</figcaption>
+        </figure>
+        <figure class="i3d-figure">
+          <img src="../assets/sections/impression3d/ecran-slicer.jpg" alt="Écran slicer — préparation à l'impression 3D" loading="lazy">
+          <figcaption>Slicer — Préparation à l'impression</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <details class="i3d-explain">
+      <summary>L'impression 3D, comment ça marche ? <span class="i3d-explain-arrow" aria-hidden="true">▾</span></summary>
+      <div class="i3d-explain-body">
+        <p><strong>L'impression 3D, c'est fabriquer un objet en déposant des couches successives de matière</strong>, comme une imprimante classique mais en volume. À partir d'un fichier numérique 3D, la machine "imprime" la forme couche par couche, jusqu'à obtenir la pièce finale.</p>
+        <p>Pour vos appareils orthopédiques, on commence par un <strong>scan 3D</strong> précis de la zone à appareiller — pas de plâtre, pas d'attente. Ce scan est ensuite modélisé sur ordinateur (<strong>CAO</strong>), puis envoyé à l'imprimante qui fabrique votre pièce <strong>sur mesure au millimètre près</strong>, dans nos ateliers de Remire-Montjoly.</p>
+        <p>Avantages : <strong>plus léger</strong>, <strong>plus précis</strong>, <strong>plus rapide</strong> qu'une fabrication traditionnelle, et <strong>retouchable</strong> à volonté à partir du fichier numérique.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -115,6 +235,34 @@
     </div>
 
     <div class="model-gallery">
+
+      <article class="model-card">
+        <div class="model-stage">
+          <model-viewer
+            src="../assets/3d/cheneau.glb"
+            alt="Corset Chêneau imprimé 3D — Ortho Espace 3D"
+            camera-controls auto-rotate auto-rotate-delay="3000"
+            interaction-prompt="auto"
+            camera-orbit="25deg 80deg 110%"
+            min-camera-orbit="auto auto 60%"
+            max-camera-orbit="auto auto 200%"
+            shadow-intensity="1.1" shadow-softness="0.8"
+            environment-image="neutral" exposure="1.05"
+            ar ar-modes="webxr scene-viewer quick-look"
+            loading="lazy"></model-viewer>
+          <button class="model-fullscreen" aria-label="Voir en plein écran" data-target-prev>⛶</button>
+        </div>
+        <div class="model-meta">
+          <span class="model-tag">Orthèse</span>
+          <h3 class="model-title">Corset Chêneau</h3>
+          <p class="model-desc">Correction des scolioses idiopathiques de l'enfant et de l'adolescent. Conception sur scan 3D du tronc, ajustement personnalisé, finition lisse imprimée 3D.</p>
+          <ul class="model-specs">
+            <li><strong>Indication</strong> : scoliose évolutive, idéalement avant la puberté osseuse</li>
+            <li><strong>Matériau</strong> : PP/PETG semi-rigide, perforations de ventilation</li>
+            <li><strong>Suivi</strong> : visites de contrôle régulières, retouches sur fichier numérique</li>
+          </ul>
+        </div>
+      </article>
 
       <article class="model-card">
         <div class="model-stage">
@@ -209,6 +357,109 @@
   </div>
 </section>
 
+<section id="esthetique" class="section section-bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Personnalisation</span>
+      <h2 class="section-title">Couleurs, matières &amp; esthétique</h2>
+      <p class="section-subtitle">Votre appareillage est le prolongement de votre corps — il doit vous ressembler. Choix de motifs et finitions à préparer avant votre rendez-vous.</p>
+    </div>
+
+    <div class="esth-info">
+      <div class="esth-info-card">
+        <div class="esth-info-icon" aria-hidden="true">🎨</div>
+        <h3>Choix de couleurs et motifs</h3>
+        <p>Certaines orthèses peuvent être fabriquées avec un large choix de couleurs et de motifs. Le choix se fait le jour de la mesure grâce à un éventail proposé par votre applicateur. Sélection ci-dessous pour préparer votre rendez-vous.</p>
+      </div>
+      <div class="esth-info-card">
+        <div class="esth-info-icon" aria-hidden="true">🖨️</div>
+        <h3>Solutions imprimées 3D</h3>
+        <p>Le choix de couleurs et motifs personnalisés n'est pas encore disponible pour les appareillages réalisés en impression 3D. Nous travaillons activement sur cette possibilité.</p>
+      </div>
+      <div class="esth-info-card">
+        <div class="esth-info-icon" aria-hidden="true">🌿</div>
+        <h3>Matériaux de qualité</h3>
+        <p>Carbone, thermoplastique, silicone — des matériaux durables, légers et hypoallergéniques.</p>
+      </div>
+    </div>
+
+    <h3 class="motifs-title">Motifs &amp; tissus disponibles</h3>
+    <div class="motifs-grid">
+      <figure class="motif-card"><img src="../assets/sections/motifs/ballons.jpg"      alt="Motif ballons de sport" loading="lazy"><figcaption>Ballons</figcaption></figure>
+      <figure class="motif-card"><img src="../assets/sections/motifs/circuit.jpg"      alt="Motif circuit électronique" loading="lazy"><figcaption>Circuit</figcaption></figure>
+      <figure class="motif-card"><img src="../assets/sections/motifs/dinosaures.jpg"   alt="Motif dinosaures" loading="lazy"><figcaption>Dinosaures</figcaption></figure>
+      <figure class="motif-card"><img src="../assets/sections/motifs/gouttes-deau.jpg" alt="Motif gouttes d'eau" loading="lazy"><figcaption>Gouttes d'eau</figcaption></figure>
+      <figure class="motif-card"><img src="../assets/sections/motifs/graffitis.jpg"    alt="Motif graffitis" loading="lazy"><figcaption>Graffitis</figcaption></figure>
+      <figure class="motif-card"><img src="../assets/sections/motifs/jeans.jpg"        alt="Motif jeans" loading="lazy"><figcaption>Jeans</figcaption></figure>
+    </div>
+    <p class="motifs-note">D'autres motifs (gamme adulte) sont disponibles au cabinet — n'hésitez pas à les demander lors de votre rendez-vous, ou à nous les demander par <a href="#contact">la fiche contact</a>.</p>
+  </div>
+</section>
+
+<section id="nouveautes" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Actualités</span>
+      <h2 class="section-title">Nouveautés &amp; innovations</h2>
+      <p class="section-subtitle">Les dernières avancées en orthoprothèse et les solutions techniques récemment ajoutées au catalogue OE3D.</p>
+    </div>
+
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="news-card-img"><img src="../assets/sections/nouveautes/aqualeg.jpg" alt="Système Aqualeg — coque aquatique" loading="lazy"></div>
+        <div class="news-card-body">
+          <span class="news-card-badge news-card-badge-new">Nouveau</span>
+          <h3 class="news-card-title">Aqualeg — Soft Shell</h3>
+          <p>Coques réalistes ultra-résistantes pour prothèses tibiales et fémorales. Activités aquatiques et estivales sans changer de prothèse.</p>
+          <a href="https://www.aqualeg.com/" target="_blank" rel="noopener" class="news-card-link">Découvrir Aqualeg →</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-img"><img src="../assets/sections/nouveautes/genou-electronique.jpg" alt="Genou électronique à microprocesseur" loading="lazy"></div>
+        <div class="news-card-body">
+          <span class="news-card-badge">Innovation</span>
+          <h3 class="news-card-title">Genoux à microprocesseur</h3>
+          <p>Agréments Ottobock, Össur et Blatchford. Prothèses intelligentes qui s'adaptent en temps réel à votre activité pour une mobilité naturelle et sécurisée.</p>
+          <div class="news-card-links">
+            <a href="https://www.ottobock.com/" target="_blank" rel="noopener" class="news-card-link">Ottobock →</a>
+            <a href="https://www.ossur.com/" target="_blank" rel="noopener" class="news-card-link">Össur →</a>
+            <a href="https://www.blatchfordmobility.com/" target="_blank" rel="noopener" class="news-card-link">Blatchford →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-img"><img src="../assets/sections/nouveautes/main-bionique.jpg" alt="Main bionique myoélectrique" loading="lazy"></div>
+        <div class="news-card-body">
+          <span class="news-card-badge">Innovation</span>
+          <h3 class="news-card-title">Mains bioniques myoélectriques</h3>
+          <p>Agréments Ottobock et Össur. Prothèses haute technologie commandées par les signaux musculaires pour restaurer la préhension et l'autonomie.</p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-img"><img src="../assets/sections/nouveautes/mammaire.jpg" alt="Prothèses mammaires Anita" loading="lazy"></div>
+        <div class="news-card-body">
+          <span class="news-card-badge">Partenaire</span>
+          <h3 class="news-card-title">Prothèses mammaires</h3>
+          <p>Solutions complètes pour reconstruction post-mastectomie : prothèses externes Anita, lingerie adaptée, accompagnement personnalisé.</p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-img"><img src="../assets/sections/nouveautes/ultraflex.jpg" alt="Système Ultraflex pour orthèses dynamiques" loading="lazy"></div>
+        <div class="news-card-body">
+          <span class="news-card-badge">Innovation</span>
+          <h3 class="news-card-title">Ultraflex — orthèses dynamiques</h3>
+          <p>Système d'orthèses correctrices à mémoire de forme pour la rééducation neurologique et orthopédique. Particulièrement adapté à la pédiatrie.</p>
+          <a href="https://www.ultraflexsystems.com/" target="_blank" rel="noopener" class="news-card-link">Découvrir Ultraflex →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="equipe" class="section section-bg-warm">
   <div class="container">
     <div class="section-head">
@@ -253,6 +504,76 @@
       <p class="section-subtitle" data-i18n="sec_faq_subtitle">Cinq capsules pédagogiques sous-titrées en 9 langues.</p>
     </div>
     <div class="video-grid" id="videoGrid"></div>
+  </div>
+</section>
+
+<section id="prise-en-charge" class="section section-bg-warm">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Remboursement &amp; financement</span>
+      <h2 class="section-title">Prise en charge de votre appareillage</h2>
+      <p class="section-subtitle">Les prothèses et orthèses sont inscrites à la Liste des Produits et Prestations Remboursables (LPPR — Chapitre 4). Nous vous guidons pas à pas dans les démarches.</p>
+    </div>
+
+    <div class="pec-grid">
+      <div class="pec-cards">
+        <article class="pec-card">
+          <div class="pec-card-icon" aria-hidden="true">🏥</div>
+          <h3>Assurance Maladie</h3>
+          <p><strong>100 % du tarif LPP</strong> remboursé sur le grand appareillage (Chapitre 4).</p>
+        </article>
+        <article class="pec-card">
+          <div class="pec-card-icon" aria-hidden="true">📝</div>
+          <h3>Tiers payant</h3>
+          <p>Nous appliquons le tiers payant pour vous éviter l'avance de frais.</p>
+        </article>
+        <article class="pec-card">
+          <div class="pec-card-icon" aria-hidden="true">🤝</div>
+          <h3>CAF / MDPH</h3>
+          <p>Aides complémentaires selon votre situation et votre taux d'invalidité.</p>
+        </article>
+      </div>
+
+      <div class="pec-steps-wrap">
+        <div class="pec-lppr-badge">
+          <span class="pec-lppr-icon" aria-hidden="true">📖</span>
+          <div>
+            <strong>LPPR — Chapitre 4</strong>
+            <span>Grand appareillage : prothèses et orthèses sur mesure</span>
+          </div>
+        </div>
+        <ol class="pec-steps">
+          <li>
+            <span class="pec-step-num">1</span>
+            <div><strong>Prescription médicale</strong><br><span class="pec-step-sub">Votre médecin établit l'ordonnance de grand appareillage.</span></div>
+          </li>
+          <li>
+            <span class="pec-step-num">2</span>
+            <div><strong>Entente préalable</strong><br><span class="pec-step-sub">Demande de prise en charge à l'Assurance Maladie (délai ~15 jours).</span></div>
+          </li>
+          <li>
+            <span class="pec-step-num">3</span>
+            <div><strong>Bilan et mesures</strong><br><span class="pec-step-sub">Rendez-vous au cabinet pour la prise de mesures et le bilan fonctionnel.</span></div>
+          </li>
+          <li>
+            <span class="pec-step-num">4</span>
+            <div><strong>Fabrication sur mesure</strong><br><span class="pec-step-sub">Conception et fabrication de votre appareillage dans notre atelier.</span></div>
+          </li>
+          <li>
+            <span class="pec-step-num">5</span>
+            <div><strong>Remise et suivi</strong><br><span class="pec-step-sub">Essayage, réglages et suivi à long terme inclus.</span></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="pec-note pec-note-info">
+      <strong>💡 À propos des mutuelles</strong>
+      <p>Sur le <strong>grand appareillage (LPPR Chapitre 4)</strong> — orthèses, prothèses, corsets, corsets-sièges — l'Assurance Maladie rembourse <strong>100 % du tarif LPP</strong>. La mutuelle n'intervient pas sur ces appareils, sauf pour d'éventuelles options hors nomenclature (esthétique, finitions premium…) selon votre contrat.</p>
+      <p>La <strong>prise en charge mutuelle</strong> au sens classique concerne le <strong>petit appareillage (LPPR Chapitre 1)</strong> : ceintures lombaires, semelles, bandages, aides techniques. OE3D ne propose pas encore ce service — nous vous tiendrons informés dès qu'il sera disponible.</p>
+    </div>
+
+    <p class="pec-note"><em>Les modalités exactes peuvent varier selon votre situation. Renseignez-vous au cabinet, nous vous accompagnons dans toutes les démarches administratives.</em></p>
   </div>
 </section>
 
@@ -353,73 +674,162 @@
   </div>
 </section>
 
+<!-- ============================================================
+     PARTENARIATS ASSOCIATIFS LOCAUX (Guyane)
+     OE3D apporte son soutien technique bénévole à des
+     associations guyanaises culturelles et sportives.
+     ============================================================ -->
 <section id="partenaires" class="section section-bg-warm">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow">Partenariats</span>
-      <h2 class="section-title">Un réseau de fabricants indépendants</h2>
-      <p class="section-subtitle">Nos choix techniques sont guidés uniquement par l'intérêt du patient. Pas de partenariat exclusif imposé.</p>
+      <span class="section-eyebrow">Engagement local</span>
+      <h2 class="section-title">Nos partenariats associatifs en Guyane</h2>
+      <p class="section-subtitle">Fiers de notre territoire, nous apportons notre soutien technique bénévole à des associations guyanaises qui font vivre la culture et le sport en Guyane.</p>
     </div>
-    <div class="partners" style="margin-top:var(--sp-6)">
-      <div class="partner">Aqualeg</div>
-      <div class="partner">Ottobock</div>
-      <div class="partner">Össur</div>
-      <div class="partner">Blatchford</div>
-      <div class="partner">Anita</div>
-      <div class="partner">Bodynov</div>
-      <div class="partner">Bird</div>
-      <div class="partner">Ultraflex</div>
+
+    <div class="partenariats-grid">
+      <!-- H'Art Guyane -->
+      <a href="https://www.hartguyane.fr" target="_blank" rel="noopener" class="partenariat-card">
+        <div class="partenariat-logo" aria-hidden="true">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="56" fill="#fef5e0" stroke="#d4a847" stroke-width="2"/>
+            <text x="60" y="58" text-anchor="middle" font-family="Playfair Display, serif" font-size="32" font-weight="800" fill="#2d4a8a">H'Art</text>
+            <text x="60" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#d4a847">Guyane</text>
+            <path d="M30 95 Q60 108 90 95" stroke="#d4a847" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <h3 class="partenariat-name">H'Art Guyane</h3>
+        <p class="partenariat-type">Association culturelle & artistique · Danse</p>
+        <p class="partenariat-desc">Nous accompagnons H'Art Guyane (école de danse Gladys Demba) en apportant notre expertise technique pour soutenir leurs projets culturels et artistiques sur le territoire.</p>
+        <span class="partenariat-link">Découvrir <span aria-hidden="true">→</span></span>
+      </a>
+
+      <!-- L'Espoir Cycliste Guyanais -->
+      <a href="https://www.instagram.com/espoir_cycliste_guyanais/" target="_blank" rel="noopener" class="partenariat-card">
+        <div class="partenariat-logo" aria-hidden="true">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="56" fill="#eaf2fa" stroke="#2d4a8a" stroke-width="2"/>
+            <circle cx="42" cy="72" r="16" stroke="#2d4a8a" stroke-width="3" fill="none"/>
+            <circle cx="78" cy="72" r="16" stroke="#2d4a8a" stroke-width="3" fill="none"/>
+            <path d="M42 72 L58 42 L72 56 L78 72" stroke="#e67e22" stroke-width="3" fill="none" stroke-linejoin="round"/>
+            <circle cx="58" cy="42" r="3" fill="#e67e22"/>
+            <circle cx="72" cy="56" r="3" fill="#e67e22"/>
+            <text x="60" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#2d4a8a">ECG</text>
+          </svg>
+        </div>
+        <h3 class="partenariat-name">L'Espoir Cycliste Guyanais</h3>
+        <p class="partenariat-type">Association sportive · Cyclisme</p>
+        <p class="partenariat-desc">Nous soutenons techniquement L'Espoir Cycliste Guyanais dans leurs activités sportives, contribuant au développement du cyclisme et de la pratique sportive en Guyane.</p>
+        <span class="partenariat-link">Suivre sur Instagram <span aria-hidden="true">↗</span></span>
+      </a>
     </div>
+
+    <p class="partenariat-note" role="note">
+      <span class="partenariat-note-icon" aria-hidden="true">❤️</span>
+      <span>Soutien technique bénévole — Ortho Espace 3D s'engage pour la Guyane au-delà de son activité professionnelle.</span>
+    </p>
   </div>
 </section>
 
 <section id="depot" class="section">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow">Dépôt de documents</span>
-      <h2 class="section-title">Comment nous transmettre vos documents</h2>
-      <p class="section-subtitle">Ordonnances, demandes d'entente préalable, comptes-rendus médicaux : trois canaux à votre disposition.</p>
+      <span class="section-eyebrow">Espace patient</span>
+      <h2 class="section-title">Dépôt de documents sécurisé</h2>
+      <p class="section-subtitle">Transmettez vos documents médicaux en toute sécurité — ordonnances, attestations, photos, imagerie. Tout est centralisé et chiffré.</p>
     </div>
-    <div class="deposit-grid" style="margin-top:var(--sp-6)">
-      <div class="deposit-card">
-        <div class="deposit-card-icon" aria-hidden="true">🏥</div>
-        <h3 class="card-title">Sur place</h3>
-        <p>Dépôt directement à l'accueil du cabinet, pendant les heures d'ouverture.</p>
+
+    <div class="depot-grid">
+      <div class="depot-info">
+        <div class="security-badges">
+          <span class="security-badge"><span aria-hidden="true">🔒</span> Chiffrement bout en bout</span>
+          <span class="security-badge"><span aria-hidden="true">🛡️</span> RGPD conforme</span>
+          <span class="security-badge"><span aria-hidden="true">🏥</span> Certifié HDS</span>
+          <span class="security-badge"><span aria-hidden="true">🇫🇷</span> Hébergé en France</span>
+        </div>
+
+        <h3 class="depot-subtitle">Documents acceptés</h3>
+        <div class="doc-types-grid">
+          <div class="doc-type"><span class="doc-type-icon" aria-hidden="true">📋</span><span>Ordonnance</span></div>
+          <div class="doc-type"><span class="doc-type-icon" aria-hidden="true">🪪</span><span>Attestation Sécu</span></div>
+          <div class="doc-type"><span class="doc-type-icon" aria-hidden="true">📷</span><span>Photos</span></div>
+          <div class="doc-type"><span class="doc-type-icon" aria-hidden="true">🩻</span><span>Imagerie</span></div>
+          <div class="doc-type"><span class="doc-type-icon" aria-hidden="true">📄</span><span>Compte-rendu</span></div>
+          <div class="doc-type"><span class="doc-type-icon" aria-hidden="true">📁</span><span>Autres docs</span></div>
+        </div>
+
+        <p class="depot-alt">
+          <strong>Autres canaux :</strong> sur place au cabinet (Lun–Ven 7h30–15h30), par email à
+          <a href="mailto:contact@orthoespace3d.fr">contact@orthoespace3d.fr</a>, ou par
+          <a href="https://wa.me/594594282808" target="_blank" rel="noopener">WhatsApp</a>.
+        </p>
       </div>
-      <div class="deposit-card">
-        <div class="deposit-card-icon" aria-hidden="true">✉️</div>
-        <h3 class="card-title">Par email</h3>
-        <p>Envoyez vos documents scannés à <a href="mailto:contact@orthoespace3d.fr">contact@orthoespace3d.fr</a></p>
-      </div>
-      <div class="deposit-card">
-        <div class="deposit-card-icon" aria-hidden="true">💬</div>
-        <h3 class="card-title">Par WhatsApp</h3>
-        <p>Photo de votre ordonnance au <a href="https://wa.me/594594282808" target="_blank" rel="noopener">+594 594 28 28 08</a> avec votre nom et prénom.</p>
+
+      <div class="bluefiles-card">
+        <div class="bluefiles-header">
+          <div class="bluefiles-logo">
+            <span class="bluefiles-logo-icon" aria-hidden="true">🛡️</span>
+            <div>
+              <div class="bluefiles-name">BlueFiles</div>
+              <div class="bluefiles-tag">Transfert sécurisé · Certifié HDS</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="bluefiles-intro">
+          Vos documents sont transmis via <strong>BlueFiles</strong>, solution certifiée par
+          l'<strong>ANSSI</strong> et l'<strong>Agence du Numérique en Santé</strong>. Aucun compte requis — l'envoi prend moins d'une minute.
+        </p>
+
+        <a href="https://www.bluefiles.fr/" target="_blank" rel="noopener" class="btn btn-primary btn-lg bluefiles-cta" id="bluefilesUploadLink">
+          <span aria-hidden="true">📤</span> Déposer mes documents
+        </a>
+
+        <div class="bluefiles-formats">
+          <span class="bluefiles-tag-pill">PDF</span>
+          <span class="bluefiles-tag-pill">JPG / PNG</span>
+          <span class="bluefiles-tag-pill">DICOM</span>
+          <span class="bluefiles-tag-pill">Jusqu'à 2 Go</span>
+        </div>
+
+        <div class="bluefiles-howto">
+          <div class="bluefiles-howto-title"><span aria-hidden="true">ℹ️</span> Comment ça marche ?</div>
+          <ol class="bluefiles-howto-steps">
+            <li><span class="bluefiles-step-num">1</span> Cliquez sur « Déposer mes documents »</li>
+            <li><span class="bluefiles-step-num">2</span> Indiquez votre nom et sélectionnez vos fichiers</li>
+            <li><span class="bluefiles-step-num">3</span> Validez l'envoi — vous recevez une confirmation par email</li>
+          </ol>
+        </div>
+
+        <p class="bluefiles-legal">
+          <em>⚠️ Lien BlueFiles à configurer dans <code>#bluefilesUploadLink</code> avec l'URL d'upload propre à OE3D.</em>
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="ethique" class="section section-bg-primary">
+<section id="ethique" class="section">
   <div class="container">
     <div class="section-head">
-      <h2 class="section-title" style="color:#fff" data-i18n="ethics_title">Notre engagement éthique</h2>
+      <span class="section-eyebrow">Nos valeurs</span>
+      <h2 class="section-title" data-i18n="ethics_title">Notre engagement éthique</h2>
     </div>
     <div class="grid grid-3">
-      <div class="card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff">
-        <div class="card-icon" aria-hidden="true" style="background:var(--c-accent);color:var(--c-primary-d)">🤝</div>
-        <h3 class="card-title" style="color:#fff">Respect du patient</h3>
-        <p style="color:#cfdfee">Chaque patient est accueilli avec dignité, sans distinction d'origine ou de situation.</p>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🤝</div>
+        <h3 class="card-title">Respect du patient</h3>
+        <p>Chaque patient est accueilli avec dignité, sans distinction d'origine ou de situation.</p>
       </div>
-      <div class="card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff">
-        <div class="card-icon" aria-hidden="true" style="background:var(--c-accent);color:var(--c-primary-d)">🌿</div>
-        <h3 class="card-title" style="color:#fff">Ancrage guyanais</h3>
-        <p style="color:#cfdfee">Fabrication locale, emploi local, partenariats territoriaux. Fiers de notre territoire.</p>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🌿</div>
+        <h3 class="card-title">Ancrage guyanais</h3>
+        <p>Fabrication locale, emploi local, partenariats territoriaux. Fiers de notre territoire.</p>
       </div>
-      <div class="card" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff">
-        <div class="card-icon" aria-hidden="true" style="background:var(--c-accent);color:var(--c-primary-d)">⚖️</div>
-        <h3 class="card-title" style="color:#fff">Indépendance</h3>
-        <p style="color:#cfdfee">Nos choix techniques sont guidés uniquement par l'intérêt du patient.</p>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">⚖️</div>
+        <h3 class="card-title">Indépendance</h3>
+        <p>Nos choix techniques sont guidés uniquement par l'intérêt du patient.</p>
       </div>
     </div>
   </div>
@@ -512,8 +922,12 @@
         <ul>
           <li><a href="#accueil" data-i18n="nav_home">Accueil</a></li>
           <li><a href="#expertises" data-i18n="nav_expertises">Expertises</a></li>
+          <li><a href="#impression3d">Impression 3D</a></li>
           <li><a href="#equipe" data-i18n="nav_team">Équipe</a></li>
           <li><a href="#modes" data-i18n="nav_modes">Modes d'emploi</a></li>
+          <li><a href="#videos">Vidéos</a></li>
+          <li><a href="#prise-en-charge">Prise en charge</a></li>
+          <li><a href="#depot">Dépôt de documents</a></li>
         </ul>
       </div>
       <div>
@@ -532,6 +946,11 @@
         </ul>
       </div>
     </div>
+    <p class="footer-disclaimer">
+      <strong>⚠️ Site d'information uniquement.</strong> OE3D ne pratique aucune vente en ligne. La fourniture d'orthèses et de prothèses se fait
+      <strong>sur prescription médicale</strong> en partenariat avec la <strong>Sécurité sociale</strong> (LPPR Chapitre 4).
+      Pour toute demande, contactez le cabinet ou prenez rendez-vous.
+    </p>
     <div class="footer-bottom">
       <span data-i18n="footer_credits">© 2026 Ortho Espace 3D — Tous droits réservés</span>
       <span>Site v2 — refonte 2026</span>
@@ -841,6 +1260,31 @@ document.addEventListener("DOMContentLoaded", () => {
     sel.appendChild(o);
   });
   sel.addEventListener("change", e => OE3D_I18N.setLang(e.target.value));
+});
+
+/* === Mega-menu plein écran === */
+document.addEventListener("DOMContentLoaded", () => {
+  const mega = document.getElementById("megaMenu");
+  const openBtn = document.getElementById("megaMenuBtn");
+  if (mega && openBtn) {
+    const openMenu = () => {
+      mega.hidden = false;
+      openBtn.setAttribute("aria-expanded", "true");
+      document.body.classList.add("megamenu-open");
+    };
+    const closeMenu = () => {
+      mega.hidden = true;
+      openBtn.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("megamenu-open");
+    };
+    openBtn.addEventListener("click", openMenu);
+    mega.querySelectorAll("[data-megamenu-close]").forEach(el => {
+      el.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !mega.hidden) closeMenu();
+    });
+  }
 });
 
 /* === Galerie 3D : bouton plein écran === */
