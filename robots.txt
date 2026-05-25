@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /demande-acces.html
+Disallow: /protocoles.html
+Disallow: /outil.html
+
+Sitemap: https://orthoespace3d.com/sitemap.xml

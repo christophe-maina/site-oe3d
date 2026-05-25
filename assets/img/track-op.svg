@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" width="320" height="96" font-family="'IBM Plex Sans', system-ui, sans-serif" role="img" aria-label="Track-Op">
+  <title>Track-Op — logo compact</title>
+  <desc>Version compacte sans tagline, pour header navigation et badges.</desc>
+
+  <g transform="translate(2 2) scale(1.15)">
+    <rect x="6" y="14" width="56" height="40" rx="3" fill="#F2EAD9" stroke="#2D2520" stroke-width="2.5"></rect>
+    <rect x="12" y="20" width="18" height="5" fill="#2C5F8D"></rect>
+    <rect x="32" y="20" width="6" height="5" fill="#5B8C4F"></rect>
+    <rect x="12" y="28" width="10" height="5" fill="#C8553D"></rect>
+    <rect x="24" y="28" width="28" height="5" fill="#E8B843"></rect>
+    <rect x="12" y="36" width="36" height="5" fill="#5B8C4F" fill-opacity="0.7"></rect>
+    <rect x="50" y="36" width="4" height="5" fill="#C8553D"></rect>
+    <rect x="12" y="44" width="22" height="5" fill="#2C5F8D" fill-opacity="0.55"></rect>
+    <path d="M54 41 L60 41 M58 39 L60 41 L58 43" stroke="#C8553D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+    <path d="M22 54 L18 64 M48 54 L52 64" stroke="#2D2520" stroke-width="2.5" stroke-linecap="round"></path>
+    <g transform="translate(56 38) rotate(18)">
+      <rect x="0" y="0" width="14" height="30" rx="2" fill="#2D2520"></rect>
+      <circle cx="7" cy="8" r="3.8" fill="#C8553D"></circle>
+      <circle cx="7" cy="8" r="5.6" fill="none" stroke="#C8553D" stroke-width="0.8" stroke-opacity="0.5"></circle>
+      <rect x="3" y="17" width="8" height="1.5" fill="#F2EAD9" fill-opacity="0.6"></rect>
+      <rect x="3" y="21" width="8" height="1.5" fill="#F2EAD9" fill-opacity="0.6"></rect>
+      <rect x="3" y="25" width="8" height="1.5" fill="#F2EAD9" fill-opacity="0.6"></rect>
+    </g>
+  </g>
+
+  <text x="112" y="68" font-size="52" letter-spacing="-2.3">
+    <tspan font-weight="700" fill="#2D2520">Track</tspan><tspan dx="4" font-weight="900" fill="#C8553D">Op</tspan>
+  </text>
+  <circle cx="300" cy="68" r="3.5" fill="#5B8C4F"></circle>
+</svg>
