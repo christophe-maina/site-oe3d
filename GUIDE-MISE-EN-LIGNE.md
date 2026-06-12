@@ -14,7 +14,7 @@ Recherche `[À COMPLÉTER]` dans ces 3 pages et remplace par tes infos réelles 
 À vérifier aussi (repris des maquettes, **à confirmer**) :
 
 - Adresses : « 1 rue des Arômes, 97354 Remire-Montjoly » et « Saint-Laurent 97320 ».
-- Téléphone `0594 28 28 08` et e-mail `contact@orthoespace3d.com` (relevés sur la photo de la devanture).
+- Téléphone `0594 28 28 08` et e-mail `contact@orthoespace3d.fr` (relevés sur la photo de la devanture).
 - Les **formulaires** (contact, demande d'accès) sont en démonstration : ils n'envoient rien.
   Brancher un service d'envoi (ex. formulaire IONOS, Formspree, ou un script PHP) avant de communiquer dessus.
 

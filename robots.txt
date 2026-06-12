@@ -4,4 +4,4 @@ Disallow: /demande-acces.html
 Disallow: /protocoles.html
 Disallow: /outil.html
 
-Sitemap: https://orthoespace3d.com/sitemap.xml
+Sitemap: https://orthoespace3d.fr/sitemap.xml
