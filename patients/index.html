@@ -17,7 +17,7 @@
 <noscript><link rel="stylesheet" href="../css/style.css"></noscript>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
-<body class="has-glass-sections">
+<body>
 <a class="skip-link" href="#main">Aller au contenu</a>
 
 <header class="topbar">
@@ -464,24 +464,10 @@
   <div class="container">
     <div class="section-head">
       <span class="section-eyebrow" data-i18n="sec_team_eyebrow">Notre équipe</span>
-      <h2 class="section-title" data-i18n="sec_team_title">Des professionnels à votre service</h2>
-      <p class="section-subtitle" data-i18n="sec_team_subtitle">Six métiers complémentaires : conception, fabrication, application, suivi.</p>
+      <h2 class="section-title" data-i18n="sec_team_title">Au service de la Guyane, aujourd'hui et demain</h2>
     </div>
 
-    <figure class="team-banner">
-      <img src="../assets/team/oe3d-equipe.jpg"
-           alt="Illustration symbolique de l'équipe Ortho Espace 3D"
-           loading="lazy">
-      <figcaption>
-        Visuel d'ambiance — illustration générée par intelligence artificielle.
-        L'équipe réelle vous accueille en cabinet à Remire-Montjoly, Saint-Laurent-du-Maroni et Kourou.
-      </figcaption>
-    </figure>
-
-    <ul class="team-roster" id="teamRoster"></ul>
-    <p style="margin-top:var(--sp-5);text-align:center;font-size:var(--fs-sm);color:var(--c-text-muted)">
-      <em>De nouveaux portraits, inspirés de l'identité actuelle de l'équipe, sont en préparation.</em>
-    </p>
+    <p class="team-message" data-i18n="sec_team_message">Derrière chaque appareillage, une équipe engagée pour les Guyanais. Nous restons fidèles à notre territoire et à ceux qui y vivent — proches, à l'écoute, dans la durée.</p>
   </div>
 </section>
 
@@ -663,7 +649,7 @@
           <div class="testimonial-author-avatar" aria-hidden="true">F</div>
           <div>
             <div class="testimonial-author-name">Famille K.</div>
-            <div class="testimonial-author-meta">Parents · Kourou</div>
+            <div class="testimonial-author-meta">Parents · Guyane</div>
           </div>
         </div>
       </div>
@@ -880,7 +866,6 @@
             <strong data-i18n="sites_label">Sites de consultation</strong>
             <p data-i18n="site_cay">Remire-Montjoly (siège) — Lun–Ven 7h30–15h30</p>
             <p data-i18n="site_slm">Saint-Laurent du Maroni — Sur rendez-vous</p>
-            <p data-i18n="site_kou">Kourou — Sur rendez-vous</p>
           </div>
         </div>
       </div>
@@ -995,17 +980,8 @@
 
 <script>document.write('<script src="../js/i18n.js?v=' + window.__v + '"><\/script>');</script>
 <script>document.write('<script src="../js/a11y.js?v=' + window.__v + '"><\/script>');</script>
-<script>document.write('<script src="../js/main.js?v=' + window.__v + '"><\/script>');</script>
-<script>document.write('<script src="../js/bg-slideshow.js?v=' + window.__v + '"><\/script>');</script>
-<script>
-const TEAM = [
-  { initials:"A", name:"Apoïna", role:"Orthoprothésiste — Application", img:"../assets/team/apoina.jpg", tags:["Prothèses","Prothèses mammaires","Atelier"] },
-  { initials:"C", name:"Céline", role:"Orthoprothésiste — Application", img:"../assets/team/celine.jpg", tags:["Prothèses mammaires","Orthèses","Atelier"] },
-  { initials:"Ch", name:"Christophe", role:"Orthoprothésiste — Application", img:"../assets/team/christophe.jpg", tags:["Orthèses","3D","R&D"] },
-  { initials:"Cn", name:"Christian", role:"Technicien — Atelier", img:"../assets/team/christian.jpg", tags:["Fabrication","3D","R&D"] },
-  { initials:"S", name:"Steeve", role:"Technicien — Atelier", img:"../assets/team/steeve.jpg", tags:["Fabrication","Matériaux"] },
-  { initials:"T", name:"Thaïna", role:"Secrétariat & Coordination", img:"../assets/team/thaina.jpg", tags:["Accueil","Admin"] }
-];
+<script>document.write('<script src="../js/main.js?v=' + window.__v + '"><\/script>');</script><script>
+/* Section équipe passée en texte le 24 mai 2026 — liste des membres retirée. */
 const MODES = [
   { icon:"🦵", k:"mode_botte",    d:"mode_botte_desc",    t:"Botte et gouttière",                 dt:"Notice d'utilisation et d'entretien des bottes de marche et gouttières de posture.",  pdf:"botte"     },
   { icon:"🛌", k:"mode_coquille", d:"mode_coquille_desc", t:"Coquille de verticalisation et de nuit", dt:"Guide d'utilisation des coquilles : positionnement, réglages, précautions.",        pdf:"coquille"  },
@@ -1015,11 +991,11 @@ const MODES = [
   { icon:"🪑", k:"mode_siege",    d:"mode_siege_desc",    t:"Siège et coquille",                  dt:"Installation, réglages, sécurité et nettoyage des assises moulées.",                  pdf:"siege"     }
 ];
 const VIDEOS = [
-  { k:"faq_v1", t:"Comment entretenir mon orthèse ?",       d:"Nettoyage, séchage et précautions au quotidien.",  script:1 },
-  { k:"faq_v2", t:"Quand faut-il reconsulter ?",            d:"Les signes qui doivent vous alerter.",             script:2 },
-  { k:"faq_v3", t:"Mon premier rendez-vous",                d:"Déroulement, documents à apporter, étapes.",       script:3 },
-  { k:"faq_v4", t:"Comment fonctionne la prise en charge ?", d:"Sécurité sociale, mutuelle, entente préalable.", script:4 },
-  { k:"faq_v5", t:"Notre équipe et nos services",           d:"Découvrez le cabinet et nos compétences.",         script:5 }
+  { k:"faq_v1", t:"Comment entretenir mon appareillage ?",  d:"Nettoyer et ranger votre orthèse, prothèse ou manchon.",          script:1 },
+  { k:"faq_v2", t:"Bien débuter avec sa prothèse",          d:"Les premiers jours d'adaptation : conseils pour bien commencer.", script:2 },
+  { k:"faq_v3", t:"Prendre soin de sa peau au quotidien",   d:"Hygiène cutanée, prévention et signaux d'alerte.",                script:3 },
+  { k:"faq_v4", t:"Mon premier rendez-vous",                d:"Le déroulement de la première consultation, étape par étape.",    script:4 },
+  { k:"faq_v5", t:"Bien débuter avec son orthèse",          d:"Les premiers jours d'adaptation : conseils pour bien commencer.", script:5 }
 ];
 const FAQ = [
   ["faq_q1","faq_a1"],["faq_q2","faq_a2"],["faq_q3","faq_a3"],["faq_q4","faq_a4"],["faq_q5","faq_a5"]
@@ -1170,21 +1146,6 @@ function openVideoFAQ(scriptNum, title) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const tr = document.getElementById("teamRoster");
-  if (tr) {
-    TEAM.forEach(m => {
-      const li = document.createElement("li");
-      li.className = "team-row";
-      li.innerHTML = `
-        <div class="team-row-id">
-          <strong class="team-row-name">${m.name}</strong>
-          <span class="team-row-role">${m.role}</span>
-        </div>
-        <div class="team-row-tags">${m.tags.map(t=>`<span class="team-tag">${t}</span>`).join("")}</div>
-      `;
-      tr.appendChild(li);
-    });
-  }
 
   const ml = document.getElementById("modeList");
   MODES.forEach(m => {

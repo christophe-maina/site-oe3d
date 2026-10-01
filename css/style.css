@@ -223,18 +223,26 @@ body.has-glass-sections .section-bg-primary p {
   color: var(--c-text);
 }
 
-/* Halo blanc épais autour des titres et textes de section pour qu'ils
-   ressortent par-dessus n'importe quelle photo du diaporama */
+/* Halo blanc autour des titres et textes de section pour qu'ils ressortent
+   par-dessus n'importe quelle photo du diaporama.
+   IMPORTANT : on force la couleur du texte (color + -webkit-text-fill-color)
+   pour qu'il s'affiche TOUJOURS. Halo serré et modéré : un halo trop large et
+   à pleine opacité noyait les déliées fines du Playfair sur certains moteurs
+   de rendu (Android/WebView, écrans non-Retina) → « seul le halo apparaissait ». */
 body.has-glass-sections .section-title,
 body.has-glass-sections .section-subtitle,
 body.has-glass-sections .hero-title,
 body.has-glass-sections .hero-subtitle {
+  color: var(--c-text);
+  -webkit-text-fill-color: var(--c-text);
   text-shadow:
-    0 0 6px rgba(255, 255, 255, 1),
-    0 0 14px rgba(255, 255, 255, 0.85),
-    0 0 22px rgba(255, 255, 255, 0.6),
-    0 2px 4px rgba(255, 255, 255, 0.9);
+    0 0 3px rgba(255, 255, 255, 0.95),
+    0 0 8px rgba(255, 255, 255, 0.70),
+    0 1px 2px rgba(255, 255, 255, 0.90);
 }
+/* Les mots-clés colorés du hero (orange/bleu) gardent leur couleur propre */
+body.has-glass-sections .hero-title .t-key-ortho { color: #e67e22; -webkit-text-fill-color: #e67e22; }
+body.has-glass-sections .hero-title .t-key-3d    { color: #2d4a8a; -webkit-text-fill-color: #2d4a8a; }
 
 /* Eyebrow et badges courts : pastille opaque qui flotte sur le diaporama */
 body.has-glass-sections .section-eyebrow {
@@ -1222,6 +1230,16 @@ body.megamenu-open { overflow: hidden; }
   background: var(--c-bg);
   border-top: 1px solid var(--c-border, rgba(0,0,0,0.08));
   font-style: italic;
+}
+
+/* Message d'équipe (remplace la bannière photo) */
+.team-message {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--fs-lg);
+  line-height: 1.75;
+  color: var(--c-text-soft);
 }
 
 /* Liste compacte des membres sous la bannière */
@@ -2484,306 +2502,13 @@ html[dir="rtl"] .testimonial { border-left: none; border-right: 4px solid var(--
 
 /* ---------- 25. PRINT ---------- */
 @media print {
-  .topbar, .a11y-fab, .a11y-panel, .splash, .hamburger, .footer, .curtain { display: none !important; }
+  .topbar, .a11y-fab, .a11y-panel, .splash, .hamburger, .footer { display: none !important; }
   body { background: #fff; color: #000; }
   a { text-decoration: underline; color: #000; }
   .section { padding: 1rem 0; }
 }
 
-/* ---------- 26. RIDEAU D'ENTRÉE (théâtral, fleuve Maroni + carte Guyane) ---------- */
-body.curtain-locked { overflow: hidden; }
-
-.curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;       /* au-dessus de splash, a11y-fab, etc. */
-  display: flex;
-  background: #050d14;  /* fond noir le temps que les images chargent */
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* Les deux moitiés affichent la même image, chacune montrant sa propre moitié.
-   Photo réelle = assets/fleuve-maroni.jpg ; fallback SVG = assets/guyane-placeholder.svg
-   Astuce : un pseudo-élément ::after dimensionné à 100vw sert d'image continue,
-   décalé à gauche dans la half-left et à droite dans la half-right pour que
-   chaque moitié montre sa portion de l'image plein viewport (cover, sans déformation). */
-.curtain-half {
-  flex: 1 1 50%;
-  position: relative;
-  overflow: hidden;
-  background: #050d14;
-  transition: transform 1.4s cubic-bezier(.83, 0, .17, 1);
-  will-change: transform;
-}
-.curtain-half::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100%;
-  background-image:
-    url("../assets/fleuve-maroni.jpg"),
-    url("../assets/guyane-placeholder.svg");
-  background-size: cover, cover;
-  background-position: center center, center center;
-  background-repeat: no-repeat, no-repeat;
-}
-.curtain-half-left::after  { left:  0; }
-.curtain-half-right::after { right: 0; }
-
-/* Voile assombrissant pour faire ressortir le contenu central et le logo 3D */
-.curtain::before {
-  content: "";
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 65% 55% at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.4) 45%, rgba(0,0,0,.62) 80%, rgba(0,0,0,.88) 100%),
-    linear-gradient(180deg, rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.4) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.curtain.opening .curtain-half-left  { transform: translateX(-105%); }
-.curtain.opening .curtain-half-right { transform: translateX( 105%); }
-.curtain.opening::before { opacity: 0; transition: opacity .8s ease; }
-
-/* --- Stage central : eyebrow + brand + carte interactive + CTA --- */
-.curtain-stage {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(8px, 1.5vw, 18px);
-  text-align: center;
-  color: #fff;
-  perspective: 900px;
-}
-
-.curtain-eyebrow {
-  margin: 0;
-  font-family: var(--ff-display, "Playfair Display", serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(.95rem, 1.6vw, 1.25rem);
-  letter-spacing: .04em;
-  color: rgba(255, 255, 255, .92);
-  text-shadow:
-    0 1px 3px rgba(0, 0, 0, 1),
-    0 2px 10px rgba(0, 0, 0, .95),
-    0 4px 24px rgba(0, 0, 0, .8);
-}
-.curtain-brand {
-  margin: 0;
-  font-family: var(--ff-display, "Playfair Display", serif);
-  font-weight: 800;
-  font-size: clamp(1.7rem, 4vw, 2.6rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: #fff;
-  text-shadow:
-    0 1px 3px rgba(0, 0, 0, 1),
-    0 3px 8px rgba(0, 0, 0, .95),
-    0 6px 28px rgba(0, 0, 0, .85),
-    0 0 50px rgba(72, 201, 176, .25);
-  position: relative;
-}
-.curtain-brand::after {
-  content: "";
-  display: block;
-  width: clamp(60px, 10vw, 110px);
-  height: 2px;
-  margin: clamp(8px, 1.2vw, 14px) auto 0;
-  background: linear-gradient(90deg, transparent, #f5b041, transparent);
-  border-radius: 2px;
-}
-.curtain-brand-sep {
-  display: inline-block;
-  margin: 0 .25em;
-  color: #f5b041;
-  font-weight: 400;
-}
-.curtain-brand-full {
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
-/* --- CTA bouton : logo OE3D 3D centré, seul élément cliquable du rideau --- */
-.curtain-cta {
-  background: transparent;
-  border: 0;
-  padding: 16px 24px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45))
-          drop-shadow(0 0 18px rgba(244, 217, 118, 0.25));
-  transition: filter 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  margin-top: clamp(12px, 2vw, 24px);
-  /* Animation d'entrée à l'apparition du rideau, puis flottement permanent */
-  opacity: 0;
-  transform: translateY(20px) scale(0.92);
-  animation: cta-enter 1s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards,
-             cta-float 5s 1.4s ease-in-out infinite;
-}
-.curtain-cta svg {
-  display: block;
-  width: 240px;
-  height: auto;
-  overflow: visible;
-}
-
-.curtain-cta:hover,
-.curtain-cta:focus-visible {
-  outline: none;
-  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55))
-          drop-shadow(0 0 36px rgba(244, 217, 118, 0.65));
-}
-.curtain-cta:focus-visible {
-  outline: 2px solid #f4d976;
-  outline-offset: 8px;
-  border-radius: 12px;
-}
-
-/* Tête d'impression : descend en boucle au survol (barre + buse synchrones) */
-.curtain-cta:hover .cta-printhead-bar,
-.curtain-cta:focus-visible .cta-printhead-bar,
-.curtain-cta:hover .cta-printhead-nozzle,
-.curtain-cta:focus-visible .cta-printhead-nozzle {
-  animation: cta-print 1.6s ease-in-out infinite;
-}
-
-/* Particules dorées : montent en cascade au survol */
-.curtain-cta:hover .cta-particles circle,
-.curtain-cta:focus-visible .cta-particles circle {
-  animation: cta-spark 1.8s ease-out infinite;
-}
-.curtain-cta:hover .cta-particles circle:nth-child(1),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(1) { animation-delay: 0s;   }
-.curtain-cta:hover .cta-particles circle:nth-child(2),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(2) { animation-delay: .3s;  }
-.curtain-cta:hover .cta-particles circle:nth-child(3),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(3) { animation-delay: .6s;  }
-.curtain-cta:hover .cta-particles circle:nth-child(4),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(4) { animation-delay: .9s;  }
-.curtain-cta:hover .cta-particles circle:nth-child(5),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(5) { animation-delay: 1.2s; }
-.curtain-cta:hover .cta-particles circle:nth-child(6),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(6) { animation-delay: .15s; }
-.curtain-cta:hover .cta-particles circle:nth-child(7),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(7) { animation-delay: .45s; }
-.curtain-cta:hover .cta-particles circle:nth-child(8),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(8) { animation-delay: .75s; }
-.curtain-cta:hover .cta-particles circle:nth-child(9),
-.curtain-cta:focus-visible .cta-particles circle:nth-child(9) { animation-delay: 1.05s; }
-.cta-particles circle {
-  transform-box: fill-box;
-  transform-origin: center;
-  opacity: 0;
-}
-
-@keyframes cta-enter {
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes cta-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
-}
-@keyframes cta-print {
-  0%   { opacity: 0;    transform: translateY(-8px);  }
-  20%  { opacity: 0.95;                                }
-  80%  { opacity: 0.95;                                }
-  100% { opacity: 0;    transform: translateY(120px); }
-}
-/* Particules qui tombent du logo vers le bas (clin d'œil aux orpailleurs du Maroni) */
-@keyframes cta-spark {
-  0%   { opacity: 0; transform: translateY(0)    scale(0.4); }
-  15%  { opacity: 1; transform: translateY(20px) scale(1.1); }
-  60%  { opacity: 1; transform: translateY(80px) scale(1);   }
-  100% { opacity: 0; transform: translateY(140px) scale(0.7); }
-}
-
-/* Mobile : SVG plus petit */
-@media (max-width: 600px) {
-  .curtain-cta svg { width: 180px; }
-}
-
-/* Lieu (haut) + indication (bas) */
-.curtain-place,
-.curtain-hint {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255, 255, 255, .85);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, .8);
-  margin: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-.curtain-place {
-  top: clamp(24px, 5vw, 48px);
-  font-family: var(--ff-display, serif);
-  font-style: italic;
-  font-size: clamp(.95rem, 1.6vw, 1.25rem);
-  letter-spacing: .05em;
-  white-space: nowrap;
-}
-.curtain-hint {
-  bottom: clamp(24px, 5vw, 48px);
-  font-size: var(--fs-xs, .78rem);
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .65);
-  animation: curtain-hint-fade 3s ease-in-out infinite;
-  white-space: nowrap;
-}
-@keyframes curtain-hint-fade {
-  0%, 100% { opacity: .45; }
-  50%      { opacity: 1;   }
-}
-
-/* Fadeout du contenu quand le rideau s'ouvre */
-.curtain.opening .curtain-stage,
-.curtain.opening .curtain-place,
-.curtain.opening .curtain-hint {
-  opacity: 0;
-  transition: opacity .35s ease, transform .35s ease;
-  pointer-events: none;
-}
-.curtain.opening .curtain-stage { transform: translate(-50%, -50%) scale(.85); }
-.curtain.opening .curtain-place { transform: translateX(-50%) translateY(-30px); }
-.curtain.opening .curtain-hint  { transform: translateX(-50%) translateY( 30px); }
-
-/* Respect des préférences utilisateur (motion réduit) */
-@media (prefers-reduced-motion: reduce) {
-  .curtain-hint { animation: none !important; }
-  .curtain-cta {
-    animation: none !important;
-    opacity: 1;
-    transform: none;
-  }
-  .curtain-cta:hover .cta-printhead-bar,
-  .curtain-cta:focus-visible .cta-printhead-bar,
-  .curtain-cta:hover .cta-printhead-nozzle,
-  .curtain-cta:focus-visible .cta-printhead-nozzle,
-  .curtain-cta:hover .cta-particles circle,
-  .curtain-cta:focus-visible .cta-particles circle { animation: none !important; }
-  .curtain-half { transition: opacity .3s linear; }
-  .curtain.opening .curtain-half-left,
-  .curtain.opening .curtain-half-right { transform: none; opacity: 0; }
-}
-
-/* Mobile : marque resserrée, textes du rideau plus compacts */
-@media (max-width: 480px) {
-  .curtain-brand { font-size: 1.4rem; }
-  .curtain-place { top: 18px; font-size: .85rem; }
-  .curtain-hint  { bottom: 18px; }
-}
+/* ---------- 26. (RIDEAU D'ENTRÉE retiré le 24 mai 2026 — le site ouvre directement sur le splash) ---------- */
 
 /* ---------- 27. MODALS (PDF & VIDÉO FAQ) ---------- */
 .m-modal {
